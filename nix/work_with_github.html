@@ -4,8 +4,23 @@
         <title>Работа с GITHUB</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/prism.css"/> <!-- Тема подсветки кода для Prism -->
+
+        <!-- Подключение локального MathJax -->
+        <script type="text/javascript" id="MathJax-script" async
+        src="../js/MathJax3.0.0/es5/tex-svg.js">
+            MathJax.Hub.Config({
+                extensions: ["tex2jax.js","TeX/noErrors.js"],
+	            jax: ["input/TeX","output/HTML-CSS"],
+	            tex2jax: {inlineMath: [['$','$'],["\\(","\\)"]]},
+	            "HTML-CSS": {availableFonts:["TeX"]}
+            });
+        </script>
     </head>
     <body>
+        <!-- Подключение скрипта Prism -->
+        <script src="../js/prism-1.17.1.js"></script>
+
         <div class="A4">
             <br>
             <p class="section">
@@ -23,8 +38,8 @@
                 Откройте терминал и используйте следующую команду, чтобы добавить своё имя:
             </p>
             
-            <pre class="code">
-    $  git config --global user.name "имя"</pre>
+           <pre>
+                <code class="language-shell">$  git config --global user.name "имя"</code></pre>
                
             <p class="plane">
                 Обратите внимание, что в командах, указанных выше, есть опция --global. Это значит, что такие данные будут 
@@ -36,53 +51,54 @@
                 <b>Скачать</b> репозиторий из облака <i>(с www.github.com):</i>
             </p>
 
-            <pre class="code">
-    $ git clone git://github.com/USER_NAME/REPO_NAME
-    или вот так (после настройки SSH)
-    $ git clone git@github.com:your-nickname/your-project.git</pre>
+            <pre>
+                <code class="language-shell">$ git clone git://github.com/USER_NAME/REPO_NAME
+                или вот так (после настройки SSH)
+                $ git clone git@github.com:your-nickname/your-project.git</code></pre>
 
             <p class="plane">
                 Кстати, если вы хотите, чтобы название папки с проектом у вас на компьютере отличалось от имени репозитория,
                 можете дополнить команду клонирования, добавив в конце другое название:
             </p>
 
-            <pre class="code">
-    $ git clone git@github.com:_your-nickname_/_your-project_.git folder_name</pre>
+            <pre>
+                <code class="language-shell">$ git clone git@github.com:_your-nickname_/_your-project_.git folder_name</code></pre>
 
             <p class="plane">
                 <b>Сделать алиас</b> на другое имя накоторо репозитория. Что-бы работали пуш и пулл нужно что-бы алиас ссылался на <i>https:</i>
             </p>
 
-            <pre class="code">    $ cd REPO_NAME
-    $ git remote add ALIAS_NAME https://github.com/USER_NAME/REPO_NAME</pre>
+            <pre>
+                <code class="language-shell">$ cd REPO_NAME
+                $ git remote add ALIAS_NAME https://github.com/USER_NAME/REPO_NAME</code></pre>
             
             <p class="plane">
                 <b>Посмотреть</b>, с какими ветками мы сейчас работаем:
             </p>
 
-            <pre class="code">
-    $ git branch</pre>
+            <pre>
+                <code class="language-shell">$ git branch</code></pre>
 
             <p class="plane">
                 <b>Переключиться</b> между существующими ветками в проекте:
             </p>
 
-            <pre class="code">
-    $ git checkout имя-ветки </pre>
+            <pre>
+                <code class="language-shell">$ git checkout имя-ветки</code></pre>
 
             <p class="plane">
                 <b>Сделать новый branch</b>
             </p>
 
-            <pre class="code">
-    $ git checkout -b имя-новой-ветки</pre>
+            <pre>
+                <code class="language-shell">$ git checkout -b имя-новой-ветки</code></pre>
 
             <p class="plane">
                 Если вы ошиблись в названии, например, допустили опечатку, вы можете изменить название ветки с помощью команды:
             </p>
 
-            <pre class="code">
-    $ git branch -m старое-имя-ветки новое-имя-ветки</pre>
+            <pre>
+                <code class="language-shell">$ git branch -m старое-имя-ветки новое-имя-ветки</code></pre>
 
             <p class="subsection">
                 Pullrequest
@@ -111,23 +127,27 @@
                 Академии, вы можете выбрать любое другое название.<br>
                 <br>
                 Если консоль выдаёт ошибку и говорит, что не знает директории с таким именем, нужно добавить ссылку на этот репозиторий:<br>
-                <br>
-                <span style="font-family: Roboto Mono">$ git remote add academy git@github.com:your-repo.git</span><br>
-                <br>
+            </p>
+
+            <pre>
+                <code class="language-shell">$ git remote add academy git@github.com:your-repo.git</code></pre>
+            
+            <p class="plane">
                 Вместо academy указывайте своё название и оно закрепится за этим репозиторием.<br>
                 <br>
-                Теперь отправьте изменения уже из своей ветки master в ваш форк на GitHub с помощью команды<br>
-                <br>
-                <span style="font-family: Roboto Mono">$ git push origin master.</span>  
+                Теперь отправьте изменения уже из своей ветки master в ваш форк на GitHub с помощью команды/
             </p>
+
+            <pre>
+                <code class="language-shell">$ git push origin master.</code></pre>
 
             <p class="plane">
-                <b>Фиксация изменений</b> (или добавление коммита):
+                <b>Фиксация изменений (или добавление коммита):</b>
             </p>
 
-            <pre class="code">
-    $ git commit -am «COMMIT_NAME»
-    $ git push REPO_NAME master</pre>
+            <pre>
+                <code class="language-shell">$ git commit -am «COMMIT_NAME»
+                $ git push REPO_NAME master</code></pre>
 
             <p class="plane">
                 <b>Отмена последнего коммита</b>, например когда вы делаете коммит слишком рано, забыв 
@@ -135,18 +155,18 @@
                 сделать этот коммит ещё раз, вы можете выполнить commit с опцией <i>--amend:</i>
             </p>
 
-            <pre class="code">
-    $ git commit --amend</pre>
+            <pre>
+                <code class="language-shell">$ git commit --amend</code></pre>
 
             <p class="plane">
                Для примера, если после совершения коммита вы осознали, что забыли проиндексировать 
                изменения в файле, которые хотели добавить в этот коммит, вы можете сделать что-то подобное: 
             </p>
 
-            <pre class="code">
-    $ git commit -m 'initial commit'
-    $ git add forgotten_file
-    $ git commit —amend</pre>
+            <pre>
+                <code class="language-shell">$ git commit -m 'initial commit'
+                $ git add forgotten_file
+                $ git commit —amend</code></pre>
 
             <p class="plane">
                 Все три команды вместе дают один коммит — второй коммит заменяет результат первого.
@@ -156,27 +176,27 @@
                 <b>Обновление</b> локального репозитория:
             </p>
 
-            <pre class="code">
-    $ cd REPO_NAME
-    $ git pull</pre>
+            <pre>
+                <code class="language-shell">$ cd REPO_NAME
+                $ git pull</code></pre>
 
             <p class="plane">
                 Для того чтобы <b>начать отслеживать</b> (добавить под версионный контроль) новый файл, 
                 используется команда git add. Чтобы начать отслеживание файла FILE_NAME, вы можете выполнить следующее:
             </p>
 
-            <pre class="code">
-    $ git add FILE_NAME</pre>
+            <pre>
+                <code class="language-shell">$ git add FILE_NAME</code></pre>
 
             <p class="plane">
                 Основной инструмент, используемый для определения, <b>какие файлы в каком состоянии находятся</b> — это команда git status. 
                 Если вы выполните эту команду сразу после клонирования, вы увидите что-то вроде этого:
             </p>
 
-            <pre class="code">
-    $ git status
-    # On branch master
-    nothing to commit, working directory clean</pre>
+            <pre>
+                <code class="language-shell">$ git status
+                # On branch master
+                nothing to commit, working directory clean</code></pre>
 
             <p class="plane">
                 Это означает, что у вас чистый рабочий каталог, другими словами — в нём нет отслеживаемых 
@@ -191,24 +211,24 @@
                 следующий раз не увидите его как “неотслеживаемый”.
             </p>
 
-            <pre class="code">
-    $ git rm FILE_NAME</pre>
+            <pre>
+                <code class="language-shell">$ git rm FILE_NAME</code></pre>
 
             <p class="plane">
                 <b>Удалить</b> файл FILE_NAME из индекса, оставив его при этом в рабочем каталоге:
             </p>
 
-            <pre class="code">
-    $ git rm --cached FILE_NAME</pre>
+            <pre>
+                <code class="language-shell">$ git rm --cached FILE_NAME</code></pre>
 
             <p class="plane">
                 <b>Переместить</b> файл hello.html в каталог lib
             </p>
 
-            <pre class="code">
-    $ mkdir lib
-    $ git mv hello.html lib
-    $ git status</pre>
+            <pre>
+                <code class="language-shell">$ mkdir lib
+                $ git mv hello.html lib
+                $ git status</code></pre>
             
             <p class="plane">
                 Перемещая файлы с помощью git, мы информируем git о 2 вещах:<br>
@@ -223,8 +243,8 @@
                 <b>Добавить каталог</b> все файлы и подкаталоги в нём:
             </p>
 
-            <pre class="code">
-    $ git add .</pre>
+            <pre>
+                <code class="language-shell">$ git add .</code></pre>
 
             <p class="plane">
                 Именно точка, звёздочка * добавит только файлы в каталоге, игнорируя подкаталоги с файлами.
@@ -238,15 +258,12 @@
                 При попытке сделать новый коммит в удалённый репозиторий из локального и выполнении <i>$ git push</i> выпадает ошибка. Истправляется так:
             </p>
 
-            <pre class="code">
-    $ git fetch --all
-    $ git reset --hard origin/&lt;branch_name&gt; (например master)</pre>
-
-            <p class="plane">
-                <span class="kwd">$ git fetch</span> — скачивает последнее из удалённого репозитория не совершая попыток смержить или заменить что либо.<br>
-                <span class="kwd">$ git reset</span> — сбрасывает ветку master к тому, что только что было подобрано <i>(fetch)</i>. 
-                Опция <i>--hard</i> заменяет все файлы в рабочем дереве каталогов на файлы, имеющиеся в <i>origin/master</i>.
-            </p>
+            <pre>
+                <code class="language-shell">$ git fetch --all
+                $ git reset --hard origin/&lt;branch_name&gt; (например master)
+                $ git fetch — скачивает последнее из удалённого репозитория не совершая попыток смержить или заменить что либо.
+                $ git reset — сбрасывает ветку master к тому, что только что было подобрано <i>(fetch)</i>. 
+                Опция <i>--hard</i> заменяет все файлы в рабочем дереве каталогов на файлы, имеющиеся в <i>origin/master</i>.</code></pre>
 
             <br>
         </div>

@@ -51,18 +51,46 @@
     font-style: normal;
 }
 
+.dark {
+    --bg: #222831;
+    --bg2: #181C22;
+    --bg3: #1A1D24;
+    --bg4: black;
+    --footer-bg: rgba(0, 0, 0, .3);
+    --code: #F59BAC;
+    --code-text: #FAD7A0;
+    --code-text: #FEE6C0;
+    --code-comment: #81899B;
+    --text-color: #F9FFEE;
+    --pale-text: #dfa612;
+    --info-box-text: antiquewhite;
+    --gs0: rgba(239, 187, 53, 0.6);
+    --gs1: rgba(239, 187, 53, 0.6);
+    --green1: #EFBB35;
+    --green2: #E84279;
+    --green3: #dfa612;
+    --top1: #302E24;
+    --top2: #28313E;
+    --subtle-green1: rgba(236, 198, 48, .1);
+    --subtle-green2: #1A1D24;
+    --subtle-yellow3: rgba(236, 198, 48, .1);
+    --fb: #fff;
+    --reddit: #fff;
+    --h-news: #fff;
+    --twitter: #fff;
+    --cat-head: #1A1D24;
+    --front-text-color: antiquewhite;
+    --info-box-bg: #1A1D24
+}
+
 body {
     font-family: 'Local-Serif', 'Roboto Slab', 'Droid Serif', 'Ubuntu Serif', serif; /* Семейство шрифтов */
-    font-size: 14pt; /* Размер основного шрифта в пунктах  */
-    image-rendering: crisp-edges;
-    /*background-color: #f0f0f0; /* Цвет фона веб-страницы */
+    font-size: 12pt; /* Размер основного шрифта в пунктах  */
     background: rgb(204,204,204); 
     color: #333; /* Цвет основного текста */ 
     margin-left: auto;
     margin-right: auto;
     line-height: 1.3;
-    font-feature-settings: "kern" 1;
-    font-kerning: normal;
 }
 
 blockquote {
@@ -74,7 +102,7 @@ blockquote {
 
 /* Заголовок темы или раздела */
 p[class="section"] {
-    font-family: 'Roboto Bold', 'Droid Serif', 'Ubuntu Serif', serif;
+    /* font-family: 'Roboto Bold', 'Droid Serif', 'Ubuntu Serif', serif; */
     line-height: 1.0;
     letter-spacing: .1rem;
     font-size: 26pt;
@@ -130,12 +158,12 @@ p[class="link"] {
 
 a {
     text-decoration: none; /* Убирает подчеркивание для ссылок */
-    color: rgb(0, 16, 160);
+    color: rgb(0, 0, 0);
 } 
 
 a:hover { 
     text-decoration: underline; /* Добавляем подчеркивание при наведении курсора на ссылку */
-    color: red; /* Ссылка красного цвета */
+    color: #333;
 } 
 
 pre[class=plane] {
@@ -146,41 +174,23 @@ pre[class=plane] {
     line-height: 1.2;
     margin-left: 60px; 
     margin-right: 60px;
+}
+
+div[class="header"] {
     
 }
 
-pre[class=code] {
-    font-family: 'Local-Mono', 'Roboto Mono', 'Droid Mono', 'Ubuntu Mono', Consolas, monospace;
-    font-size: 12pt;
-    text-align: left;
-    line-height: 1.2;
-    margin-left: 60px; 
-    margin-right: 60px; 
-}
+div[class="footer"] {
 
-span[class="cmnt"] {
-    color: #979797;
-    font-style: italic;
-    font-family: 'Local-Mono', 'Roboto Mono', 'Droid Mono', 'Ubuntu Mono', Consolas, monospace;
-}
-
-span[class="kwd"] {
-    font-size: 12pt;
-    font-weight: 700;
-    color: #000000;
-    font-family: 'Local-Mono', 'Roboto Mono', 'Droid Mono', 'Ubuntu Mono', Consolas, monospace;
-}
-
-div {
-    background: white;
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 0.5cm;
-    box-shadow: 0 0 2.5cm rgba(0,0,0,0.8);
 }
 
 div[class="A4"] {  
     width: 1200px;
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm; 
+    box-shadow: 0 0 2.5cm rgba(0,0,0,0.8);
     /*
     если раскомментировать, то размер страницы будет
     точно с А4 и нужно будет начинать новую странице кадый раз 
