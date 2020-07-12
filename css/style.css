@@ -110,6 +110,7 @@ p[class="section"] {
     text-align: center; 
     margin-left: 60px;
     margin-right: 60px;
+    word-break: break-all;
 }
 
 /* Заголовок подраздела */
