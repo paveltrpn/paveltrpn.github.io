@@ -160,6 +160,7 @@ p[class="link"] {
 a {
     text-decoration: none; /* Убирает подчеркивание для ссылок */
     color: rgb(0, 0, 0);
+    font-size: 14pt;
 } 
 
 a:hover { 
