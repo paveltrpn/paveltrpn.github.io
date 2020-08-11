@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>RAII idiom</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/prism.css"/> <!-- Тема подсветки кода для Prism -->
+
+        <!-- Подключение локального MathJax -->
+        <script type="text/javascript" id="MathJax-script" async
+        src="../js/MathJax3.0.0/es5/tex-svg.js">
+            MathJax.Hub.Config({
+                extensions: ["tex2jax.js","TeX/noErrors.js"],
+	            jax: ["input/TeX","output/HTML-CSS"],
+	            tex2jax: {inlineMath: [['$','$'],["\\(","\\)"]]},
+	            "HTML-CSS": {availableFonts:["TeX"]}
+            });
+        </script>
+        <!-- ============================== -->
+    </head>
+    <body>
+        <!-- Подключение скрипта Prism -->
+        <script src="../js/prism-1.17.1.js"></script>
+
+        <div class="A4">
+            <br>
+            <p class="section">
+                RAII — получение ресурса есть инициализация
+            </p>
+
+            <p class="small">
+                (https://foxford.ru/wiki/informatika/raii-poluchenie-resursa-est-initsializatsiya)
+            </p>
+
+            <p class="plane">
+                RAII — это аббревиатура, означающая Resource Acquisition Is Initialization.<br>
+                <br>
+                Это программная идиома ООП, которая заключается в том, что с помощью конструктора и деструктора получение некоторого 
+                ресурса неразрывно совмещается с инициализацией, а освобождение — с уничтожением объекта.<br>
+                <br>
+                В конструкторе соответствующего класса организуется получение доступа к ресурсу, а в деструкторе — освобождение этого ресурса. 
+                Поскольку деструктор локальной (автоматической) переменной вызывается при выходе её из области видимости, то ресурс гарантированно 
+                освобождается при уничтожении переменной. Это справедливо даже в ситуациях, в которых возникают исключения. Это делает RAII ключевой 
+                концепцией для написания безопасного кода в C++ (и других языках программирования, где конструкторы и деструкторы автоматических объектов 
+                вызываются автоматически).<br>
+                <br>
+                Следует контролировать возможность создания объекта через операцию клонирования и корректно переопределить (или запретить) 
+                операцию присваивания для подобных объектов.
+            </p>
+
+            <p class="subsection">
+                Пример применения RAII для динамической памяти
+            </p>
+
+            <pre>
+                <code class="language-cpp">#include &lt;iostream&gt;
+
+                using namespace std;
+
+                class Stack{
+                    int *A;
+                    int A_size;
+
+                public:
+
+                    Stack(int _size):A_size(_size)
+                    {
+                        A = new int[_size];
+                    }
+
+                    ~Stack()
+                    {
+                        delete [] A;
+                    }
+
+                    Stack& operator=(const Stack &right)
+                    {
+                        delete [] A;
+
+                        A_size = right.A_size;
+                        A = new int[A_size];
+
+                        for(int i = 0; i &lt; A_size; i++)
+                            A[i] = right.A[i];
+                    }
+
+                };</code></pre>
+
+            <br>
+        </div>
+    </body>
+</html>
