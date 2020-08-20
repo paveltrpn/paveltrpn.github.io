@@ -255,15 +255,15 @@ div[class="A4"][layout="portrait"] {
 .submenu {
     background: #333;
     position: absolute;
-    left: 0;
     top: 100%;
+    left: 0;
     z-index: 5;
     width: auto;
     opacity: 0;
     transform: scaleY(0); /* По умолчанию все теги с submenu сжаты по Y до 0.0*/
     transform-origin: 0 0;
     transition: .2s ease-in-out; /* Время раскрытия списка в долях секунды */
-    padding-left: 0; 
+    padding-left: 0;
 }
 
 .submenu > li > a {
@@ -277,9 +277,10 @@ div[class="A4"][layout="portrait"] {
 .submenu > li {
     margin-top: 1em;
     margin-bottom: 1em;
-    margin-left: 0.1em;
-    margin-right: 0.1em;
-    /* border-bottom: 3px solid rgba(255,255,255,1); */
+    margin-left: 1em;
+    margin-right: 1em;
+    text-align: left;
+    border-bottom: 2px solid rgba(255,255,255,1); 
 }
 
 /*
@@ -294,4 +295,51 @@ div[class="A4"][layout="portrait"] {
 .menu li:hover .submenu {
     opacity: 1;
     transform: scaleY(1);
+}
+
+/* --------------------------------------------------------------------*/
+/* ------------СЕКЦИЯ СТИЛЯ НУМЕРОВАННОГО СПИСКА С ПОВОРОТОМ НОМЕРА----*/
+/* --------------------------------------------------------------------*/
+
+.rounded {
+    counter-reset: li; 
+    list-style: none; 
+    /* font: 14px "Trebuchet MS", "Lucida Sans";
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);*/
+}
+
+.rounded a {
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em 2em;
+    margin: .4em 0;
+    background: rgb(218, 218, 218);
+    color: #444;
+    text-decoration: none;
+    border-radius: .3em;
+    transition: .3s ease-out;
+}
+
+.rounded a:hover:before {transform: rotate(360deg);}
+
+/* положение цифр в кружке и самих кружков */
+
+.rounded a:hover {background: #e9e9e9;}
+
+.rounded a:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -1.3em;
+    top: 50%;
+    margin-top: -1.3em;
+    background: #bdbdbd;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    border: .3em solid white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2em;
+    transition: all .3s ease-out;
 }
