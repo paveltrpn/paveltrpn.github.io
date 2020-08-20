@@ -93,13 +93,6 @@ body {
     line-height: 1.3;
 }
 
-blockquote {
-    font-style: italic;
-    text-align: justify;
-    margin-left: 120px;
-    margin-right: 120px;
-}
-
 /* Заголовок темы или раздела */
 p[class="section"] {
     /* font-family: 'Roboto Bold', 'Droid Serif', 'Ubuntu Serif', serif; */
@@ -145,15 +138,6 @@ p[class="small"] {
     font-size: 10pt;
     text-align: center;
     margin-left: 60px;  
-    margin-right: 60px; 
-}
-
-p[class="link"] {
-    font-size: 14pt;
-    line-height: 1.1;
-    letter-spacing: .1em;
-    text-align: left; 
-    margin-left: 60px; 
     margin-right: 60px; 
 }
 
@@ -318,14 +302,19 @@ div[class="A4"][layout="portrait"] {
     text-decoration: none;
     border-radius: .3em;
     transition: .3s ease-out;
+    margin-right: 50px;
 }
 
-.rounded a:hover:before {transform: rotate(360deg);}
+.rounded a:hover:before {
+    transform: rotate(360deg);
+}
+
+
+.rounded a:hover {
+    background: #e9e9e9;
+}
 
 /* положение цифр в кружке и самих кружков */
-
-.rounded a:hover {background: #e9e9e9;}
-
 .rounded a:before {
     content: counter(li);
     counter-increment: li;
