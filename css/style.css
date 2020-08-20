@@ -104,7 +104,7 @@ blockquote {
 p[class="section"] {
     /* font-family: 'Roboto Bold', 'Droid Serif', 'Ubuntu Serif', serif; */
     line-height: 1.0;
-    letter-spacing: .1rem;
+    letter-spacing: .1em;
     font-size: 26pt;
     font-weight: bold;
     text-align: center; 
@@ -117,7 +117,7 @@ p[class="section"] {
 p[class="subsection"] {
     font-family: 'Roboto Bold', 'Droid Serif', 'Ubuntu Serif', serif;
     line-height: 1.0;
-    letter-spacing: .1rem;
+    letter-spacing: .08em;
     word-break: break-word;
     font-size: 18pt;
     font-weight: bold;
@@ -129,7 +129,7 @@ p[class="subsection"] {
 /* Основной текст (вообще должно быть "plain")) */
 p[class="plane"] {
     /* text-indent: 1.5em; */
-    letter-spacing: .02rem;
+    letter-spacing: .02em;
     text-align: justify; /* Выравнивание по ширине */
     margin-left: 60px; /* Отступ слева в пикселах */
     margin-right: 60px; /* Отступ справа в пикселах */
@@ -151,7 +151,7 @@ p[class="small"] {
 p[class="link"] {
     font-size: 14pt;
     line-height: 1.1;
-    letter-spacing: .1rem;
+    letter-spacing: .1em;
     text-align: left; 
     margin-left: 60px; 
     margin-right: 60px; 
@@ -172,18 +172,10 @@ pre[class=plane] {
     font-family: 'Local-Serif', 'Roboto Slab', 'Droid Serif', 'Ubuntu Serif', serif;
     text-align: left;
     font-size: 12pt;
-    letter-spacing: .02rem;
+    letter-spacing: .02em;
     line-height: 1.2;
     margin-left: 60px; 
     margin-right: 60px;
-}
-
-div[class="header"] {
-    
-}
-
-div[class="footer"] {
-
 }
 
 div[class="A4"] {  
@@ -212,4 +204,94 @@ div[class="A4"][layout="portrait"] {
         margin: 0;
         box-shadow: 0;
     }
+}
+
+/* --------------------------------------------------------------------*/
+/* ---------------------СЕКЦИЯ СТИЛЯ ВЕРХНЕГО И НИЖНЕГО МЕНЮ-----------*/
+/* --------------------------------------------------------------------*/
+
+/* 
+    .class_name - равносильно element[class="class_name"] {...} 
+    .class_name > tag_name {...} - устанавливает свойства {...} для первого
+    вложенного тега tag_name
+    .class_name tag_name {...} - устанавливает свойства {...} для всех
+    вложенных тегов tag_name 
+*/
+    
+.menu {
+    background-color:#333; 
+    text-align: center;
+}
+
+.menu ul {
+    list-style-type: none; /* Убрали точки в пунктах списков */
+    list-style-position: inside; /* Точки, обозначающие элемент списка будут внутри */
+}
+
+.menu > ul {
+    margin-left: 3em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 0px;
+    height: 1.5em;
+}
+
+.menu > ul > li {
+    float: left;
+    position: relative;
+}
+
+.menu > ul > li > a {
+  color: #ffffff;
+  padding: 1em 4.5em;
+  text-align: center;
+}
+
+.menu li a:hover { 
+    color: #D5B45B;
+    text-decoration: none; /* Убрали подчёркивание при наведении на ссылку*/
+}
+
+.submenu {
+    background: #333;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 5;
+    width: auto;
+    opacity: 0;
+    transform: scaleY(0); /* По умолчанию все теги с submenu сжаты по Y до 0.0*/
+    transform-origin: 0 0;
+    transition: .2s ease-in-out; /* Время раскрытия списка в долях секунды */
+    padding-left: 0; 
+}
+
+.submenu > li > a {
+    color: white;
+    text-align: left;
+    padding: 0px 0em;
+    margin-left: 0em;
+    margin-right: 0em;
+}
+
+.submenu > li {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+    /* border-bottom: 3px solid rgba(255,255,255,1); */
+}
+
+/*
+.submenu li:last-child a {
+    border-bottom: none;  Убирает подчёркивание у последнего элемента 
+}
+*/
+
+/* При наведении курсора на элемент, все теги с submenu становятся
+   непрозрачными и масштабируются до 1:1
+*/
+.menu li:hover .submenu {
+    opacity: 1;
+    transform: scaleY(1);
 }

@@ -23,7 +23,6 @@
 
 /* положение цифр в кружке и самих кружков */
 .rounded a:before {
-    
     content: counter(li);
     counter-increment: li;
     position: absolute;
