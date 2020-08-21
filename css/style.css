@@ -129,9 +129,12 @@ div[class="A4"] {
     width: 1200px;
     background: white;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto; /* отступы слева и справа */
+    margin-top: 0.5cm;
     margin-bottom: 0.5cm; 
     box-shadow: 0 0 2.5cm rgba(0,0,0,0.8);
+    position: relative;
+    min-height: 95vh;
     /*
     если раскомментировать, то размер страницы будет
     точно с А4 и нужно будет начинать новую странице кадый раз 
