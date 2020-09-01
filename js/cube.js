@@ -48,8 +48,7 @@ var cube_c = (function () {
     }
     cube_c.prototype.setup = function () {
         this.html_canvas = document.querySelector('#glcanvas');
-        this.gl = this.html_canvas.getContext('webgl', { antialias: true,
-            depth: true });
+        this.gl = this.html_canvas.getContext('webgl');
         this.wnd_width = this.gl.drawingBufferWidth;
         this.wnd_height = this.gl.drawingBufferHeight;
         this.aspect = this.wnd_width / this.wnd_height;
@@ -90,7 +89,7 @@ var cube_c = (function () {
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
         var projectionMatrix = mtrx4_set_perspective(deg_to_rad(45), this.aspect, 0.1, 100.0);
         var modelViewMatrix = mtrx4_set_idtt();
-        modelViewMatrix = mtrx4_mult_translate(modelViewMatrix, [0.0, 0.0, -7.0]);
+        modelViewMatrix = mtrx4_mult_translate(modelViewMatrix, [0.0, 0.0, -4.8]);
         var rot = mtrx4_set_axisangl(vec3_set(0.1, 0.4, 0.3), this.squareRotation);
         modelViewMatrix = mtrx4_mult(modelViewMatrix, rot);
         var normalMatrix = mtrx4_invert(modelViewMatrix);

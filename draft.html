@@ -584,6 +584,61 @@
                 переопределяемый в производных классах, а затем виртуально вызывать его в деструкторе, у вас ничего не выйдет.</b>
             </p>
 
+            <p class="section">
+                Установка и использование CMake под Windows.
+            </p>
+
+            <p class="plane">
+                На примере сборки libtga (<i>https://github.com/madebr/libtga</i>) можно показать процесс установки и настройки cmake.
+                Скачиваем, собственно, сам репозиторий:
+            </p>
+
+            <pre>
+                <code class="language-bash">E:\
+                cd Devtools
+                git clone git://github.com/madebr/libtga</code></pre>
+
+            <p class="plane">
+                Скачиваем cmake - https://cmake.org/install/>. Устанавоиваем как обычно. CMake может использовать множество компиляторов 
+                для сборки проекта ($ cmake -G "cfg_name"), по умолчанию cmake использут для сборки nmake и, соответсвенно, создаёт 
+                Makefile для него. Мы будем использовать MinGW-W64, имя конфига - "MinGW Makefiles" (cmake -G "MinGW Makefiles"). 
+                Скачиваем MinGW-W64 - http://mingw-w64.org/doku.php/download, там выбираем "MingW-W64-builds" (хоть в таблице и напасано 
+                версия gcc - 7.0.0, в дистрибутиве будет версия 8.1.0). Устанавливаем обычно с такими параметрами:<br>
+                <br>
+                &emsp;&emsp;Version - 8.1.0;<br> 
+                &emsp;&emsp;Architecture - X86_64;<br>
+                &emsp;&emsp;Threads - Posix;<br>
+                &emsp;&emsp;Exception - Dwarf;<br>
+                &emsp;&emsp;Build version - 0<br>
+                <br>
+                После установки прописываем все необходимые переменные среды (если их ещё нет): В поиске Windows "Система" - "Дополнительные 
+                параметры системы" - "Параметры среды", добавляем в переменную %path% путь к папке bin компилятора (например "E:\Devtools\mingw-w64\mingw64\bin"), 
+                путь к cmake - "E:\Devtools\cmake-3.18.2-win64-x64\bin", и длве переменные для cmake - %CC% = "E:\Devtools\mingw-w64\mingw64\bin\gcc" и 
+                %CXX% = "E:\Devtools\mingw-w64\mingw64\bin\g++". Добавляем для текущего пользователя (хотя можно продублировать и для администратора)<br>
+                <br>
+                Далее в консоли. Создеём папку build (название не имеет значения) в папке со скаченым репозиторием libtga, конфигурируем и собираем:
+            </p> 
+
+            <pre>
+                <code class="language-bash">E:/
+                cd Devtools/libtga
+                mkdir build
+                cd build
+                cmake -G "MinGW Makefiles" ../
+                mingw32-make</code></pre>
+
+            <p class="plane">
+                В сети рекоемндуют использовать TDM-GCC, там версия gcc старше (на 01.09.20 там gcc 9.2.0), но сним не получилось собрать ни одного проекта.
+                С ключом -std=c++-17 код компилируется и собирается, но при запуске программа не выдаёт никаких сообщений и завершается.<br>
+                <br>
+                tgalib использует функцию bzero() для заполнения нулями аллоцированой области памяти, но она DEPRICATED и вместо неё надо использовать memset(), 
+                либо проект, использующий либу не будет линковаться. Написал небольшой патч: в <i>libtga/include/tga.h</i> дописываем:
+            </p>
+
+            <pre>
+                <code class="language-cpp">#define bzero(b,len) (memset((b), '\0', (len)), (void) 0)  
+                #define bcopy(b1,b2,len) (memmove((b2), (b1), (len)), (void) 0)</code></pre>
+
             <br>
 
             <div class="menu" style="position: absolute; top: 100%; width: inherit">
