@@ -29,7 +29,6 @@
                 </ul>      
             </div>
 
-            <br>
             <p class="section">
                 ЧЕРНОВИК
             </p>
@@ -143,18 +142,18 @@
             </p>
 
             <pre>
-                <code class="language-javascript">function myFunc(theObject) {
-                    theObject.make = 'Toyota';
-                }
-                
-                var mycar = {make: 'Honda', model: 'Accord', year: 1998};
-                var x, y;
-                
-                x = mycar.make; // x получает значение "Honda"
-                
-                myFunc(mycar);
-                y = mycar.make; // y получает значение "Toyota"
-                                // (свойство было изменено функцией)</code></pre>
+            <code class="language-javascript">function myFunc(theObject) {
+                theObject.make = 'Toyota';
+            }
+            
+            var mycar = {make: 'Honda', model: 'Accord', year: 1998};
+            var x, y;
+            
+            x = mycar.make; // x получает значение "Honda"
+            
+            myFunc(mycar);
+            y = mycar.make; // y получает значение "Toyota"
+                            // (свойство было изменено функцией)</code></pre>
 
             <p class="subsection">
                 Функции вида "function definition expression"
@@ -167,8 +166,8 @@
             </p>
 
             <pre>
-                <code class="language-javascript">var square = function(number) { return number * number; };
-                    var x = square(4); // x получает значение 16</code></pre>
+            <code class="language-javascript">var square = function(number) { return number * number; };
+            var x = square(4); // x получает значение 16</code></pre>
 
             <p class="plane">
                 Однако, имя может быть и присвоено для вызова самой себя внутри самой функции и для 
@@ -176,8 +175,8 @@
             </p>
 
             <pre>
-                <code class="language-javascript">var factorial = function fac(n) { return n &lt; 2 ? 1 : n * fac(n - 1); };
-                console.log(factorial(3));</code></pre>
+            <code class="language-javascript">var factorial = function fac(n) { return n &lt; 2 ? 1 : n * fac(n - 1); };
+            console.log(factorial(3));</code></pre>
             
             <p class="plane">
                 Функции вида "function definition expression" удобны, когда функция передается аргументом 
@@ -186,13 +185,13 @@
             </p>
 
             <pre>
-                <code class="language-javascript">function map(f, a) {
-                    var result = [], // Create a new Array
-                        i;
-                    for (i = 0; i != a.length; i++)
-                      result[i] = f(a[i]);
-                    return result;
-                }</code></pre>
+            <code class="language-javascript">function map(f, a) {
+                var result = [], // Create a new Array
+                    i;
+                for (i = 0; i != a.length; i++)
+                  result[i] = f(a[i]);
+                return result;
+            }</code></pre>
 
             <p class="plane">
                 В следующим коде наша функция принимает функцию, которая является function definition 
@@ -200,19 +199,19 @@
             </p>
 
             <pre>
-                <code class="language-javascript">function map(f, a) {
-                    var result = []; // Create a new Array
-                    var i; // Declare variable
-                    for (i = 0; i != a.length; i++)
-                      result[i] = f(a[i]);
-                        return result;
-                }
-                var f = function(x) {
-                   return x * x * x; 
-                }
-                var numbers = [0, 1, 2, 5, 10];
-                var cube = map(f,numbers);
-                console.log(cube);</code></pre>
+            <code class="language-javascript">function map(f, a) {
+                var result = []; // Create a new Array
+                var i; // Declare variable
+                for (i = 0; i != a.length; i++)
+                  result[i] = f(a[i]);
+                    return result;
+            }
+            var f = function(x) {
+               return x * x * x; 
+            }
+            var numbers = [0, 1, 2, 5, 10];
+            var cube = map(f,numbers);
+            console.log(cube);</code></pre>
 
             <p class="plane">
                 Функция возвращает: [0, 1, 8, 125, 1000].<br>
@@ -222,12 +221,12 @@
             </p>
 
             <pre>
-                <code class="language-javascript">var myFunc;
-                if (num === 0) {
-                    myFunc = function(theObject) {
-                    theObject.make = 'Toyota';
-                    }
-                }</code></pre>
+            <code class="language-javascript">var myFunc;
+            if (num === 0) {
+                myFunc = function(theObject) {
+                theObject.make = 'Toyota';
+                }
+            }</code></pre>
 
             <p class="plane">
                 В дополнение к объявлениям функций, описанных здесь, Вы также можете использовать 
@@ -603,45 +602,60 @@
                 для сборки проекта ($ cmake -G "cfg_name"), по умолчанию cmake использут для сборки nmake и, соответсвенно, создаёт 
                 Makefile для него. Мы будем использовать MinGW-W64, имя конфига - "MinGW Makefiles" (cmake -G "MinGW Makefiles"). 
                 Скачиваем MinGW-W64 - http://mingw-w64.org/doku.php/download, там выбираем "MingW-W64-builds" (хоть в таблице и напасано 
-                версия gcc - 7.0.0, в дистрибутиве будет версия 8.1.0). Устанавливаем обычно с такими параметрами:<br>
-                <br>
-                &emsp;&emsp;Version - 8.1.0;<br> 
-                &emsp;&emsp;Architecture - X86_64;<br>
-                &emsp;&emsp;Threads - Posix;<br>
-                &emsp;&emsp;Exception - Dwarf;<br>
-                &emsp;&emsp;Build version - 0<br>
-                <br>
-                После установки прописываем все необходимые переменные среды (если их ещё нет): В поиске Windows "Система" - "Дополнительные 
-                параметры системы" - "Параметры среды", добавляем в переменную %path% путь к папке bin компилятора (например "E:\Devtools\mingw-w64\mingw64\bin"), 
-                путь к cmake - "E:\Devtools\cmake-3.18.2-win64-x64\bin", и длве переменные для cmake - %CC% = "E:\Devtools\mingw-w64\mingw64\bin\gcc" и 
-                %CXX% = "E:\Devtools\mingw-w64\mingw64\bin\g++". Добавляем для текущего пользователя (хотя можно продублировать и для администратора)<br>
-                <br>
+                версия gcc - 7.0.0, в дистрибутиве будет версия 8.1.0). Устанавливаем обычно с такими параметрами:
+                
+                
+            </p>
+
+            <ul class="plane">
+                <li>Version - 8.1.0;</li> 
+                <li>Architecture - X86_64;</li>
+                <li>Threads - Posix;</li>
+                <li>Exception - Dwarf;</li>
+                <li>Build version - 0</li>
+            </ul>
+                
+
+            <p class="plane">
+                После установки прописываем все необходимые переменные среды (если их ещё нет), в поиске Windows "Система" - "Дополнительные 
+                параметры системы" - "Параметры среды":
+            </p>
+            
+            <ul class="plane">
+                <li>Добавляем в переменную %path% путь к папке bin компилятора (например <nobr>"E:\Devtools\mingw-w64\mingw64\bin")</nobr></li> 
+                <li>Путь к cmake - "E:\Devtools\cmake-3.18.2-win64-x64\bin" </li>
+                <li>Переменную для cmake - %CC% = "E:\Devtools\mingw-w64\mingw64\bin\gcc" </li> 
+                <li>Переменную для cmake - %CXX% = "E:\Devtools\mingw-w64\mingw64\bin\g++" </li>
+            </ul>
+            
+            <p class="plane">
+                Добавляем для текущего пользователя (хотя можно продублировать и для администратора).
                 Далее в консоли. Создеём папку build (название не имеет значения) в папке со скаченым репозиторием libtga, конфигурируем и собираем:
             </p> 
 
             <pre>
-                <code class="language-bash">E:/
-                cd Devtools/libtga
-                mkdir build
-                cd build
-                cmake -G "MinGW Makefiles" ../
-                mingw32-make</code></pre>
+            <code class="language-bash">E:/
+            cd Devtools/libtga
+            mkdir build
+            cd build
+            cmake -G "MinGW Makefiles" ../
+            mingw32-make</code></pre>
 
             <p class="plane">
-                В сети рекоемндуют использовать TDM-GCC, там версия gcc старше (на 01.09.20 там gcc 9.2.0), но сним не получилось собрать ни одного проекта.
+                В сети рекоемндуют использовать TDM-GCC, там версия gcc старше (на 01.09.20 там gcc 9.2.0), но с ним не получилось собрать ни одного проекта.
                 С ключом -std=c++-17 код компилируется и собирается, но при запуске программа не выдаёт никаких сообщений и завершается.<br>
                 <br>
                 tgalib использует функцию bzero() для заполнения нулями аллоцированой области памяти, но она DEPRICATED и вместо неё надо использовать memset(), 
-                либо проект, использующий либу не будет линковаться. Написал небольшой патч: в <i>libtga/include/tga.h</i> дописываем:
+                либо проект, использующий либу не будет линковаться. Написал небольшой патч: в "libtga/include/tga.h" дописываем:
             </p>
 
             <pre>
-                <code class="language-cpp">#define bzero(b,len) (memset((b), '\0', (len)), (void) 0)  
-                #define bcopy(b1,b2,len) (memmove((b2), (b1), (len)), (void) 0)</code></pre>
+            <code class="language-cpp">#define bzero(b,len) (memset((b), '\0', (len)), (void) 0)  
+            #define bcopy(b1,b2,len) (memmove((b2), (b1), (len)), (void) 0)</code></pre>
 
             <br>
 
-            <div class="menu" style="position: absolute; top: 100%; width: inherit">
+            <div class="menu">
                 <ul>
                     <li><a href="index.html">На главную</a></li> 
                 </ul>      

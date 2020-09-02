@@ -1,8 +1,8 @@
 
 body {
     font-family: 'Roboto', 'Droid Sans', 'Ubuntu Sans', sans-serif; /* Семейство шрифтов */
-    font-size: 14pt; /* Размер основного шрифта в пунктах  */
-    background: rgb(204,204,204); 
+    font-size: 13pt; /* Размер основного шрифта в пунктах  */
+    background: white; 
     color: #333; /* Цвет основного текста */ 
     margin-left: auto;
     margin-right: auto;
@@ -23,7 +23,7 @@ p[class="section"] {
 }
 
 /* Заголовок подраздела */
-p[class="subsection"] {
+.subsection {
     word-break: break-word;
     font-size: 18pt;
     font-weight: bold;
@@ -33,13 +33,16 @@ p[class="subsection"] {
 }
 
 /* Основной текст (вообще должно быть "plain")) */
-p[class="plane"] {
+.plane {
     text-indent: 0.0em;
     text-align: justify; /* Выравнивание по ширине */
     margin-left: 60px; /* Отступ слева в пикселах */
     margin-right: 60px; /* Отступ справа в пикселах */
 }
 
+.plane li {
+    margin-left: 1.5em;
+}
 /* 
     Уменьшеный текст. Для комментариев, ссылок (не активных)
     на исходные материалы и т.д. 
@@ -74,8 +77,8 @@ div[class="A4"] {
     margin: 0 auto; /* отступы слева и справа */
     margin-top: 0px;
     margin-bottom: 0px; 
-    box-shadow: 0 0 4.5cm rgba(0,0,0,0.8);
-    /* border: 5px solid darkgray; */
+    /* box-shadow: 0 0 250px rgba(0,0,0,0.8);  */
+    /* border: 25px solid darkgray; */
     position: relative;
     min-height: 92vh; /* Устанавливает минимальную высоту основного div в % от высоты окна браузера*/
     /*
@@ -96,6 +99,11 @@ div[class="A4"][layout="portrait"] {
     body, page {
         margin: 0;
         box-shadow: 0;
+    }
+    /* Исключем из печати верхнее и нижнее меню */
+    .menu, .menu *
+    {
+        display: none !important;
     }
 }
 
