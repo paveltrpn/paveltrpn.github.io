@@ -43,6 +43,26 @@ p[class="section"] {
 .plane li {
     margin-left: 1.5em;
 }
+
+.plain {
+    text-indent: 0.0em;
+    text-align: justify; /* Выравнивание по ширине */
+    margin-left: 60px; /* Отступ слева в пикселах */
+    margin-right: 60px; /* Отступ справа в пикселах */
+}
+
+.plain li {
+    margin-left: 1.5em;
+}
+
+.date {
+    font-size: 14pt;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid black;
+}
 /* 
     Уменьшеный текст. Для комментариев, ссылок (не активных)
     на исходные материалы и т.д. 

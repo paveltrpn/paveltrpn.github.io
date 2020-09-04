@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="A4">
-            <div class="menu">
+            <div class="menu" style="width: inherit;">
                 <ul>
                     <li><a href="">Статьи &emsp; &#9660;</a>
                         <ul class="submenu">
@@ -27,7 +27,13 @@
                             <li><a href="">Статьи</a></li>
                         </ul>
                     </li>
-                    <li><a href="links.html">Ссылки</a></li>
+                    <li><a href="">Разное &emsp; &#9660;</a>
+                        <ul class="submenu">
+                            <li><a href="blog/blog.html">Blog</a></li>
+                            <li><a href="music.html">Музыка</a></li>
+                            <li><a href="links.html">Ссылки</a></li>
+                        </ul>
+                    </li>
                 </ul>      
             </div>
 
@@ -36,25 +42,36 @@
             </p>
 
                 <ol class="rounded">
+                <a href="web/template.html">
+                    Шаблон страницы для этого сайта
+                </a>
+
                 <a href="web/html_font_connection.html">
                     Подключение шрифтов в HTML
                 </a>
                 
+                <a href="web/functions_definitions_in_js.html">
+                    Задание функции в JavaScript
+                </a>
+
                 <a href="web/typescript_classes_interfaces.html">
                     Typescript классы и интерфейсы
+                </a>
+
+                <a href="web/html_tips.html">
+                    html tips
                 </a>
                 </ol>
 
             <br>
                         
+            
+            <!-- свойства в style смещают этот блок div вниз страницы -->
             <div class="menu" style="position: absolute; top: 100%; width: inherit">
                 <ul>
-                    <li><a href="draft.html">Черновик</a></li>
-                    <li><a href="template.html">Шаблон</a></li>
-                    <li><a href="html_tips.html">HTML tips</a></li>
-                </ul>
+                    <li><a href="index.html">На главную</a></li> 
+                </ul>      
             </div>
-
         </div>
     </body>
 </html>

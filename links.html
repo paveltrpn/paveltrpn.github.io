@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="A4">
-            <div class="menu">
+            <div class="menu" style="width: inherit;">
                 <ul>
                     <li><a href="">Статьи &emsp; &#9660;</a>
                         <ul class="submenu">
@@ -27,10 +27,15 @@
                             <li><a href="">Статьи</a></li>
                         </ul>
                     </li>
-                    <li><a href="links.html">Ссылки</a></li>
+                    <li><a href="">Разное &emsp; &#9660;</a>
+                        <ul class="submenu">
+                            <li><a href="blog/blog.html">Blog</a></li>
+                            <li><a href="music.html">Музыка</a></li>
+                            <li><a href="links.html">Ссылки</a></li>
+                        </ul>
+                    </li>
                 </ul>      
             </div>
-
             <p class="section">
                 ПОЛЕЗНЫЕ ССЫЛКИ
             </p>
@@ -55,18 +60,20 @@
                 <a href="https://habr.com/ru/post/310790/">
                     learnopengl. Урок 1.1 — OpenGL
                 </a>
+
+                <a href="https://tproger.ru/translations/useful-hotkeys-for-vs-code/">
+                    Хоткеи для VS Code
+                </a>
                 </ol>
 
             <br>
 
+            <!-- свойства в style смещают этот блок div вниз страницы -->
             <div class="menu" style="position: absolute; top: 100%; width: inherit">
                 <ul>
-                    <li><a href="draft.html">Черновик</a></li>
-                    <li><a href="template.html">Шаблон</a></li>
-                    <li><a href="html_tips.html">HTML tips</a></li>
-                </ul>
+                    <li><a href="index.html">На главную</a></li> 
+                </ul>      
             </div>
-
         </div>
     </body>
 </html>

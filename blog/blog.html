@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Blog</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/prism.css"/> <!-- Тема подсветки кода для Prism -->
+
+        <!-- Подключение локального MathJax -->
+        <script type="text/javascript" id="MathJax-script" async
+        src="js/MathJax3.0.0/es5/tex-svg.js">
+            MathJax.Hub.Config({
+                extensions: ["tex2jax.js","TeX/noErrors.js"],
+	            jax: ["input/TeX","output/HTML-CSS"],
+	            tex2jax: {inlineMath: [['$','$'],["\\(","\\)"]]},
+	            "HTML-CSS": {availableFonts:["TeX"]}
+            });
+        </script>
+        <!-- ============================== -->
+    </head>
+    <body>
+        <!-- Подключение скрипта Prism -->
+        <script src="../js/prism-1.17.1.js"></script>
+
+        <div class="A4">
+            <div class="menu">
+                <ul>
+                    <li><a href="../index.html">На главную</a></li> 
+                </ul>      
+            </div>
+
+            <p class="subsection">
+                <span class="date">01.01.2020</span> Как обновить Node.js до последней версии?
+            </p>
+
+            <p class="small">
+                (https://devacademy.ru/recipe/kak-obnovit-node-js-do-poslednei-versii)
+            </p>
+
+            <p class="plane">
+                Установим Node.js и npm:
+            </p>
+
+            <pre>
+                <code class="language-bash">sudo apt-get install nodejs
+                sudo apt-get install npm</code></pre>
+
+            <p class="plane">
+                1. Нужно очистить NPM кеш:
+            </p>
+
+            <pre>
+                <code class="language-bash">sudo npm cache clean -f</code></pre>
+ 
+            <p class="plane">
+                2. Установить интерактивный менеджер n
+            </p>
+
+            <pre>
+                <code class="language-bash">sudo npm install -g n</code></pre>
+
+            <p class="plane">
+                Эта библиотека позволяет управлять версиями node.js<br>
+                <br>
+                3. Теперь можно установить последнюю версию node.js:  
+            </p>
+
+            <pre>
+                <code class="language-bash">Последняя стабильная версия
+                sudo n stable
+                Последняя релиз
+                sudo n latest</code></pre>
+
+
+            <p class="plane">
+                Установим TypeScript, и обновим до последней версии:
+            </p>
+
+            <pre>
+                <code class="language-bash">sudo npm install -g typescript
+                npm update -g typescript</code></pre>
+
+            <br>
+            <p class="subsection">
+                После установки VWWare player
+            </p>
+
+            <p class="plane">
+                To enable advanced X features (e.g., guest resolution fit, drag and drop, and<br> 
+                file and text copy/paste), you will need to do one (or more) of the following:<br>
+                1. Manually start /usr/bin/vmware-user<br>
+                2. Log out and log back into your desktop session<br>
+                3. Restart your X session.<br>
+            </p>
+
+            <p class="subsection">
+                <span class="date">28.08.2020</span> Установка и использование CMake под Windows.
+            </p>
+
+            <p class="plane">
+                На примере сборки libtga (<i>https://github.com/madebr/libtga</i>) можно показать процесс установки и настройки cmake.
+                Скачиваем, собственно, сам репозиторий:
+            </p>
+
+            <pre>
+                <code class="language-bash">E:\
+                cd Devtools
+                git clone git://github.com/madebr/libtga</code></pre>
+
+            <p class="plane">
+                Скачиваем cmake - https://cmake.org/install/>. Устанавоиваем как обычно. CMake может использовать множество компиляторов 
+                для сборки проекта ($ cmake -G "cfg_name"), по умолчанию cmake использут для сборки nmake и, соответсвенно, создаёт 
+                Makefile для него. Мы будем использовать MinGW-W64, имя конфига - "MinGW Makefiles" (cmake -G "MinGW Makefiles"). 
+                Скачиваем MinGW-W64 - http://mingw-w64.org/doku.php/download, там выбираем "MingW-W64-builds" (хоть в таблице и напасано 
+                версия gcc - 7.0.0, в дистрибутиве будет версия 8.1.0). Устанавливаем обычно с такими параметрами:
+            </p>
+
+            <ul class="plain">
+                <li>Version - 8.1.0;</li> 
+                <li>Architecture - X86_64;</li>
+                <li>Threads - Posix;</li>
+                <li>Exception - Dwarf;</li>
+                <li>Build version - 0</li>
+            </ul>
+
+            <p class="plane">
+                После установки прописываем все необходимые переменные среды (если их ещё нет), в поиске Windows "Система" - "Дополнительные 
+                параметры системы" - "Параметры среды":
+            </p>
+            
+            <ul class="plane">
+                <li>Добавляем в переменную %path% путь к папке bin компилятора (например <nobr>"E:\Devtools\mingw-w64\mingw64\bin")</nobr></li> 
+                <li>Путь к cmake - "E:\Devtools\cmake-3.18.2-win64-x64\bin" </li>
+                <li>Переменную для cmake - %CC% = "E:\Devtools\mingw-w64\mingw64\bin\gcc" </li> 
+                <li>Переменную для cmake - %CXX% = "E:\Devtools\mingw-w64\mingw64\bin\g++" </li>
+            </ul>
+            
+            <p class="plane">
+                Добавляем для текущего пользователя (хотя можно продублировать и для администратора).
+                Далее в консоли. Создеём папку build (название не имеет значения) в папке со скаченым репозиторием libtga, конфигурируем и собираем:
+            </p> 
+
+            <pre>
+            <code class="language-bash">E:/
+            cd Devtools/libtga
+            mkdir build
+            cd build
+            cmake -G "MinGW Makefiles" ../
+            mingw32-make</code></pre>
+
+            <p class="plane">
+                В сети рекоемндуют использовать TDM-GCC, там версия gcc старше (на 01.09.20 там gcc 9.2.0), но с ним не получилось собрать ни одного проекта.
+                С ключом -std=c++-17 код компилируется и собирается, но при запуске программа не выдаёт никаких сообщений и завершается.<br>
+                <br>
+                tgalib использует функцию bzero() для заполнения нулями аллоцированой области памяти, но она DEPRICATED и вместо неё надо использовать memset(), 
+                либо проект, использующий либу не будет линковаться. Написал небольшой патч: в "libtga/include/tga.h" дописываем:
+            </p>
+
+            <pre>
+            <code class="language-cpp">#define bzero(b,len) (memset((b), '\0', (len)), (void) 0)  
+            #define bcopy(b1,b2,len) (memmove((b2), (b1), (len)), (void) 0)</code></pre>
+
+            <p class="subsection" style="margin-left: 0.5em;">
+                <span class="date">03.09.2020</span> Как сделать перенос тегов в коде VS?
+            </p>
+
+            <p class="plain">Встроенный emmet сделает свое дело:</p>
+            <ol class="plain">
+                <li>Выберите текст (необязательно)</li>
+                <li>Откройте командную палитру (обычно <kbd>Ctrl</kbd>+ <kbd>Shift</kbd>+ <kbd>P</kbd>)</li>
+                <li>Выполнить <code>Emmet: Wrap with Abbreviation</code></li>
+                <li>Введите тег <code>div</code>(или аббревиатуру <code>.wrapper&gt;p</code>)</li>
+                <li>Ударить <kbd>Enter</kbd></li>
+            </ol>
+
+            <p class="plain">Команду можно назначить связыванию клавиш.</p>
+            <p class="plain"><a rel="nofollow noreferrer" target="_blank" href="https://i.stack.imgur.com/UQgrQ.gif"><img src="https://i.stack.imgur.com/UQgrQ.gif" alt="введите описание изображения здесь"></a></p>
+            <p class="plain">Эта вещь даже поддерживает передачу аргументов:</p>
+
+            <pre>
+            <code class="language-javascript">{
+                "key": "ctrl+shift+9",
+                "command": "editor.emmet.action.wrapWithAbbreviation",
+                "when": "editorHasSelection",
+                "args": {
+                    "abbreviation": "span"
+                }
+            },</code></pre>
+
+            <p class="plain">Используйте это так:</p>
+
+            <ul class="plain">
+                <li><code>span.myCssClass</code></li>
+                <li><code>span#myCssId</code></li>
+                <li><code>b</code></li>
+                <li><code>b.myCssClass</code></li>
+            </ul>
+
+            <!-- свойства в style смещают этот блок div вниз страницы -->
+            <div class="menu">
+                <ul>
+                    <li><a href="../index.html">На главную</a></li> 
+                </ul>      
+            </div>
+        </div>
+    </body>
+</html>
