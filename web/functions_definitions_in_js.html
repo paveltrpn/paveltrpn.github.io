@@ -20,7 +20,7 @@
     </head>
     <body>
         <!-- Подключение скрипта Prism -->
-        <script src="../js/prism-1.17.1.js"></script>
+        <script src="../js/prism.js"></script>
 
         <div class="A4">
             <div class="menu">
@@ -37,7 +37,7 @@
                 Функции вида "function declaration statement"
             </p>
 
-            <p class="plane">
+            <p class="plain">
                 Объявление функции (function definition, или function declaration, или function statement) состоит<br>
                 из ключевого слова function и следующих частей:<br>
                 <br>
@@ -48,21 +48,21 @@
                 Например, следующий код объявляет простую функцию с именем square:
             </p>
 
-            <pre>
-                <code class="language-javascript">function square(number) {
-                    return number * number;
-                }</code></pre>
+            <pre class="line-numbers">
+            <code class="language-javascript">function square(number) {
+                return number * number;
+            }</code></pre>
             
-            <p class="plane">
+            <p class="plain">
                 Функция square принимает один параметр, названный number. Состоит из одной инструкции, которая
                 означает вернуть параметр этой функции (это number) умноженный на самого себя. Инструкция return 
                 указывает на значение, которые будет возвращено функцией.
             </p>
 
-            <pre>
-                <code class="language-javascript">return number * number;</code></pre>
+            <pre class="line-numbers">
+            <code class="language-javascript">return number * number;</code></pre>
 
-            <p class="plane">
+            <p class="plain">
                 Примитивные параметры (например, число) передаются функции значением; значение передаётся в 
                 функцию, но если функция меняет значение параметра, это изменение не отразится глобально или 
                 после вызова функции.<br>
@@ -72,7 +72,7 @@
                 в следующим примере:<br>
             </p>
 
-            <pre>
+            <pre class="line-numbers">
             <code class="language-javascript">function myFunc(theObject) {
                 theObject.make = 'Toyota';
             }
@@ -90,32 +90,32 @@
                 Функции вида "function definition expression"
             </p>
 
-            <p class="plane">
+            <p class="plain">
                 Функция вида "function declaration statement" по синтаксису является инструкцией (statement), 
                 ещё функция может быть вида "function definition  expression". Такая функция может быть 
                 анонимной (она не имеет имени). Например, функция square может быть вызвана так:
             </p>
 
-            <pre>
+            <pre class="line-numbers">
             <code class="language-javascript">var square = function(number) { return number * number; };
             var x = square(4); // x получает значение 16</code></pre>
 
-            <p class="plane">
+            <p class="plain">
                 Однако, имя может быть и присвоено для вызова самой себя внутри самой функции и для 
                 отладчика (debugger) для  идентифицирования функции в стек-треках (stack traces; "trace" — "след" / "отпечаток").
             </p>
 
-            <pre>
+            <pre class="line-numbers">
             <code class="language-javascript">var factorial = function fac(n) { return n &lt; 2 ? 1 : n * fac(n - 1); };
             console.log(factorial(3));</code></pre>
             
-            <p class="plane">
+            <p class="plain">
                 Функции вида "function definition expression" удобны, когда функция передается аргументом 
                 другой функции. Следующий пример показывает функцию map, которая должна получить функцию 
                 первым аргументом и массив вторым.
             </p>
 
-            <pre>
+            <pre class="line-numbers">
             <code class="language-javascript">function map(f, a) {
                 var result = [], // Create a new Array
                     i;
@@ -124,12 +124,12 @@
                 return result;
             }</code></pre>
 
-            <p class="plane">
+            <p class="plain">
                 В следующим коде наша функция принимает функцию, которая является function definition 
                 expression, и выполняет его для каждого элемента принятого массива вторым аргументом.
             </p>
 
-            <pre>
+            <pre class="line-numbers">
             <code class="language-javascript">function map(f, a) {
                 var result = []; // Create a new Array
                 var i; // Declare variable
@@ -144,14 +144,14 @@
             var cube = map(f,numbers);
             console.log(cube);</code></pre>
 
-            <p class="plane">
+            <p class="plain">
                 Функция возвращает: [0, 1, 8, 125, 1000].<br>
                 <br>
                 В JavaScript функция может быть объявлена с условием. Например, следующая функция будет 
                 присвоена переменной myFunc только, если num равно 0: 
             </p>
 
-            <pre>
+            <pre class="line-numbers">
             <code class="language-javascript">var myFunc;
             if (num === 0) {
                 myFunc = function(theObject) {
@@ -159,7 +159,7 @@
                 }
             }</code></pre>
 
-            <p class="plane">
+            <p class="plain">
                 В дополнение к объявлениям функций, описанных здесь, Вы также можете использовать 
                 конструктор Function для создания функций из строки во время выполнения (runtime), подобно eval().
             </p>
@@ -172,7 +172,7 @@
                 (https://habr.com/ru/post/240349/)
             </p>
 
-            <p class="plane">
+            <p class="plain">
                 Возможность использовать вызовы функций как переменные вкупе с тем фактом, что локальные
                 переменные каждый раз при вызове функции создаются заново, приводит нас к интересному вопросу.
                 Что происходит с локальными переменными, когда функция перестаёт работать?<br>
@@ -182,7 +182,7 @@
                 локальную переменную и возвращает её значение.<br>
             </p>
 
-            <pre>
+            <pre class="line-numbers">
                 <code class="language-javascript">function wrapValue(n) {
                     var localVariable = n;
                     return function() { return localVariable; };
@@ -195,7 +195,7 @@
                 console.log(wrap2());
                 // → 2</code></pre>
 
-            <p class="plane">
+            <p class="plain">
                 Это допустимо и работает так, как должно – доступ к переменной остаётся. Более того, в одно и 
                 то же время могут существовать несколько экземпляров одной и той же переменной, что ещё раз 
                 подтверждает тот факт, что с каждым вызовом функции локальные переменные пересоздаются.<br>
@@ -207,7 +207,7 @@
                 С небольшим изменением мы превращаем наш пример в функцию, умножающую числа на любое заданное число.
             </p>
 
-            <pre>
+            <pre class="line-numbers">
                 <code class="language-javascript">function multiplier(factor) {
                     return function(number) {
                         return number * factor;
@@ -218,7 +218,7 @@
                 console.log(twice(5));
                 // → 10</code></pre>
 
-            <p class="plane">
+            <p class="plain">
                 Отдельная переменная вроде localVariable из примера с wrapValue уже не нужна. Так как параметр – 
                 сам по себе локальная переменная.<br>
                 <br>

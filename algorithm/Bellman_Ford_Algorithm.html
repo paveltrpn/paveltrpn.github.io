@@ -20,7 +20,7 @@
     </head>
     <body>
         <!-- Подключение скрипта Prism -->
-        <script src="../js/prism-1.17.1.js"></script>
+        <script src="../js/prism.js"></script>
 
         <div class="A4">
             <div class="menu">
@@ -37,7 +37,7 @@
                 (https://habr.com/ru/company/otus/blog/484382/)
             </p>
 
-            <p class="plane">
+            <p class="plain">
                 <strong>Задача:</strong> Дан граф и начальная вершина src в графе, необходимо найти кратчайшие пути 
                 от src до всех вершин в данном графе. В графе могут присутствовать ребра с отрицательными весами.<br>
                 <br>
@@ -52,7 +52,7 @@
                 Алгоритм
             </p>
 
-            <p class="plane">
+            <p class="plain">
                 Ниже приведены подробно расписанные шаги.<br>
                 <br>
                 Входные данные: Граф и начальная вершина src.<br>
@@ -93,7 +93,7 @@
                 Пример
             </p>
 
-            <p class="plane">
+            <p class="plain">
                 Давайте разберемся в алгоритме на следующем примере графа.
                 Пусть начальная вершина равна 0. Примите все расстояния за бесконечные, кроме расстояния до 
                 самой src. Общее число вершин в графе равно 5, поэтому все ребра нужно пройти 4 раза. 
@@ -101,7 +101,7 @@
                 <p style="text-align: center"><img src="img/Bellman_Ford_Algorithm_1.png"></p>
             </p>
 
-            <p class="plane">
+            <p class="plain">
                 Пусть ребра отрабатываются в следующем порядке: (B, E), (D, B), (B, D), (A, B), (A, C), (D, C), (B, C), (E, D). 
                 Мы получаем следующие расстояния, когда проход по ребрам был совершен первый раз. Первая строка 
                 показывает начальные расстояния, вторая строка показывает расстояния, когда ребра (B, E), (D, B), (B, D) и (A, B) 
@@ -111,14 +111,14 @@
                 <p style="text-align: center"><img src="img/Bellman_Ford_Algorithm_2.png"></p>
             </p>
 
-            <p class="plane">
+            <p class="plain">
                 Первая итерация гарантирует, что все самые короткие пути будут не длиннее пути в 1 ребро. Мы получаем следующие 
                 расстояния, когда будет совершен второй проход по всем ребрам (в последней строке показаны конечные значения).
 
                 <p style="text-align: center"><img src="img/Bellman_Ford_Algorithm_3.png"></p>
             </p>
 
-            <p class="plane">
+            <p class="plain">
                 Вторая итерация гарантирует, что все кратчайшие пути будут иметь длину не более 2 ребер. Алгоритм проходит 
                 по всем ребрам еще 2 раза. Расстояния минимизируются после второй итерации, поэтому третья и четвертая
                 итерации не обновляют значения расстояний.<br>
@@ -126,7 +126,7 @@
                 Реализация:
             </p>
 
-            <pre>
+            <pre class="line-numbers">
                 <code class="language-cpp">// A C++ program for Bellman-Ford's single source 
                 // shortest path algorithm. 
                 #include &lt;bits/stdc++.h&gt; 
@@ -201,11 +201,11 @@
                     return 0; 
                 }</code></pre>
 
-            <p class="plane">
+            <p class="plain">
                 Вывод:
             </p>
 
-            <pre>
+            <pre class="line-numbers">
                 <code class="language-shell">Vertex Distance from Source
                     0        0
                     1        -1
@@ -213,7 +213,7 @@
                     3        -2
                     4        1</code></pre>
 
-            <p class="plane">
+            <p class="plain">
                 <strong>Примечания:</strong><br>
                 <br>
                 &emsp;&emsp;1) Отрицательные веса встречаются в различных применениях графов. Например, вместо того чтобы увеличивать 

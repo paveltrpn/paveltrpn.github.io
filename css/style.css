@@ -32,18 +32,7 @@ p[class="section"] {
     margin-right: 60px; 
 }
 
-/* Основной текст (вообще должно быть "plain")) */
-.plane {
-    text-indent: 0.0em;
-    text-align: justify; /* Выравнивание по ширине */
-    margin-left: 60px; /* Отступ слева в пикселах */
-    margin-right: 60px; /* Отступ справа в пикселах */
-}
-
-.plane li {
-    margin-left: 1.5em;
-}
-
+/* Основной текст */
 .plain {
     text-indent: 0.0em;
     text-align: justify; /* Выравнивание по ширине */
@@ -59,8 +48,8 @@ p[class="section"] {
     font-size: 14pt;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     border: 2px solid black;
 }
 /* 
@@ -79,16 +68,6 @@ a {
     color: rgb(0, 0, 0);
     font-size: 14pt;
 } 
-
-pre[class=plane] {
-    font-family: 'Local-Serif', 'Roboto Slab', 'Droid Serif', 'Ubuntu Serif', serif;
-    text-align: left;
-    font-size: 12pt;
-    letter-spacing: .02em;
-    line-height: 1.2;
-    margin-left: 60px; 
-    margin-right: 60px;
-}
 
 div[class="A4"] {  
     width: 1300px;
