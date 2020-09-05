@@ -87,9 +87,9 @@ var cube_c = (function () {
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.depthFunc(this.gl.LEQUAL);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-        var projectionMatrix = mtrx4_set_perspective(deg_to_rad(45), this.aspect, 0.1, 100.0);
+        var projectionMatrix = mtrx4_set_perspective(170, this.aspect, 0.1, 100.0);
         var modelViewMatrix = mtrx4_set_idtt();
-        modelViewMatrix = mtrx4_mult_translate(modelViewMatrix, [0.0, 0.0, -4.8]);
+        modelViewMatrix = mtrx4_mult_translate(modelViewMatrix, [0.0, 0.0, -10]);
         var rot = mtrx4_set_axisangl(vec3_set(0.1, 0.4, 0.3), this.squareRotation);
         modelViewMatrix = mtrx4_mult(modelViewMatrix, rot);
         var normalMatrix = mtrx4_invert(modelViewMatrix);
@@ -353,6 +353,29 @@ function mtrx4_set_perspective(fovy, aspect, near, far) {
         rt[14] = -2 * near;
     }
     return rt;
+}
+function mtrx4_set_ortho(left, right, bottom, top, near, far) {
+    let out = new Float32Array(16);
+    let lr = 1 / (left - right);
+    let bt = 1 / (bottom - top);
+    let nf = 1 / (near - far);
+    out[0] = -2 * lr;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    out[4] = 0;
+    out[5] = -2 * bt;
+    out[6] = 0;
+    out[7] = 0;
+    out[8] = 0;
+    out[9] = 0;
+    out[10] = 2 * nf;
+    out[11] = 0;
+    out[12] = (left + right) * lr;
+    out[13] = (top + bottom) * bt;
+    out[14] = (far + near) * nf;
+    out[15] = 1;
+    return out;
 }
 function mtrx4_set_euler(yaw, pitch, roll) {
     var rt = new Float32Array(16);
