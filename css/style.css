@@ -94,6 +94,35 @@ div[class="A4"][layout="portrait"] {
     height: 21cm;  
 }
 
+.msc_text {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11pt;
+    line-height: 1.1em;
+}
+
+.msc_grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    background-color: #fff;
+    color: #444;
+}
+
+.msc_slot {
+    background-color: #444;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+}
+
+.left {
+    background-color: rgb(255, 255, 255);
+}
+
+.right {
+    background-color: rgb(255, 255, 255);
+}
+
 @media print {
     body, page {
         margin: 0;
