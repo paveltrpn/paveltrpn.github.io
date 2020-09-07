@@ -31,7 +31,89 @@
 
             <!-- 06.09.2020 -->
             <p class="subsection" style="margin-left: 0.5em;">
-                <span class="date">06.09.2020</span> Шпаргалка по хоткеям в VSCode
+                <span class="date">06.09.2020</span>
+            </p>
+
+            <p class="plain">
+                <b>Node.js конфигурация</b><br>
+                Вы можете запустить <b>npm list -g</b> чтобы увидеть, где установлены глобальные библиотеки. 
+            </P>
+
+            <p class="plain">
+                <b>Смена директории глобальной установки пакетов node.js</b> 
+            </P>
+
+            <p class="plain">
+                В Windows, глобальная директория установки - это директория конкретного user's profile:
+            </p>
+
+            <ul class="plain">
+                <li>%USERPROFILE%\AppData\Roaming\npm</li>
+                <li>%USERPROFILE%\AppData\Roaming\npm-cache</li>
+            </ul>
+
+            <p class="plain">
+                <b>WARNING:</b> If you're doing timed events or other automation as a different user, make sure you run npm install as that user. 
+                Some modules/utilities should be installed globally.<br>
+                <b>INSTALLER BUGS:</b> You may have to create these directories or add the ...\npm directory to your users path yourself.
+            </p>
+
+            <p class="plain">
+                To change <b>the "global" location for all users</b> to a more appropriate shared global location %ALLUSERSPROFILE%\(npm|npm-cache) (do this as an administrator):
+            </p>
+           
+            <ul class="plain">
+                Create an [NODE_INSTALL_PATH]\etc\ directory
+                this is needed before you try npm config --global ... actions
+                Create the global (admin) location(s) for npm modules:
+                <li>C:\ProgramData\npm-cache - npm modules will go here</li>
+                <li>C:\ProgramData\npm - binary scripts for globally installed modules will go here</li>
+                <li>C:\ProgramData\npm\node_modules - globally installed modules will go here</li>
+                Set the permissions appropriately:
+                <li>administrators: modify</li>
+                <li>authenticated users: read/execute</li>
+                <li>Set global configuration settings (Administrator Command Prompt)</li>
+                <li>npm config --global set prefix "C:\ProgramData\npm"</li>
+                <li>npm config --global set cache "C:\ProgramData\npm-cache"</li>
+                <li>Add C:\ProgramData\npm to your System's Path environment variable</li>
+            </ul>
+
+            <p class="plain">
+                If you want to change <b>your user's "global" location</b> to %LOCALAPPDATA%\(npm|npm-cache) path instead:
+            </p>
+
+            <ul class="plain">
+                The necessary directories:
+                <li>C:\Users\YOURNAME\AppData\Local\npm-cache - npm modules will go here</li>
+                <li>C:\Users\YOURNAME\AppData\Local\npm - binary scripts for installed modules will go here</li>
+                <li>C:\Users\YOURNAME\AppData\Local\npm\node_modules - globally installed modules will go here</li>
+                Configure npm:
+                <li>npm config set prefix "C:\Users\YOURNAME\AppData\Local\npm"</li>
+                <li>npm config set cache "C:\Users\YOURNAME\AppData\Local\npm-cache"</li>
+                Add the new npm path to your environment's PATH.
+                <li>setx PATH "%PATH%;C:\Users\YOURNAME\AppData\Local\npm"</li>
+            </ul>
+
+            <pre>
+    <code class="language-shell">CD %DEVTOOLS%:
+    mkdir nodejs_global
+    mkdir npm-cache
+    mkdir npm
+    mkdir npm\node_modules
+    npm config set prefix "E:\Devtools\nodejs_global\npm"
+    npm config set cache "E:\Devtools\nodejs_global\npm-cache"
+    setx PATH "%PATH%;E:\Devtools\nodejs_global\npm"</code></pre>
+
+            <p class="plain">
+                <b>Установка для Node.js средств сборки - Python и Visual Studio Build tools</b>
+            </p>
+
+            <pre>
+    <code class="language-shell">npm install --global --production windows-build-tools</code></pre>
+
+            <!-- 05.09.2020 -->
+            <p class="subsection" style="margin-left: 0.5em;">
+                <span class="date">05.09.2020</span> Шпаргалка по хоткеям в VSCode
             </p>
 
             <div style="text-align: center;">
@@ -57,14 +139,14 @@
             <p class="plain">Эта вещь даже поддерживает передачу аргументов:</p>
 
             <pre class="line-numbers">
-            <code class="language-javascript">{
-                "key": "ctrl+shift+9",
-                "command": "editor.emmet.action.wrapWithAbbreviation",
-                "when": "editorHasSelection",
-                "args": {
-                    "abbreviation": "span"
-                }
-            },</code></pre>
+    <code class="language-javascript">{
+        "key": "ctrl+shift+9",
+        "command": "editor.emmet.action.wrapWithAbbreviation",
+        "when": "editorHasSelection",
+        "args": {
+            "abbreviation": "span"
+        }
+    },</code></pre>
 
             <p class="plain">Используйте это так:</p>
 
@@ -124,12 +206,12 @@
             </p> 
 
             <pre class="line-numbers">
-            <code class="language-bash">E:/
-            cd Devtools/libtga
-            mkdir build
-            cd build
-            cmake -G "MinGW Makefiles" ../
-            mingw32-make</code></pre>
+    <code class="language-bash">E:/
+    cd Devtools/libtga
+    mkdir build
+    cd build
+    cmake -G "MinGW Makefiles" ../
+    mingw32-make</code></pre>
 
             <p class="plain">
                 В сети рекоемндуют использовать TDM-GCC, там версия gcc старше (на 01.09.20 там gcc 9.2.0), но с ним не получилось собрать ни одного проекта.
@@ -140,8 +222,8 @@
             </p>
 
             <pre class="line-numbers">
-            <code class="language-cpp">#define bzero(b,len) (memset((b), '\0', (len)), (void) 0)  
-            #define bcopy(b1,b2,len) (memmove((b2), (b1), (len)), (void) 0)</code></pre>   
+    <code class="language-cpp">#define bzero(b,len) (memset((b), '\0', (len)), (void) 0)  
+    #define bcopy(b1,b2,len) (memmove((b2), (b1), (len)), (void) 0)</code></pre>   
 
             <!-- 01.01.2020 -->
             <p class="subsection" style="margin-left: 0.5em;">
@@ -157,22 +239,22 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-bash">sudo apt-get install nodejs
-                sudo apt-get install npm</code></pre>
+    <code class="language-bash">sudo apt-get install nodejs
+    sudo apt-get install npm</code></pre>
 
             <p class="plain">
                 1. Нужно очистить NPM кеш:
             </p>
 
             <pre class="line-numbers">
-                <code class="language-bash">sudo npm cache clean -f</code></pre>
+    <code class="language-bash">sudo npm cache clean -f</code></pre>
  
             <p class="plain">
                 2. Установить интерактивный менеджер n
             </p>
 
             <pre class="line-numbers">
-                <code class="language-bash">sudo npm install -g n</code></pre>
+    <code class="language-bash">sudo npm install -g n</code></pre>
 
             <p class="plain">
                 Эта библиотека позволяет управлять версиями node.js<br>
@@ -181,10 +263,10 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-bash">Последняя стабильная версия
-                sudo n stable
-                Последняя релиз
-                sudo n latest</code></pre>
+    <code class="language-bash">Последняя стабильная версия
+    sudo n stable
+    Последняя релиз
+    sudo n latest</code></pre>
 
 
             <p class="plain">
@@ -192,8 +274,8 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-bash">sudo npm install -g typescript
-                npm update -g typescript</code></pre>
+    <code class="language-bash">sudo npm install -g typescript
+    npm update -g typescript</code></pre>
 
             <br>
             <p class="subsection" style="margin-left: 0.5em;">

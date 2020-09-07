@@ -21,6 +21,7 @@ body {
 }
 
 .plain li {
+    font-family: "Roboto Mono", monospace;
     margin-left: 1.5em;
 }
 
@@ -105,22 +106,20 @@ div[class="A4"][layout="portrait"] {
     grid-template-columns: auto auto;
     grid-gap: 10px;
     background-color: #fff;
-    color: #444;
 }
 
 .msc_slot {
-    background-color: #444;
+    background-color: rgb(255, 255, 255);
     border-radius: 5px;
     padding: 20px;
-    font-size: 150%;
 }
 
-.left {
-    background-color: rgb(255, 255, 255);
-}
-
-.right {
-    background-color: rgb(255, 255, 255);
+.tab_grid {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-gap: 10px;
+    background-color: #fff;
+    color: #444;
 }
 
 @media print {
