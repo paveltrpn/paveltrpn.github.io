@@ -9,8 +9,10 @@ body {
     line-height: 1.5em; /* Высота строки */
     letter-spacing: 0.1pt; /* Зазор между буквами */
     display: flex;
-    justify-content: center;
-    position: relative;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 64px;
+    margin-right: 64px;
 }
 
 /* Основной текст */
@@ -74,14 +76,10 @@ a {
 .A4 {  
     width: 1300px;
     background: white;
-    position: relative;
-    display: block;
+    /* position: relative; */
+    /* display: block; */
     /* Устанавливает минимальную высоту основного div в % от высоты окна браузера*/
-    min-height: 92vh; 
-}
-
-.A4 div {
-    /* width: 1300px; */
+    min-height: 92vh;
 }
 
 .msc_text {
@@ -138,6 +136,7 @@ a {
 .menu {
     display: flex;
     justify-content: center;
+    width: 1650px;
     background-color:#333; 
 }
 
