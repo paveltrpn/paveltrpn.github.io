@@ -75,6 +75,7 @@ a {
     width: 1300px;
     background: white;
     position: relative;
+    display: block;
     /* Устанавливает минимальную высоту основного div в % от высоты окна браузера*/
     min-height: 92vh; 
 }
