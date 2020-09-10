@@ -71,15 +71,15 @@ a {
 } 
 
 div[class="A4"] {  
-    width: 1300px;
+    min-width: 1300px;
     background: white;
     /* margin: 0 auto; отступы слева и справа */
     /* margin-top: 0px; */
     /* margin-bottom: 0px;  */
     /* box-shadow: 0 0 250px rgba(0,0,0,0.8);  */
     /* border: 25px solid darkgray; */
-    position: relative;
-    min-height: 92vh; /* Устанавливает минимальную высоту основного div в % от высоты окна браузера*/
+    /* position: relative; */
+    min-height: 100vh; /* Устанавливает минимальную высоту основного div в % от высоты окна браузера*/
 }
 
 .msc_text {
@@ -211,14 +211,13 @@ div[class="A4"] {
 }
 
 /* --------------------------------------------------------------------*/
-/* ------------СЕКЦИЯ СТИЛЯ НУМЕРОВАННОГО СПИСКА С ПОВОРОТОМ НОМЕРА----*/
+/* ------------СЕКЦИЯ СТИЛЯ СПИСКА ------------------------------------*/
 /* --------------------------------------------------------------------*/
 
 .rounded {
     counter-reset: li; 
-    list-style: none; 
-    /* font: 14px "Trebuchet MS", "Lucida Sans";
-    text-shadow: 0 1px 0 rgba(255,255,255,.5);*/
+    list-style: none;
+    padding: 0 0 0 0;
 }
 
 .rounded a {
@@ -228,36 +227,11 @@ div[class="A4"] {
     margin: .4em 0;
     background: rgb(218, 218, 218);
     color: #444;
-    text-decoration: none;
     border-radius: .3em;
-    transition: .3s ease-out;
-    margin-right: 50px;
+    
 }
-
-.rounded a:hover:before {
-    transform: rotate(360deg);
-}
-
 
 .rounded a:hover {
     background: #e9e9e9;
 }
 
-/* положение цифр в кружке и самих кружков */
-.rounded a:before {
-    content: counter(li);
-    counter-increment: li;
-    position: absolute;
-    left: -1.3em;
-    top: 50%;
-    margin-top: -1.3em;
-    background: #bdbdbd;
-    height: 2em;
-    width: 2em;
-    line-height: 2em;
-    border: .3em solid white;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 2em;
-    transition: all .3s ease-out;
-}
