@@ -4,12 +4,12 @@ body {
     font-size: 16pt; /* Размер основного шрифта в пунктах  */
     background: white; 
     color: #333; /* Цвет основного текста */ 
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 0px;
     margin-bottom: 0px;
     line-height: 1.5em; /* Высота строки */
     letter-spacing: 0.1pt; /* Зазор между буквами */
+    display: flex;
+    justify-content: space-around;
 }
 
 /* Основной текст */
@@ -26,7 +26,7 @@ body {
 }
 
 /* Заголовок темы или раздела */
-p[class="section"] {
+.section {
     font-size: 26pt;
     font-weight: bold;
     text-align: center; 
@@ -73,26 +73,13 @@ a {
 div[class="A4"] {  
     width: 1300px;
     background: white;
-    display: block;
-    margin: 0 auto; /* отступы слева и справа */
-    margin-top: 0px;
-    margin-bottom: 0px; 
+    /* margin: 0 auto; отступы слева и справа */
+    /* margin-top: 0px; */
+    /* margin-bottom: 0px;  */
     /* box-shadow: 0 0 250px rgba(0,0,0,0.8);  */
     /* border: 25px solid darkgray; */
     position: relative;
     min-height: 92vh; /* Устанавливает минимальную высоту основного div в % от высоты окна браузера*/
-    /*
-    если раскомментировать, то размер страницы будет
-    точно с А4 и нужно будет начинать новую странице кадый раз 
-
-    width: 21cm;
-    height: 29.7cm; 
-    */
-}
-
-div[class="A4"][layout="portrait"] {
-    width: 29.7cm;
-    height: 21cm;  
 }
 
 .msc_text {
@@ -147,22 +134,18 @@ div[class="A4"][layout="portrait"] {
 */
     
 .menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color:#333; 
-    text-align: center;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
 }
 
+/*
 .menu ul {
-    list-style-type: none; /* Убрали точки в пунктах списков */
-    list-style-position: inside; /* Точки, обозначающие элемент списка будут внутри */
+    list-style-type: none; Убрали точки в пунктах списков
+    list-style-position: inside; Точки, обозначающие элемент списка будут внутри
 }
-
-.menu > ul {
-    margin-left: 100px;
-    padding-left: 0em;
-    height: 1.5em;
-}
+*/
 
 .menu > ul > li {
     float: left;
@@ -170,6 +153,7 @@ div[class="A4"][layout="portrait"] {
 }
 
 .menu > ul > li > a {
+    font-size: 18pt;
     color: #ffffff;
     padding: 1em 2em;
     text-align: center;
@@ -195,6 +179,7 @@ div[class="A4"][layout="portrait"] {
 }
 
 .submenu > li > a {
+    font-size: 18pt;
     color: white;
     text-align: left;
     padding: 0px 0em;
