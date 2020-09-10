@@ -11,8 +11,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 64px;
-    margin-right: 64px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 /* Основной текст */
