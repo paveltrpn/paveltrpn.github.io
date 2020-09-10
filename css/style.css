@@ -10,6 +10,7 @@ body {
     letter-spacing: 0.1pt; /* Зазор между буквами */
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 /* Основной текст */
@@ -71,13 +72,8 @@ a {
 } 
 
 .A4 {  
-    width: 75vw;
+    width: 1300px;
     background: white;
-    /* margin: 0 auto; отступы слева и справа */
-    /* margin-top: 0px; */
-    /* margin-bottom: 0px;  */
-    /* box-shadow: 0 0 250px rgba(0,0,0,0.8);  */
-    /* border: 25px solid darkgray; */
     position: relative;
     /* Устанавливает минимальную высоту основного div в % от высоты окна браузера*/
     min-height: 92vh; 
