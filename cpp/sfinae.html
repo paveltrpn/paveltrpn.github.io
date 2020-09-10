@@ -69,15 +69,14 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">function(1, 2);
-
-                И такой список деклараций:
-                                       
-                void function(int, std::vector&lt;int&gt;);
-                void function(int, int);
-                void function(double, double);
-                void function(int, int, char, std::string, std::vector&lt;int&gt;);
-                void function(std::string);</code></pre>
+    <code class="language-cpp">function(1, 2);
+    И такой список деклараций:
+                           
+    void function(int, std::vector&lt;int&gt;);
+    void function(int, int);
+    void function(double, double);
+    void function(int, int, char, std::string, std::vector&lt;int&gt;);
+    void function(std::string);</code></pre>
 
             <p class="plain">
                 То все вышеозначенные функции войдут в список кандидатов, Да, я не ошибся, все эти функции войдут и не важно сколько 
@@ -92,9 +91,9 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">void function(int, std::vector<int>);
-                void function(int, int);
-                void function(double, double);</code></pre>
+    <code class="language-cpp">void function(int, std::vector<int>);
+    void function(int, int);
+    void function(double, double);</code></pre>
 
             <p class="plain">
                 Теперь, отсекаются функции, типы параметров которых отличаются от переданных аргументов и для которых нет неявного 
@@ -102,8 +101,8 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">void function(int, int);
-                void function(double, double);</code></pre>
+    <code class="language-cpp">void function(int, int);
+    void function(double, double);</code></pre>
             
             <p class="plain">
                 После чего компилятор приступает к третьей стадии, при которой выбирается лучшая функция на основе не очень сложных, 
@@ -123,8 +122,8 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template&lt;typename T&gt;
-                void function(T, T);</code></pre>
+    <code class="language-cpp">template&lt;typename T&gt;
+    void function(T, T);</code></pre>
 
             <p class="plain">
                 Что изменится в ранее рассмотренном алгоритме? Несколько изменится первая стадия: так, если компилятор встречает шаблонную функцию, 
@@ -136,10 +135,10 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">void function(int, std::vector&lt;int&gt;);
-                void function(int, int);
-                void function(double, double);
-                void function&lt;int&gt;(int, int);</code></pre>
+    <code class="language-cpp">void function(int, std::vector&lt;int&gt;);
+    void function(int, int);
+    void function(double, double);
+    void function&lt;int&gt;(int, int);</code></pre>
 
             <p class="plain">
                 Но после 3-го шага останется всё равно только одна функция void function(int, int), которая и будет вызвана, т.к. 
@@ -173,14 +172,14 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;typename T&gt;
-                void printContainer(T container)
-                {
-                    std::cout &lt;&lt; "Values:{ ";
-                    for(auto value : container)
-                        std::cout &lt;&lt; value &lt;&lt; " ";
-                    std::cout &lt;&lt; "}\n";
-                }</code></pre>
+    <code class="language-cpp">template &lt;typename T&gt;
+    void printContainer(T container)
+    {
+        std::cout &lt;&lt; "Values:{ ";
+        for(auto value : container)
+            std::cout &lt;&lt; value &lt;&lt; " ";
+        std::cout &lt;&lt; "}\n";
+    }</code></pre>
 
             <p class="plain">
                 Но что будет, если вызвать эту функцию с типом, который не является стандартным контейнером? К примеру, с переменной типа int? 
@@ -193,7 +192,7 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;typename T, typename = typename T::iterator&gt;</code></pre>
+    <code class="language-cpp">template &lt;typename T, typename = typename T::iterator&gt;</code></pre>
 
             <p class="plain">
                 Теперь мы не будем получать массы ошибок вне зависимости от того, что содержится в реализации функции. Полученная нами ошибка 
@@ -236,11 +235,11 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;typename T&gt;
-                void printContainer(T container, typename T::iterator* = nullptr)
-                {
-                    ...
-                }</code></pre>
+    <code class="language-cpp">template &lt;typename T&gt;
+    void printContainer(T container, typename T::iterator* = nullptr)
+    {
+        ...
+    }</code></pre>
 
             <p class="plain">
                 Но я считаю, что добавлять дополнительный, пусть и фиктивный, параметр в функцию является плохим тоном. Действительно, как 
@@ -251,11 +250,11 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;typename T&gt;
-                typename T::iterator printContainer(T container)
-                {
-                    ...
-                }</code></pre>
+    <code class="language-cpp">template &lt;typename T&gt;
+    typename T::iterator printContainer(T container)
+    {
+        ...
+    }</code></pre>
 
             <p class="plain">
                 Но такой метод порождает одну очень серьёзную проблему: мы меняем возвращаемое значение функции не потому, что нам нужно что-то вернуть, 
@@ -264,14 +263,14 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;bool condition, typename Type&gt;
-                struct EnableIf;
-                 
-                template &lt;typename Type&gt;
-                struct EnableIf&lt;true, Type&gt;
-                {
-                    using type = Type;
-                };</code></pre>
+    <code class="language-cpp">template &lt;bool condition, typename Type&gt;
+    struct EnableIf;
+     
+    template &lt;typename Type&gt;
+    struct EnableIf&lt;true, Type&gt;
+    {
+        using type = Type;
+    };</code></pre>
 
             <p class="plain">
                 Как вы можете видеть, реализация класса предельно проста: если первым аргументом шаблона будет false, тогда у результирующего класса EnableIf 
@@ -280,17 +279,17 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;typename T, typename U&gt;
-                struct IsSame
-                {
-                    static constexpr bool value = false;
-                };
-                 
-                template &lt;typename T&gt;
-                struct IsSame&lt;T, T&gt;
-                {
-                    static constexpr bool value = true;
-                };</code></pre>
+    <code class="language-cpp">template &lt;typename T, typename U&gt;
+    struct IsSame
+    {
+        static constexpr bool value = false;
+    };
+     
+    template &lt;typename T&gt;
+    struct IsSame&lt;T, T&gt;
+    {
+        static constexpr bool value = true;
+    };</code></pre>
 
             <p class="plain">
                 Метафункция IsSame, возвращает true, если оба переданных ей типа одинаковы и false в противном случае. Но если это функции, то как их вызывать? 
@@ -298,8 +297,8 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">IsSame&lt;int, float&gt;::value;
-                EnableIf&lt;true, int&gt;::type</code></pre>
+    <code class="language-cpp">IsSame&lt;int, float&gt;::value;
+    EnableIf&lt;true, int&gt;::type</code></pre>
 
             <p class="plain">
                 Конечно, никто не обязывает вас использовать value и type, но так сложилось исторически. Следовательно, если вы хотите, чтобы ваш код 
@@ -309,12 +308,12 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;typename T&gt;
-                EnableIf&lt;true, void&gt;::type
-                printContainer(T container)
-                {
-                    ...
-                }</code></pre>
+    <code class="language-cpp">template &lt;typename T&gt;
+    EnableIf&lt;true, void&gt;::type
+    printContainer(T container)
+    {
+        ...
+    }</code></pre>
 
             <p class="plain">
                 В этом виде наш код полностью эквивалентен простой записи функции printContainer с типом void, в качестве возвращаемого значения. 
@@ -323,15 +322,15 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;typename T&gt;
-                typename EnableIf&lt;!IsSame&lt;T, int&gt;::value, void&gt;::type
-                printContainer(T container)
-                {
-                    std::cout &lt;&lt; "Values:{ ";
-                    for(auto value : container)
-                        std::cout &lt;&lt; value &lt;&lt; " ";
-                    std::cout &lt;&lt; "}\n";
-                }</code></pre>
+    <code class="language-cpp">template &lt;typename T&gt;
+    typename EnableIf&lt;!IsSame&lt;T, int&gt;::value, void&gt;::type
+    printContainer(T container)
+    {
+        std::cout &lt;&lt; "Values:{ ";
+        for(auto value : container)
+            std::cout &lt;&lt; value &lt;&lt; " ";
+        std::cout &lt;&lt; "}\n";
+    }</code></pre>
 
             <p class="plain">
                 Теперь, наша функция не будет участвовать в списке кандидатов для аргумента типа int. Давайте разберём новую строчку подробнее: 
@@ -344,32 +343,32 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;typename T&gt;
-                typename EnableIf&lt;!std::is_integral&lt;T&gt;::value, void&gt;::type
-                printContainer(T container)
-                ...</code></pre>
+    <code class="language-cpp">template &lt;typename T&gt;
+    typename EnableIf&lt;!std::is_integral&lt;T&gt;::value, void&gt;::type
+    printContainer(T container)
+    ...</code></pre>
 
             <p class="plain">
                 Кроме того, на мой взгляд, это решение не удобно, куда удобнее иметь две функции: одну для печати контейнеров, другую для простых типов. С полученными знаниями это сделать очень просто:
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;typename T&gt;
-                typename EnableIf&lt;!std::is_integral&lt;T&gt;::value, void&gt;::type
-                print(T container)
-                {
-                    std::cout &lt;&lt; "Values:{ ";
-                    for(auto value : container)
-                        std::cout &lt;&lt; value &lt;&lt; " ";
-                    std::cout &lt;&lt; "}\n";
-                }
-                 
-                template &lt;typename T&gt;
-                typename EnableIf&lt;std::is_integral&lt;T&gt;::value, void&gt;::type
-                print(T value)
-                {
-                    std::cout &lt;&lt; "Value: " &lt;&lt; value &lt;&lt; "\n";
-                }</code></pre>
+    <code class="language-cpp">template &lt;typename T&gt;
+    typename EnableIf&lt;!std::is_integral&lt;T&gt;::value, void&gt;::type
+    print(T container)
+    {
+        std::cout &lt;&lt; "Values:{ ";
+        for(auto value : container)
+            std::cout &lt;&lt; value &lt;&lt; " ";
+        std::cout &lt;&lt; "}\n";
+    }
+     
+    template &lt;typename T&gt;
+    typename EnableIf&lt;std::is_integral&lt;T&gt;::value, void&gt;::type
+    print(T value)
+    {
+        std::cout &lt;&lt; "Value: " &lt;&lt; value &lt;&lt; "\n";
+    }</code></pre>
 
             <p class="plain">
                 Теперь мы можем печатать как контейнеры, так и простые типы не получая ошибок! Конечно, тот факт, что нам пришлось делать фактически 2 
@@ -395,19 +394,19 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">char begin(...);</code></pre>
+    <code class="language-cpp">char begin(...);</code></pre>
 
             <p class="plain">
                 Теперь напишем саму метафункцию:
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;typename T&gt;
-                struct IsForReady
-                {
-                    static constexpr bool value
-                        = sizeof(begin(std::declval&lt;T&gt;())) != sizeof(char);
-                };</code></pre>
+    <code class="language-cpp">template &lt;typename T&gt;
+    struct IsForReady
+    {
+        static constexpr bool value
+            = sizeof(begin(std::declval&lt;T&gt;())) != sizeof(char);
+    };</code></pre>
 
             <p class="plain">
                 Как вы можете видеть, мы написали метафункцию, возвращающую значение. Значение её будет варьироваться в зависимости от переданного типа T. 
@@ -431,8 +430,8 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;class T&gt;
-                std::add_rvalue_reference&lt;T&gt;::type declval() noexcept;</code></pre>
+    <code class="language-cpp">template &lt;class T&gt;
+    std::add_rvalue_reference&lt;T&gt;::type declval() noexcept;</code></pre>
 
             <p class="plain">
                 В чём её смысл? Почему бы просто не написать sizeof(begin(T{}))? Потому что такая запись потребовала бы от T наличия конструктора по умолчанию, 
@@ -470,22 +469,22 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">template &lt;typename T&gt;
-                decltype(begin(std::declval&lt;T&gt;()), end(std::declval&lt;T&gt;()), void())
-                print(T container)
-                {
-                    std::cout &lt;&lt; "Values:{ ";
-                    for(auto value : container)
-                        std::cout &lt;&lt; value &lt;&lt; " ";
-                    std::cout &lt;&lt; "}\n";
-                }
-                 
-                template &lt;typename T&gt;
-                decltype(std::cout &lt;&lt; std::declval&lt;T&gt;(), void())
-                print(T value)
-                {
-                    std::cout &lt;&lt; "Value: " &lt;&lt; value &lt;&lt; "\n";
-                }</code></pre>
+    <code class="language-cpp">template &lt;typename T&gt;
+    decltype(begin(std::declval&lt;T&gt;()), end(std::declval&lt;T&gt;()), void())
+    print(T container)
+    {
+        std::cout &lt;&lt; "Values:{ ";
+        for(auto value : container)
+            std::cout &lt;&lt; value &lt;&lt; " ";
+        std::cout &lt;&lt; "}\n";
+    }
+     
+    template &lt;typename T&gt;
+    decltype(std::cout &lt;&lt; std::declval&lt;T&gt;(), void())
+    print(T value)
+    {
+        std::cout &lt;&lt; "Value: " &lt;&lt; value &lt;&lt; "\n";
+    }</code></pre>
 
             <p class="plain">
                 И всё! Никаких дополнительных метафункций, никакой игры с размером типа — ничего. Более того, теперь мы проверяем не просто тот факт, что 
