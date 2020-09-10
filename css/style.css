@@ -9,7 +9,7 @@ body {
     line-height: 1.5em; /* Высота строки */
     letter-spacing: 0.1pt; /* Зазор между буквами */
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 /* Основной текст */
@@ -70,16 +70,21 @@ a {
     font-size: 1em;
 } 
 
-div[class="A4"] {  
-    min-width: 1300px;
+.A4 {  
+    width: 1300px;
     background: white;
     /* margin: 0 auto; отступы слева и справа */
     /* margin-top: 0px; */
     /* margin-bottom: 0px;  */
     /* box-shadow: 0 0 250px rgba(0,0,0,0.8);  */
     /* border: 25px solid darkgray; */
-    /* position: relative; */
-    min-height: 100vh; /* Устанавливает минимальную высоту основного div в % от высоты окна браузера*/
+    position: relative;
+    /* Устанавливает минимальную высоту основного div в % от высоты окна браузера*/
+    min-height: 92vh; 
+}
+
+.A4 div {
+    /* width: 1300px; */
 }
 
 .msc_text {
@@ -135,8 +140,7 @@ div[class="A4"] {
     
 .menu {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
     background-color:#333; 
 }
 
@@ -149,7 +153,7 @@ div[class="A4"] {
 
 .menu > ul > li {
     float: left;
-    position: relative;
+    position: relative; 
 }
 
 .menu > ul > li > a {
@@ -211,7 +215,7 @@ div[class="A4"] {
 }
 
 /* --------------------------------------------------------------------*/
-/* ------------СЕКЦИЯ СТИЛЯ СПИСКА ------------------------------------*/
+/* ------------СЕКЦИЯ СТИЛЯ СПИСКА                                 ----*/
 /* --------------------------------------------------------------------*/
 
 .rounded {
