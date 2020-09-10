@@ -7,9 +7,11 @@
         <script src="js/menu.js" defer></script> 
     </head>
     <body>
+        <div id="header_menu" class="menu">
+        </div>
+
         <div class="A4">
-            <div id="header_menu" class="menu" style="width: inherit;">
-            </div>
+            
 
             <p class="section">
                 C / C++
@@ -54,13 +56,15 @@
                 </ol>
 
             <br>
-            
-            <!-- свойства в style смещают этот блок div вниз страницы -->
-            <div class="menu" style="position: absolute; top: 100%; width: inherit">
-                <ul>
-                    <li><a href="index.html">На главную</a></li> 
-                </ul>      
-            </div>
+                        
         </div>
+
+        <!-- свойства в style смещают этот блок div вниз страницы -->
+        <div class="menu" style="position: absolute; top: 100%;">
+            <ul>
+                <li><a href="index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
     </body>
 </html>

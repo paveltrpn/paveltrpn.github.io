@@ -17,7 +17,6 @@ body {
 
 /* Основной текст */
 .plain {
-    text-indent: 0.0em;
     text-align: justify; /* Выравнивание по ширине */
     margin-left: 60px; /* Отступ слева в пикселах */
     margin-right: 60px; /* Отступ справа в пикселах */
@@ -60,7 +59,7 @@ body {
     Уменьшеный текст. Для комментариев, ссылок (не активных)
     на исходные материалы и т.д. 
 */
-p[class="small"] {
+.small {
     font-size: 10pt;
     text-align: center;
     margin-left: 60px;  
@@ -77,9 +76,11 @@ a {
     width: 1300px;
     background: white;
     /* position: relative; */
-    /* display: block; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     /* Устанавливает минимальную высоту основного div в % от высоты окна браузера*/
-    min-height: 92vh;
+    min-height: 100vh;
 }
 
 .msc_text {
