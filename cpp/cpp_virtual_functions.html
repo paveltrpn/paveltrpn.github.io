@@ -22,12 +22,13 @@
         <!-- Подключение скрипта Prism -->
         <script src="../js/prism.js"></script>
 
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
         <div class="A4">
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
 
             <p class="section">
                 ВИРТУАЛЬНЫЕ ФУНКЦИИ И ПОЛИФОРМИЗМ
@@ -46,11 +47,11 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">Student s;
-                Person &p = s;
-                s.name(); //Student::name()
-                p.name(); //Person::name()
-                </code></pre>
+    <code class="language-cpp">Student s;
+    Person &p = s;
+    s.name(); //Student::name()
+    p.name(); //Person::name()
+    </code></pre>
  
             <p class="plain">
                 3-й строке вызовется метод класса Student, т.к. s является объектом этого класса. Однако, в строке 4 вызовется 
@@ -62,15 +63,15 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">struct Person
-                {
-                        virtual string name() const;
-                }; 
-                
-                struct Student: Person
-                {
-                        string name() const;
-                };</code></pre>
+    <code class="language-cpp">struct Person
+    {
+            virtual string name() const;
+    }; 
+    
+    struct Student: Person
+    {
+            string name() const;
+    };</code></pre>
 
             <p class="plain">
                 Перед методом name класса Person мы указали ключевое слово virtual, которое указывает, что метод является 
@@ -79,12 +80,12 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">Student s;
-                Person *p = &s ;
-                p->name(); //вызовется Student::name();
-                Person n;
-                p = &n;
-                p->name(); //вызовется Person::name()</code></pre>
+    <code class="language-cpp">Student s;
+    Person *p = &s ;
+    p->name(); //вызовется Student::name();
+    Person n;
+    p = &n;
+    p->name(); //вызовется Person::name()</code></pre>
 
             <p class="plain">
                 Если с некоторого класса в иерархии наследования метод стал виртуальным, то во всех производных от него 
@@ -99,24 +100,24 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">struct TextFile
-                {
-                    string name() const;
-                    virtual string read(size_t count);
-                    //...
-                };
-                
-                struct GZippedTextFile : TextFile
-                {
-                    string read(size_t count);
-                    //...
-                }
-                
-                struct BZippedTextFile : TextFile
-                {
-                    string read(size_t count);
-                    //...
-                }</code></pre>
+    <code class="language-cpp">struct TextFile
+    {
+        string name() const;
+        virtual string read(size_t count);
+        //...
+    };
+    
+    struct GZippedTextFile : TextFile
+    {
+        string read(size_t count);
+        //...
+    }
+    
+    struct BZippedTextFile : TextFile
+    {
+        string read(size_t count);
+        //...
+    }</code></pre>
 
             <p class="subsection">
                 Перекрытие методов
@@ -127,14 +128,14 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">struct A
-                {
-                    void f(int);
-                };
-                struct B : A
-                {
-                    void f(long);
-                };</code></pre>
+    <code class="language-cpp">struct A
+    {
+        void f(int);
+    };
+    struct B : A
+    {
+        void f(long);
+    };</code></pre>
 
 
             <p class="plain">
@@ -142,8 +143,8 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">B b;
-                b.f(1);</code></pre>
+    <code class="language-cpp">B b;
+    b.f(1);</code></pre>
 
             <p class="plain">
                 произойдет вызов метода f(long) класса B, несмотря на то, что у родительского класса A есть более подходящий 
@@ -152,11 +153,11 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">struct B : A
-                {
-                    using A::f;
-                    void f(long);
-                };</code></pre>
+    <code class="language-cpp">struct B : A
+    {
+        using A::f;
+        void f(long);
+    };</code></pre>
 
             <p class="subsection">
                 Абстрактные классы и чистые виртуальные функции
@@ -170,10 +171,10 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">struct File
-                {
-                    virtual string read(size_t count) = 0;
-                };</code></pre>
+    <code class="language-cpp">struct File
+    {
+        virtual string read(size_t count) = 0;
+    };</code></pre>
 
             <p class="plain">
                 Это означает, что метод read(...) должен быть определен в классах наследниках. Теперь класс File стал абстрактным, 
@@ -182,12 +183,12 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">File *f = new TextFile("text.txt");
-                //различные действия с файлом text.txt
-                delete f;
-                f = new RTFFile("rich_text.rtf");
-                //различные действия с файлом rich_text.rtf
-                delete f;</code></pre>
+    <code class="language-cpp">File *f = new TextFile("text.txt");
+    //различные действия с файлом text.txt
+    delete f;
+    f = new RTFFile("rich_text.rtf");
+    //различные действия с файлом rich_text.rtf
+    delete f;</code></pre>
 
             <p class="plain">
                 Следует отметить, что в любой иерархии классов деструктор всегда должен быть виртуальным. Рассмотрим пример, поясняющий 
@@ -195,41 +196,40 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">struct Person
-                {
-                public:
-                    ~Person() {}
-                private:
-                    string name;
-                    //...
-                };
-
-                struct Student : Person
-                {
-                public:
-                    Student()
-                    {
-                        someData = new Data();
-                    }               
-                    ~Student()
-                    {
-                        delete someData;
-                    }
-                    //...
-                private:
-                    Data *someData;
-                };
-                //...
-                Student *s = new Student();
-                //...
-                delete s; //вызовется деструктор класса Student, память по указателю someData освободится
-                Person *p = new Student();
-                //...
-                delete p;   
-                /*вызовется деструктор класса Person, а не Student, 
-                т.к. он не является виртуальным, несмотря на то, что на самом деле объект - экземпляр Student.
-                В этом случае произойдет утечка памяти, т.к. память по указателю someData не освободится
-                */</code></pre>
+    <code class="language-cpp">struct Person
+    {
+    public:
+        ~Person() {}
+    private:
+        string name;
+        //...
+    
+    struct Student : Person
+    {
+    public:
+        Student()
+        {
+            someData = new Data();
+        }               
+        ~Student()
+        {
+            delete someData;
+        }
+        //...
+    private:
+        Data *someData;
+    };
+    //...
+    Student *s = new Student();
+    //...
+    delete s; //вызовется деструктор класса Student, память по указателю someData освободится
+    Person *p = new Student();
+    //...
+    delete p;   
+    /*вызовется деструктор класса Person, а не Student, 
+    т.к. он не является виртуальным, несмотря на то, что на самом деле объект - экземпляр Student.
+    В этом случае произойдет утечка памяти, т.к. память по указателю someData не освободится
+    */</code></pre>
 
             <p class="plain">
                 Деструктор можно также сделать чистым виртуальным, но при этом его тело нужно определить снаружи класса. 
@@ -257,43 +257,41 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">struct A
-                {
-                    A()
-                    {
-                        f();
-                    }
-                    virtual void f()
-                    {
-                        cout &lt;&lt; "A::f()" &lt;&lt; endl;
-                    }
-                };
-
-                struct B : A
-                {
-                    B()
-                    {
-                        f();
-                    }
-                    virtual void f()
-                    {
-                        cout &lt;&lt; "B::f()" &lt;&lt; endl;
-                    }
-                };
-
-                struct C : B
-                {
-                    C()
-                    {
-                        f();
-                    }
-                    virtual void f()
-                    {
-                        cout &lt;&lt; "C::f()" &lt;&lt; endl;
-                    }
-                };
-                //...
-                C c; //создание объекта класса C</code></pre>
+    <code class="language-cpp">struct A
+    {
+        A()
+        {
+            f();
+        }
+        virtual void f()
+        {
+            cout &lt;&lt; "A::f()" &lt;&lt; endl;
+        }
+    
+    struct B : A
+    {
+        B()
+        {
+            f();
+        }
+        virtual void f()
+        {
+            cout &lt;&lt; "B::f()" &lt;&lt; endl;
+        }
+    
+    struct C : B
+    {
+        C()
+        {
+            f();
+        }
+        virtual void f()
+        {
+            cout &lt;&lt; "C::f()" &lt;&lt; endl;
+        }
+    };
+    //...
+    C c; //создание объекта класса C</code></pre>
 
             <p class="plain">
                 В этом примере на экран будет выведено:
@@ -324,9 +322,9 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">struct B : public A {...};
-                struct C : protected A {...};
-                struct D : private A {...};</code></pre>
+    <code class="language-cpp">struct B : public A {...};
+    struct C : protected A {...};
+    struct D : private A {...};</code></pre>
 
             <p class="plain">
                 Если модификатор не указан, то по умолчанию для структур наследование public, для классов private.<br>
@@ -351,28 +349,29 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">struct A {...};
-                struct B : A {...};
-                
-                struct C
-                {
-                    virtual A * f();
-                };
-                
-                struct D : C
-                {
-                    virtual B * f();
-                }</code></pre>
+    <code class="language-cpp">struct A {...};
+    struct B : A {...};
+    
+    struct C
+    {
+        virtual A * f();
+    };
+    
+    struct D : C
+    {
+        virtual B * f();
+    }</code></pre>
 
             <p class="plain">
                 Такая возможность в C++ называет ковариантностью по типу возвращаемого значения (return type covariance). 
             </p>
+            
+        </div>
 
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
         </div>
     </body>
 </html>

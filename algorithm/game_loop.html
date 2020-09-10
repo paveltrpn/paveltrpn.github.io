@@ -22,12 +22,13 @@
         <!-- Подключение скрипта Prism -->
         <script src="../js/prism.js"></script>
 
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
         <div class="A4">
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
 
             <p class="section">
                 ГЛАВНЫЙ ЦИКЛ И СИМУЛЯЦИЯ В РЕАЛЬНОМ ВРЕМЕНИ
@@ -101,24 +102,24 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">while (!quit)
-                {
-                    // Update the camera transform based on interactive
-                    // inputs or by following a predefined path.
-                    updateCamera();
-                    // Update positions, orientations and any other
-                    // relevant visual state of any dynamic elements
-                    // in the scene.
-                    updateSceneElements();
-                    // Render a still frame into an off-screen frame
-                    // buffer known as the "back buffer".
-                    renderScene();
-                    // Swap the back buffer with the front buffer, making
-                    // the most recently rendered image visible
-                    // on-screen. (Or, in windowed mode, copy (blit) the
-                    // back buffer's contents to the front buffer.
-                    swapBuffers();
-                }</code></pre>
+    <code class="language-cpp">while (!quit)
+    {
+        // Update the camera transform based on interactive
+        // inputs or by following a predefined path.
+        updateCamera();
+        // Update positions, orientations and any other
+        // relevant visual state of any dynamic elements
+        // in the scene.
+        updateSceneElements();
+        // Render a still frame into an off-screen frame
+        // buffer known as the "back buffer".
+        renderScene();
+        // Swap the back buffer with the front buffer, making
+        // the most recently rendered image visible
+        // on-screen. (Or, in windowed mode, copy (blit) the
+        // back buffer's contents to the front buffer.
+        swapBuffers();
+    }</code></pre>
             
             <p class="subsection">
                 Игровой цикл
@@ -191,38 +192,35 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">void main() // Pong
-                {
-                    initGame();
-                    
-                    while (true) // game loop
-                    {
-                        readHumanInterfaceDevices();
-                        if (quitButtonPressed())
-                        {
-                            break; // exit the game loop
-                        }
+    <code class="language-cpp">void main() // Pong
+    {
+        initGame();
+        
+        while (true) // game loop
+        {
+            readHumanInterfaceDevices();
+            if (quitButtonPressed())
+            {
+                break; // exit the game loop
+            }
 
-                        movePaddles();
-
-                        moveBall();
-
-                        collideAndBounceBall();
-                        
-                        if (ballImpactedSide(LEFT_PLAYER))
-                        {
-                            incremenentScore(RIGHT_PLAYER);
-                            resetBall();
-                        }
-                        else if (ballImpactedSide(RIGHT_PLAYER))
-                        {
-                            incrementScore(LEFT_PLAYER);
-                            resetBall();
-                        }
-
-                        renderPlayfield();
-                    }
-                }</code></pre>
+            movePaddles(
+            moveBall(
+            collideAndBounceBall();
+            
+            if (ballImpactedSide(LEFT_PLAYER))
+            {
+                incremenentScore(RIGHT_PLAYER);
+                resetBall();
+            }
+            else if (ballImpactedSide(RIGHT_PLAYER))
+            {
+                incrementScore(LEFT_PLAYER);
+                resetBall();
+            }
+            renderPlayfield();
+        }
+    }</code></pre>
 
             <!--Clearly this example is somewhat contrived. The original pong games
             were certainly not implemented by redrawing the entire screen at a rate of
@@ -291,19 +289,19 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">while (true)
-                {
-                    // Service any and all pending Windows messages.
-                    MSG msg;
-                    while (PeekMessage(&msg, NULL, 0, 0) > 0)
-                    {
-                        TranslateMessage(&msg);
-                        DispatchMessage(&msg);
-                    }
-                    // No more Windows messages to process -- run one
-                    // iteration of our "real" game loop.
-                    RunOneIterationOfGameLoop();
-                }</code></pre>
+    <code class="language-cpp">while (true)
+    {
+        // Service any and all pending Windows messages.
+        MSG msg;
+        while (PeekMessage(&msg, NULL, 0, 0) > 0)
+        {
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+        }
+        // No more Windows messages to process -- run one
+        // iteration of our "real" game loop.
+        RunOneIterationOfGameLoop();
+    }</code></pre>
 
             <p class="plain">
                 Одним из побочных эффектов реализации игрового цикла, подобного этому, является то, что сообщения Windows имеют приоритет над 
@@ -339,48 +337,48 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">while (true)
-                {
-                    for (each frameListener)
-                    {
-                        frameListener.frameStarted();
-                    }
-                    renderCurrentScene();
-                    for (each frameListener)
-                    {
-                        frameListener.frameEnded();
-                    }
-                    finalizeSceneAndSwapBuffers();
-                }</code></pre>
+    <code class="language-cpp">while (true)
+    {
+        for (each frameListener)
+        {
+            frameListener.frameStarted();
+        }
+        renderCurrentScene();
+        for (each frameListener)
+        {
+            frameListener.frameEnded();
+        }
+        finalizeSceneAndSwapBuffers();
+    }</code></pre>
 
             <p class="plain">
                 Реализация frameListener конкретной игры может выглядеть примерно так.
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">class GameFrameListener : public Ogre::FrameListener
-                {
-                public:
-                    virtual void frameStarted(const FrameEvent& event)
-                    {
-                        // Do things that must happen before the 3D scene
-                        // is rendered (i.e., service all game engine
-                        // subsystems).
-                        pollJoypad(event);
-                        updatePlayerControls(event);
-                        updateDynamicsSimulation(event);
-                        resolveCollisions(event);
-                        updateCamera(event);
-                        // etc.
-                    }
-                    virtual void frameEnded(const FrameEvent& event)
-                    {
-                        // Do things that must happen after the 3D scene
-                        // has been rendered.
-                        drawHud(event);
-                        // etc.
-                    }
-                };</code></pre>
+    <code class="language-cpp">class GameFrameListener : public Ogre::FrameListener
+    {
+    public:
+        virtual void frameStarted(const FrameEvent& event)
+        {
+            // Do things that must happen before the 3D scene
+            // is rendered (i.e., service all game engine
+            // subsystems).
+            pollJoypad(event);
+            updatePlayerControls(event);
+            updateDynamicsSimulation(event);
+            resolveCollisions(event);
+            updateCamera(event);
+            // etc.
+        }
+        virtual void frameEnded(const FrameEvent& event)
+        {
+            // Do things that must happen after the 3D scene
+            // has been rendered.
+            drawHud(event);
+            // etc.
+        }
+    };</code></pre>
             
             <p class="subsection">
                 Event-Based Updating
@@ -454,13 +452,14 @@
             <p class="subsection">
                 Game Time
             </p>
-
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
             
         </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
     </body>
 </html>
