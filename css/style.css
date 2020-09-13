@@ -14,6 +14,7 @@ body {
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
@@ -22,6 +23,7 @@ body {
     text-align: justify; /* Выравнивание по ширине */
     margin-left: 60px; /* Отступ слева в пикселах */
     margin-right: 60px; /* Отступ справа в пикселах */
+    word-break: break-all;
 }
 
 .plain li {
