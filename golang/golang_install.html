@@ -22,12 +22,14 @@
         <!-- Подключение скрипта Prism -->
         <script src="../js/prism.js"></script>
 
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
         <div class="A4">
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
+            
 
             <p class="section">
                 НАСТРОЙКА GOLANG В LINUX
@@ -46,14 +48,14 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ wget -c https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz</code></pre>
+    <code class="language-shell">$ wget -c https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz</code></pre>
  
             <p class="plain">
                 Распаковываем в /usr/local, формируя дерево каталога Golang в /usr/local/go:
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz</code></pre>
+    <code class="language-shell">$ tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz</code></pre>
             
             <p class="subsection">
                 Настройка среды GoLang в Linux
@@ -77,9 +79,9 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ mkdir -p ~/go_projects/{bin,src,pkg}
-                $ cd ~/go_projects
-                $ ls</code></pre>
+    <code class="language-shell">$ mkdir -p ~/go_projects/{bin,src,pkg}
+    $ cd ~/go_projects
+    $ ls</code></pre>
 
             <p class="plain">
                 Вот и пришло время запустить Go, как и остальные Linux-программы, его каталог установки должен быть 
@@ -94,7 +96,7 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">export PATH=$PATH:/usr/local/go/bin</code></pre>
+    <code class="language-shell">export PATH=$PATH:/usr/local/go/bin</code></pre>
 
             <p class="plain">
                 Затем установите значения переменных среды GOPATH и GOBIN в файле профиля пользователя 
@@ -102,8 +104,8 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">export GOPATH="$HOME/go_projects"
-                export GOBIN="$GOPATH/bin"</code></pre>
+    <code class="language-shell">export GOPATH="$HOME/go_projects"
+    export GOBIN="$GOPATH/bin"</code></pre>
 
             <p class="plain">
                 <b>Примечание.</b> Если вы установили GoLang в пользовательский каталог, отличный от значения по умолчанию (/usr/local/), 
@@ -112,17 +114,17 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">export GOROOT=$HOME/go
-                export PATH=$PATH:$GOROOT/bin</code></pre>
+    <code class="language-shell">export GOROOT=$HOME/go
+    export PATH=$PATH:$GOROOT/bin</code></pre>
 
             <p class="plain">
                 Последним шагом в этом разделе является внесение изменений в профиль пользователя в текущем сеансе bash следующим образом:
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ source ~/.bash_profile
-                или
-                $ source ~/.profile</code></pre>
+    <code class="language-shell">$ source ~/.bash_profile
+    или
+    $ source ~/.profile</code></pre>
 
             <p class="subsection">
                 Выключаем go-lint в vs code
@@ -141,11 +143,13 @@
             </i>
             </p>
 
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
         </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
     </body>
 </html>

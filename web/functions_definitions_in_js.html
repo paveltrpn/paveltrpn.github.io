@@ -22,12 +22,13 @@
         <!-- Подключение скрипта Prism -->
         <script src="../js/prism.js"></script>
 
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
         <div class="A4">
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
 
             <p class="section">
                 Задание функции в JavaScript
@@ -49,9 +50,9 @@
             </p>
 
             <pre class="line-numbers">
-            <code class="language-javascript">function square(number) {
-                return number * number;
-            }</code></pre>
+    <code class="language-javascript">function square(number) {
+        return number * number;
+    }</code></pre>
             
             <p class="plain">
                 Функция square принимает один параметр, названный number. Состоит из одной инструкции, которая
@@ -60,7 +61,7 @@
             </p>
 
             <pre class="line-numbers">
-            <code class="language-javascript">return number * number;</code></pre>
+    <code class="language-javascript">return number * number;</code></pre>
 
             <p class="plain">
                 Примитивные параметры (например, число) передаются функции значением; значение передаётся в 
@@ -73,18 +74,18 @@
             </p>
 
             <pre class="line-numbers">
-            <code class="language-javascript">function myFunc(theObject) {
-                theObject.make = 'Toyota';
-            }
+    <code class="language-javascript">function myFunc(theObject) {
+        theObject.make = 'Toyota';
+    }
             
-            var mycar = {make: 'Honda', model: 'Accord', year: 1998};
-            var x, y;
-            
-            x = mycar.make; // x получает значение "Honda"
-            
-            myFunc(mycar);
-            y = mycar.make; // y получает значение "Toyota"
-                            // (свойство было изменено функцией)</code></pre>
+    var mycar = {make: 'Honda', model: 'Accord', year: 1998};
+    var x, y;
+    
+    x = mycar.make; // x получает значение "Honda"
+    
+    myFunc(mycar);
+    y = mycar.make; // y получает значение "Toyota"
+                    // (свойство было изменено функцией)</code></pre>
 
             <p class="subsection">
                 Функции вида "function definition expression"
@@ -97,8 +98,8 @@
             </p>
 
             <pre class="line-numbers">
-            <code class="language-javascript">var square = function(number) { return number * number; };
-            var x = square(4); // x получает значение 16</code></pre>
+    <code class="language-javascript">var square = function(number) { return number * number; };
+    var x = square(4); // x получает значение 16</code></pre>
 
             <p class="plain">
                 Однако, имя может быть и присвоено для вызова самой себя внутри самой функции и для 
@@ -106,8 +107,8 @@
             </p>
 
             <pre class="line-numbers">
-            <code class="language-javascript">var factorial = function fac(n) { return n &lt; 2 ? 1 : n * fac(n - 1); };
-            console.log(factorial(3));</code></pre>
+    <code class="language-javascript">var factorial = function fac(n) { return n &lt; 2 ? 1 : n * fac(n - 1); };
+    console.log(factorial(3));</code></pre>
             
             <p class="plain">
                 Функции вида "function definition expression" удобны, когда функция передается аргументом 
@@ -116,13 +117,13 @@
             </p>
 
             <pre class="line-numbers">
-            <code class="language-javascript">function map(f, a) {
-                var result = [], // Create a new Array
-                    i;
-                for (i = 0; i != a.length; i++)
-                  result[i] = f(a[i]);
-                return result;
-            }</code></pre>
+    <code class="language-javascript">function map(f, a) {
+        var result = [], // Create a new Array
+            i;
+        for (i = 0; i != a.length; i++)
+          result[i] = f(a[i]);
+        return result;
+    }</code></pre>
 
             <p class="plain">
                 В следующим коде наша функция принимает функцию, которая является function definition 
@@ -130,19 +131,19 @@
             </p>
 
             <pre class="line-numbers">
-            <code class="language-javascript">function map(f, a) {
-                var result = []; // Create a new Array
-                var i; // Declare variable
-                for (i = 0; i != a.length; i++)
-                  result[i] = f(a[i]);
-                    return result;
-            }
-            var f = function(x) {
-               return x * x * x; 
-            }
-            var numbers = [0, 1, 2, 5, 10];
-            var cube = map(f,numbers);
-            console.log(cube);</code></pre>
+    <code class="language-javascript">function map(f, a) {
+        var result = []; // Create a new Array
+        var i; // Declare variable
+        for (i = 0; i != a.length; i++)
+          result[i] = f(a[i]);
+            return result;
+    }
+    var f = function(x) {
+       return x * x * x; 
+    }
+    var numbers = [0, 1, 2, 5, 10];
+    var cube = map(f,numbers);
+    console.log(cube);</code></pre>
 
             <p class="plain">
                 Функция возвращает: [0, 1, 8, 125, 1000].<br>
@@ -152,12 +153,12 @@
             </p>
 
             <pre class="line-numbers">
-            <code class="language-javascript">var myFunc;
-            if (num === 0) {
-                myFunc = function(theObject) {
-                theObject.make = 'Toyota';
-                }
-            }</code></pre>
+    <code class="language-javascript">var myFunc;
+    if (num === 0) {
+        myFunc = function(theObject) {
+        theObject.make = 'Toyota';
+        }
+    }</code></pre>
 
             <p class="plain">
                 В дополнение к объявлениям функций, описанных здесь, Вы также можете использовать 
@@ -183,17 +184,17 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-javascript">function wrapValue(n) {
-                    var localVariable = n;
-                    return function() { return localVariable; };
-                }
-                
-                var wrap1 = wrapValue(1);
-                var wrap2 = wrapValue(2);
-                console.log(wrap1());
-                // → 1
-                console.log(wrap2());
-                // → 2</code></pre>
+    <code class="language-javascript">function wrapValue(n) {
+        var localVariable = n;
+        return function() { return localVariable; };
+    }
+    
+    var wrap1 = wrapValue(1);
+    var wrap2 = wrapValue(2);
+    console.log(wrap1());
+    // → 1
+    console.log(wrap2());
+    // → 2</code></pre>
 
             <p class="plain">
                 Это допустимо и работает так, как должно – доступ к переменной остаётся. Более того, в одно и 
@@ -208,15 +209,15 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-javascript">function multiplier(factor) {
-                    return function(number) {
-                        return number * factor;
-                    };
-                }
-                
-                var twice = multiplier(2);
-                console.log(twice(5));
-                // → 10</code></pre>
+    <code class="language-javascript">function multiplier(factor) {
+        return function(number) {
+            return number * factor;
+        };
+    }
+    
+    var twice = multiplier(2);
+    console.log(twice(5));
+    // → 10</code></pre>
 
             <p class="plain">
                 Отдельная переменная вроде localVariable из примера с wrapValue уже не нужна. Так как параметр – 
@@ -234,12 +235,14 @@
                 во время разморозки (5) в качестве числового параметра.
             </p>
             
-            <!-- свойства в style смещают этот блок div вниз страницы -->
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
         </div>
+
+        <!-- свойства в style смещают этот блок div вниз страницы -->
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
     </body>
 </html>

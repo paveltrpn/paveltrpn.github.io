@@ -22,12 +22,13 @@
         <!-- Подключение скрипта Prism -->
         <script src="../js/prism.js"></script>
 
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
         <div class="A4">
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
 
             <p class="section">
                 НАСТРОЙКА SSH КЛЮЧЕЙ ДЛЯ GITHUB
@@ -76,16 +77,16 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ ssh-keygen -t rsa -b 4096 -C "your_mail@example.com"</code></pre> 
+    <code class="language-shell">$ ssh-keygen -t rsa -b 4096 -C "your_mail@example.com"</code></pre> 
 
             <p class="plain">
                 Указываем тот адрес электронной почты, который вводили при регистрации на GitHub.
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ ssh-keygen -t rsa -b 4096 -C "your_mail@example.com"
-                Generating private/public rsa key pair.
-                Enter file in which to save the key (/Users/username/.ssh/id_rsa):</code></pre> 
+    <code class="language-shell">$ ssh-keygen -t rsa -b 4096 -C "your_mail@example.com"
+    Generating private/public rsa key pair.
+    Enter file in which to save the key (/Users/username/.ssh/id_rsa):</code></pre> 
 
             <p class="plain">
                 - Далее нужно указать расположение файла для сохранения ключа. Если вы не введёте путь до файла и просто 
@@ -96,10 +97,10 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ ssh-keygen -t rsa -b 4096 -C "your_mail@example.com"
-                Generating private/public rsa key pair.
-                Enter file in which to save the key (/Users/username/.ssh/id_rsa): /Users/pavlushk0/git-keys
-                Enter passphrase (empty for no passphrase):</code></pre>
+    <code class="language-shell">$ ssh-keygen -t rsa -b 4096 -C "your_mail@example.com"
+    Generating private/public rsa key pair.
+    Enter file in which to save the key (/Users/username/.ssh/id_rsa): /Users/pavlushk0/git-keys
+    Enter passphrase (empty for no passphrase):</code></pre>
 
             <p class="plain">
                 4. Добавляем ключ в ssh-agent (сгенерированный или уже существующий). Проверяем доступность ключа командой eval 
@@ -107,8 +108,8 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ ssh-add /Users/pavlushk0/git-keys
-                Identity added: .......</code></pre>
+    <code class="language-shell">$ ssh-add /Users/pavlushk0/git-keys
+    Identity added: .......</code></pre>
 
             <p class="plain">
                 <b>Несколько важных примечаний:</b><br>
@@ -129,10 +130,10 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">Host *
-                AddKeysToAgent yes
-                UseKeychain yes
-                IdentityFile ~/.ssh/id_rsa</code></pre>
+    <code class="language-shell">Host *
+    AddKeysToAgent yes
+    UseKeychain yes
+    IdentityFile ~/.ssh/id_rsa</code></pre>
 
             <p class="plain">
                 Вы можете добавить свой приватный ключ в ssh-agent и сохранить пароль к нему с помощью команды ssh-add -K ~/.ssh/id_rsa.
@@ -162,12 +163,13 @@
                 <br>
             </p>
 
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
-
         </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
     </body>
 </html>

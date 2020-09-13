@@ -21,12 +21,13 @@
         <!-- Подключение скрипта Prism -->
         <script src="../js/prism.js"></script>
 
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
         <div class="A4">
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
 
             <p class="section">
                 РАБОТА С GITHUB
@@ -44,7 +45,7 @@
             </p>
             
            <pre class="line-numbers">
-                <code class="language-shell">$  git config --global user.name "имя"</code></pre>
+    <code class="language-shell">$  git config --global user.name "имя"</code></pre>
                
             <p class="plain">
                 Обратите внимание, что в командах, указанных выше, есть опция --global. Это значит, что такие данные будут 
@@ -57,9 +58,9 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git clone git://github.com/USER_NAME/REPO_NAME
-                или вот так (после настройки SSH)
-                $ git clone git@github.com:your-nickname/your-project.git</code></pre>
+    <code class="language-shell">$ git clone git://github.com/USER_NAME/REPO_NAME
+    или вот так (после настройки SSH)
+    $ git clone git@github.com:your-nickname/your-project.git</code></pre>
 
             <p class="plain">
                 Кстати, если вы хотите, чтобы название папки с проектом у вас на компьютере отличалось от имени репозитория,
@@ -67,43 +68,43 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git clone git@github.com:_your-nickname_/_your-project_.git folder_name</code></pre>
+    <code class="language-shell">$ git clone git@github.com:_your-nickname_/_your-project_.git folder_name</code></pre>
 
             <p class="plain">
                 <b>Сделать алиас</b> на другое имя накоторо репозитория. Что-бы работали пуш и пулл нужно что-бы алиас ссылался на <i>https:</i>
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ cd REPO_NAME
-                $ git remote add ALIAS_NAME https://github.com/USER_NAME/REPO_NAME</code></pre>
+    <code class="language-shell">$ cd REPO_NAME
+    $ git remote add ALIAS_NAME https://github.com/USER_NAME/REPO_NAME</code></pre>
             
             <p class="plain">
                 <b>Посмотреть</b>, с какими ветками мы сейчас работаем:
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git branch</code></pre>
+    <code class="language-shell">$ git branch</code></pre>
 
             <p class="plain">
                 <b>Переключиться</b> между существующими ветками в проекте:
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git checkout имя-ветки</code></pre>
+    <code class="language-shell">$ git checkout имя-ветки</code></pre>
 
             <p class="plain">
                 <b>Сделать новый branch</b>
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git checkout -b имя-новой-ветки</code></pre>
+    <code class="language-shell">$ git checkout -b имя-новой-ветки</code></pre>
 
             <p class="plain">
                 Если вы ошиблись в названии, например, допустили опечатку, вы можете изменить название ветки с помощью команды:
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git branch -m старое-имя-ветки новое-имя-ветки</code></pre>
+    <code class="language-shell">$ git branch -m старое-имя-ветки новое-имя-ветки</code></pre>
 
             <p class="subsection">
                 Pullrequest
@@ -135,7 +136,7 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git remote add academy git@github.com:your-repo.git</code></pre>
+    <code class="language-shell">$ git remote add academy git@github.com:your-repo.git</code></pre>
             
             <p class="plain">
                 Вместо academy указывайте своё название и оно закрепится за этим репозиторием.<br>
@@ -144,15 +145,15 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git push origin master.</code></pre>
+    <code class="language-shell">$ git push origin master.</code></pre>
 
             <p class="plain">
                 <b>Фиксация изменений (или добавление коммита):</b>
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git commit -am «COMMIT_NAME»
-                $ git push REPO_NAME master</code></pre>
+    <code class="language-shell">$ git commit -am «COMMIT_NAME»
+    $ git push REPO_NAME master</code></pre>
 
             <p class="plain">
                 <b>Отмена последнего коммита</b>, например когда вы делаете коммит слишком рано, забыв 
@@ -161,7 +162,7 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git commit --amend</code></pre>
+    <code class="language-shell">$ git commit --amend</code></pre>
 
             <p class="plain">
                Для примера, если после совершения коммита вы осознали, что забыли проиндексировать 
@@ -169,9 +170,9 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git commit -m 'initial commit'
-                $ git add forgotten_file
-                $ git commit —amend</code></pre>
+    <code class="language-shell">$ git commit -m 'initial commit'
+    $ git add forgotten_file
+    $ git commit —amend</code></pre>
 
             <p class="plain">
                 Все три команды вместе дают один коммит — второй коммит заменяет результат первого.
@@ -182,8 +183,8 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ cd REPO_NAME
-                $ git pull</code></pre>
+    <code class="language-shell">$ cd REPO_NAME
+    $ git pull</code></pre>
 
             <p class="plain">
                 Для того чтобы <b>начать отслеживать</b> (добавить под версионный контроль) новый файл, 
@@ -191,7 +192,7 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git add FILE_NAME</code></pre>
+    <code class="language-shell">$ git add FILE_NAME</code></pre>
 
             <p class="plain">
                 Основной инструмент, используемый для определения, <b>какие файлы в каком состоянии находятся</b> — это команда git status. 
@@ -199,9 +200,9 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git status
-                # On branch master
-                nothing to commit, working directory clean</code></pre>
+    <code class="language-shell">$ git status
+    # On branch master
+    nothing to commit, working directory clean</code></pre>
 
             <p class="plain">
                 Это означает, что у вас чистый рабочий каталог, другими словами — в нём нет отслеживаемых 
@@ -217,23 +218,23 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git rm FILE_NAME</code></pre>
+    <code class="language-shell">$ git rm FILE_NAME</code></pre>
 
             <p class="plain">
                 <b>Удалить</b> файл FILE_NAME из индекса, оставив его при этом в рабочем каталоге:
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git rm --cached FILE_NAME</code></pre>
+    <code class="language-shell">$ git rm --cached FILE_NAME</code></pre>
 
             <p class="plain">
                 <b>Переместить</b> файл hello.html в каталог lib
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ mkdir lib
-                $ git mv hello.html lib
-                $ git status</code></pre>
+    <code class="language-shell">$ mkdir lib
+    $ git mv hello.html lib
+    $ git status</code></pre>
             
             <p class="plain">
                 Перемещая файлы с помощью git, мы информируем git о 2 вещах:<br>
@@ -249,7 +250,7 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git add .</code></pre>
+    <code class="language-shell">$ git add .</code></pre>
 
             <p class="plain">
                 Именно точка, звёздочка * добавит только файлы в каталоге, игнорируя подкаталоги с файлами.
@@ -264,17 +265,19 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ git fetch --all
-                $ git reset --hard origin/&lt;branch_name&gt; (например master)
-                $ git fetch — скачивает последнее из удалённого репозитория не совершая попыток смержить или заменить что либо.
-                $ git reset — сбрасывает ветку master к тому, что только что было подобрано <i>(fetch)</i>. 
-                Опция <i>--hard</i> заменяет все файлы в рабочем дереве каталогов на файлы, имеющиеся в <i>origin/master</i>.</code></pre>
+    <code class="language-shell">$ git fetch --all
+    $ git reset --hard origin/&lt;branch_name&gt; (например master)
+    $ git fetch — скачивает последнее из удалённого репозитория не совершая попыток смержить или заменить что либо.
+    $ git reset — сбрасывает ветку master к тому, что только что было подобрано <i>(fetch)</i>. 
+    Опция <i>--hard</i> заменяет все файлы в рабочем дереве каталогов на файлы, имеющиеся в <i>origin/master</i>.</code></pre>
 
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
         </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
     </body>
 </html>

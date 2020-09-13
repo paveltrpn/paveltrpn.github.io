@@ -6,13 +6,15 @@ body {
     color: #333; /* Цвет основного текста */ 
     margin-top: 0px;
     margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+
     line-height: 1.5em; /* Высота строки */
     letter-spacing: 0.1pt; /* Зазор между буквами */
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 0px;
-    margin-right: 0px;
 }
 
 /* Основной текст */
@@ -29,7 +31,7 @@ body {
 
 /* Заголовок темы или раздела */
 .section {
-    font-size: 26pt;
+    font-size: 24pt;
     font-weight: bold;
     text-align: center; 
     margin-left: 60px;
@@ -100,13 +102,6 @@ a {
     padding: 0px;
 }
 
-.tab_grid {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-gap: 10px;
-    background-color: #fff;
-    color: #444;
-}
 
 @media print {
     body, page {

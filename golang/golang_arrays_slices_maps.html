@@ -22,13 +22,14 @@
         <!-- Подключение скрипта Prism -->
         <script src="../js/prism.js"></script>
 
-        <div class="A4">
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
 
+        <div class="A4">
+            
             <p class="section">
                 МАССИВЫ СРЕЗЫ КАРТЫ
             </p>
@@ -42,9 +43,9 @@
                 указать его размер, после чего изменить его нельзя:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">var scores [10]int 
-	    scores[0] = 339</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">var scores [10]int 
+	scores[0] = 339</code></pre>
  
             <p class="plain">
                 Массив выше может хранить до 10 очков, используя индексы от scores[0] до scores[9]. 
@@ -53,16 +54,16 @@
                 Мы можем инициализировать массив вместе со значениями:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">scores := [4]int{9001, 9333, 212, 33}</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">scores := [4]int{9001, 9333, 212, 33}</code></pre>
 
             <p class="plain">
                 Можно использовать len для получения размера массива. range используется для итерации по нему:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">for index, value := range scores {
-        }</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">for index, value := range scores {
+    }</code></pre>
 
             
             <p class="plain">
@@ -80,15 +81,15 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-go">scores := []int{1,4,293,4,9}</code></pre>
+    <code class="language-go">scores := []int{1,4,293,4,9}</code></pre>
 
             <p class="plain">
                 В отличии от декларирования массива, срез объявлен без указания длины в квадратных скобках. Для того, чтобы понять их различия, 
                 давайте рассмотрим другой способ создания среза с использованием make:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">scores := make([]int, 10)</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">scores := make([]int, 10)</code></pre>
 
             <p class="plain">
                 Мы используем make вместо new потому, что при создании среза происходит немного больше, чем просто выделение памяти 
@@ -97,8 +98,8 @@
                 в его основе массива. При использовании make мы можем указать эти два параметра отдельно:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">scores := make([]int, 0, 10)</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">scores := make([]int, 0, 10)</code></pre>
             
             <p class="plain">
                 Эта инструкция создает срез с длиной 0 и вместимостью 10. (Если вы были внимательны, вы могли заметить, что make 
@@ -108,12 +109,12 @@
                 Для лучшего понимания взаимосвязи длины и вместимости, рассмотрим несколько примеров:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func main() {
-            scores := make([]int, 0, 10) 
-            scores[5] = 9033 
-            fmt.Println(scores)
-        }</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func main() {
+        scores := make([]int, 0, 10) 
+        scores[5] = 9033 
+        fmt.Println(scores)
+    }</code></pre>
 
             <p class="plain">
                 Наш первый пример не работает. Почему? Потому, что срез имеет длину 0. Да, в его основе лежит массив, 
@@ -121,12 +122,12 @@
                 Один из способов расширить срез – это append:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func main() { 
-            scores := make([]int, 0, 10) 
-            scores = append(scores, 5) 
-            fmt.Println(scores) // выведет [5]
-        }</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func main() { 
+        scores := make([]int, 0, 10) 
+        scores = append(scores, 5) 
+        fmt.Println(scores) // выведет [5]
+    }</code></pre>
             
             <p class="plain">
                 Но такой способ изменит смысл оригинального кода. Добавление элемента к срезу длинной 0 является 
@@ -134,13 +135,13 @@
                 по индексу 5. Чтобы это сделать, мы должны пере-срезать наш срез:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func main() {
-            scores := make([]int, 0, 10) 
-            scores = scores[0:6] 
-            scores[5] = 9033 
-            fmt.Println(scores) 
-        }</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func main() {
+        scores := make([]int, 0, 10) 
+        scores = scores[0:6] 
+        scores[5] = 9033 
+        fmt.Println(scores) 
+    }</code></pre>
 
             <p class="plain">
                 Как сильно мы можем изменить размер среза? До размера его вместимости, в нашем случае это 10.<br>
@@ -154,21 +155,21 @@
                 Если я скажу вам, что Go увеличивает массивы в два раза, вы сможете догадаться, что выведет данный код?
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func main() {
-            scores := make([]int, 0, 5) 
-            c := cap(scores) 
-            fmt.Println(c) 
-            for i := 0; i &lt; 25; i++ {
-                scores = append(scores, i) 
-                // если вместимость изменена, 
-                // Go увеличивает массив, чтобы приспособиться к новым данным 
-                if cap(scores) != c { 
-                    c = cap(scores) 
-                    fmt.Println(c) 
-                } 
+            <pre class="line-numbers">
+    <code class="language-go">func main() {
+        scores := make([]int, 0, 5) 
+        c := cap(scores) 
+        fmt.Println(c) 
+        for i := 0; i &lt; 25; i++ {
+            scores = append(scores, i) 
+            // если вместимость изменена, 
+            // Go увеличивает массив, чтобы приспособиться к новым данным 
+            if cap(scores) != c { 
+                c = cap(scores) 
+                fmt.Println(c) 
             } 
-        }</code></pre>
+        } 
+    }</code></pre>
 
             <p class="plain">
                 Изначальная вместимость переменной scores это 5. Для того, чтобы вместить 20 значений, она должна 
@@ -177,12 +178,12 @@
                 И как последний пример, рассмотрим:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func main() { 
-            scores := make([]int, 5) 
-            scores = append(scores, 9332) 
-            fmt.Println(scores)
-        }</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func main() { 
+        scores := make([]int, 5) 
+        scores = append(scores, 9332) 
+        fmt.Println(scores)
+    }</code></pre>
             
             <p class="plain">
                 Здесь вывод будет [0, 0, 0, 0, 0, 9332]. Возможно, вы думали что получится [9332, 0, 0, 0, 0]? 
@@ -192,11 +193,11 @@
                 В итоге, есть четыре способа инициализировать срез:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">names := []string{"leto", "jessica", "paul"} 
-        checks := make([]bool, 10) 
-        var names []string 
-        scores := make([]int, 0, 20) </code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">names := []string{"leto", "jessica", "paul"} 
+    checks := make([]bool, 10) 
+    var names []string 
+    scores := make([]int, 0, 20) </code></pre>
 
             <p class="plain">
                 Когда какой использовать? Первый не требует особых объяснений. Его можно использовать 
@@ -205,14 +206,14 @@
                 Второй полезен когда вам нужно записывать значения по определенным индексам среза. Например:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func extractPowers(saiyans []*Saiyans) []int {
-            powers := make([]int, len(saiyans)) 
-            for index, saiyan := range saiyans { 
-                powers[index] = saiyan.Power 
-            } 
-            return powers 
-        }</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func extractPowers(saiyans []*Saiyans) []int {
+        powers := make([]int, len(saiyans)) 
+        for index, saiyan := range saiyans { 
+            powers[index] = saiyan.Power 
+        } 
+        return powers 
+    }</code></pre>
 
             <p class="plain">
                 Третий случай – это пустой срез. Используется в сочетании с append, когда число элементов заранее неизвестно.<br>
@@ -223,14 +224,14 @@
                 Даже если вы знаете размер, можно использовать append. Это момент по большей части зависит от ваших предпочтений:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func extractPowers(saiyans []*Saiyans) []int {
-            powers := make([]int, 0, len(saiyans)) 
-            for _, saiyan := range saiyans {
-                powers = append(powers, saiyan.Power) 
-            } 
-            return powers 
-        }</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func extractPowers(saiyans []*Saiyans) []int {
+        powers := make([]int, 0, len(saiyans)) 
+        for _, saiyan := range saiyans {
+            powers = append(powers, saiyan.Power) 
+        } 
+        return powers 
+    }</code></pre>
 
             <p class="plain">
                 Срезы в роли оберток массивов представляют собой мощный концепт. Во многих языках существует понятие нарезки 
@@ -239,21 +240,21 @@
                 скопированными в них значениями. Если мы возьмем Ruby, что выведет следующий код?
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">scores = [1,2,3,4,5] 
-        slice = scores[2..4] 
-        slice[0] = 999
-        puts scores</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">scores = [1,2,3,4,5] 
+    slice = scores[2..4] 
+    slice[0] = 999
+    puts scores</code></pre>
 
             <p class="plain">
                 Ответ: [1, 2, 3, 4, 5]. Потому, что slice совершенно новый массив с копией значений. Теперь рассмотрим эквивалент в Go:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">scores := []int{1,2,3,4,5}  
-        slice := scores[2:4]  
-        slice[0] = 999  
-        fmt.Println(scores)</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">scores := []int{1,2,3,4,5}  
+    slice := scores[2:4]  
+    slice[0] = 999  
+    fmt.Println(scores)</code></pre>
 
             <p class="plain">
                 Результат: [1, 2, 999, 4, 5].<br>
@@ -263,16 +264,16 @@
                 вам нужно написать:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">haystack = "the spice must flow";  
-        console.log(haystack.indexOf(" ", 5));  </code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">haystack = "the spice must flow";  
+    console.log(haystack.indexOf(" ", 5));  </code></pre>
 
             <p class="plain">
                 В Go мы используем срезы:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">strings.Index(haystack[5:], " ")</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">strings.Index(haystack[5:], " ")</code></pre>
 
             <p class="plain">
                 В примере выше мы видим, что [X:] – это сокращение, которое означает от X до конца, а [:X] это короткая запись, 
@@ -280,28 +281,28 @@
                 Есди мы хотим получить все значения среза, кроме последнего, нам нужно выполнить:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">scores := []int{1,2,3,4,5}  
-        scores = scores[:len(scores)-1]  </code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">scores := []int{1,2,3,4,5}  
+    scores = scores[:len(scores)-1]  </code></pre>
                 
             <p class="plain">
                 С помощью этого способа мы можем реализовать эффективный способ удаления значения из несортированного среза:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func main() {  
-            scores := []int{1,2,3,4,5}
-            scores = removeAtIndex(scores, 2)
-            fmt.Println(scores)
-        }
+            <pre class="line-numbers">
+    <code class="language-go">func main() {  
+        scores := []int{1,2,3,4,5}
+        scores = removeAtIndex(scores, 2)
+        fmt.Println(scores)
+    }
     
-        func removeAtIndex(source []int, index int) []int {  
-            lastIndex := len(source) - 1
-            //меняем последнее значение и значение, 
-            //которое хотим удалить, местами
-            source[index], source[lastIndex] = source[lastIndex], source[index]
-            return source[:lastIndex]
-        }</code></pre>
+    func removeAtIndex(source []int, index int) []int {  
+        lastIndex := len(source) - 1
+        //меняем последнее значение и значение, 
+        //которое хотим удалить, местами
+        source[index], source[lastIndex] = source[lastIndex], source[index]
+        return source[:lastIndex]
+    }</code></pre>
 
             <p class="plain">
                 Наконец, когда мы уже достаточно знаем о срезах, давайте взглянем ещё на одну часто используемую функцию 
@@ -310,25 +311,25 @@
                 destination и destinationStart. При работе со срезами нам нужны только два:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">import (  
-            "fmt"
-            "math/rand"
-            "sort"
-        )
+            <pre class="line-numbers">
+    <code class="language-go">import (  
+        "fmt"
+        "math/rand"
+        "sort"
+    )
+
+    func main() {  
+        scores := make([]int, 100)
+        for i := 0; i &lt; 100; i++ {
+            scores[i] = int(rand.Int31n(1000))
+        }
     
-        func main() {  
-            scores := make([]int, 100)
-            for i := 0; i &lt; 100; i++ {
-                scores[i] = int(rand.Int31n(1000))
-            }
-        
-            sort.Ints(scores)
-    
-            worst := make([]int, 5)
-            copy(worst, scores[:5])
-            fmt.Println(worst)
-        }</code></pre>
+        sort.Ints(scores)
+
+        worst := make([]int, 5)
+        copy(worst, scores[:5])
+        fmt.Println(worst)
+    }</code></pre>
 
             <p class="plain">
                 Немного поиграйте с кодом выше. Попробуйте различные вариации. Посмотрите, что произойдет, если вы измените 
@@ -347,23 +348,23 @@
                 Карты, как и срезы, создаются с помощью функции make. Давайте взглянем на пример:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func main() { 
-            lookup := make(map[string]int) 
-            lookup["goku"] = 9001 
-            power, exists := lookup["vegeta"] 
-            // prints 0, false 
-            // 0 это значение по умолчанию для типа integer fmt.Println(power, exists) 
-        }</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func main() { 
+        lookup := make(map[string]int) 
+        lookup["goku"] = 9001 
+        power, exists := lookup["vegeta"] 
+        // prints 0, false 
+        // 0 это значение по умолчанию для типа integer fmt.Println(power, exists) 
+    }</code></pre>
 
             <p class="plain">
                 Для получения количества ключей используйте len. Для удаления значения по определенному ключу вызывайте delete:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">// returns 1
-        total := len(lookup) 
-        // ничего не возвращает, можно указывать несуществующий ключ delete(lookup, "goku")</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">// returns 1
+    total := len(lookup) 
+    // ничего не возвращает, можно указывать несуществующий ключ delete(lookup, "goku")</code></pre>
 
             <p class="plain">
                 Карты увеличиваются динамически. Однако вы можете указать второй аргумент в make для установки начального значения:
@@ -379,52 +380,54 @@
                 Когда вам нужна карта в роли поля структуры, вы указываете её так:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">type Saiyan struct {
-            Name string 
-            Friends map[string]*Saiyan
-        }</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">type Saiyan struct {
+        Name string 
+        Friends map[string]*Saiyan
+    }</code></pre>
 
             <p class="plain">
                 Один из способов инициализации:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">goku := &Saiyan { 
-            Name: "Goku", 
-            Friends: make(map[string]*Saiyan), 
-        } 
-        goku.Friends["krillin"] = ...  //загрузить или создать Krillin</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">goku := &Saiyan { 
+        Name: "Goku", 
+        Friends: make(map[string]*Saiyan), 
+    } 
+    goku.Friends["krillin"] = ...  //загрузить или создать Krillin</code></pre>
 
             <p class="plain">
                 Существует еще один способ объявления и инициализации значений в Go. Как и make, этот подход является специфичным для карт и 
                 массивов. Вы можете объявить карту как составной литерал:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">lookup := map[string] int { 
-            "goku": 9001, 
-            "gohan": 2044, 
-        }</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">lookup := map[string] int { 
+        "goku": 9001, 
+        "gohan": 2044, 
+    }</code></pre>
 
             <p class="plain">
                 Итерация по карте производится с помощью цикла for в комбинации с ключевым словом range:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">for key, value := range lookup { 
-            …
-        }</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">for key, value := range lookup { 
+        …
+    }</code></pre>
 
             <p class="plain">
                 Итерация по карте происходит не по порядку. Каждая итерация будет возвращать пару ключа и значения в случайном порядке.
             </p>
 
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
         </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
     </body>
 </html>

@@ -22,12 +22,13 @@
         <!-- Подключение скрипта Prism -->
         <script src="../js/prism.js"></script>
 
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
         <div class="A4">
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
 
             <p class="section">
                 Некоторые комманды Linux
@@ -38,7 +39,7 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ sudo shundown -h now</code></pre>
+    <code class="language-shell">$ sudo shundown -h now</code></pre>
 
             <p class="plain">
                 Лист всех файлов в каталоге (включая скрытые) с размерами файлов в 
@@ -46,32 +47,34 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ ls -a -l *</code></pre>
+    <code class="language-shell">$ ls -a -l *</code></pre>
 
             <p class="plain">
                 Поиск пакета в репозиториях:
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ sudo apt-cache search glut</code></pre>
+    <code class="language-shell">$ sudo apt-cache search glut</code></pre>
 
             <p class="plain">
                 Проверка версии пакета в репозиториях. Можно сделать с помощью apt-cache или apt-get.
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">$ sudo apt-cache show "name" | grep -i version 
-                или
-                $ sudo apt-cache policy "name"
-                с помощью ключа -s - симуляция установки
-                $ sudo apt-get -s install mc
-                </code></pre>            
-
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
+    <code class="language-shell">$ sudo apt-cache show "name" | grep -i version 
+    или
+    $ sudo apt-cache policy "name"
+    с помощью ключа -s - симуляция установки
+    $ sudo apt-get -s install mc
+    </code></pre>            
+            
         </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
     </body>
 </html>

@@ -90,10 +90,10 @@
                 <li>C:\Users\YOURNAME\AppData\Local\npm - binary scripts for installed modules will go here</li>
                 <li>C:\Users\YOURNAME\AppData\Local\npm\node_modules - globally installed modules will go here</li>
                 Configure npm:
-                <li>npm config set prefix "C:\Users\YOURNAME\AppData\Local\npm"</li>
-                <li>npm config set cache "C:\Users\YOURNAME\AppData\Local\npm-cache"</li>
+                <li>npm config set prefix "C:\Users\YOURNAME\&shy;AppData\&shy;Local\npm"</li>
+                <li>npm config set cache "C:\Users\YOURNAME\&shy;AppData\&shy;Local\npm-cache"</li>
                 Add the new npm path to your environment's PATH.
-                <li>setx PATH "%PATH%;C:\Users\YOURNAME\AppData\Local\npm"</li>
+                <li>setx PATH "%PATH%;C:\Users\YOURNAME\&shy;AppData\&shy;Local\npm"</li>
             </ul>
 
             <pre>
@@ -178,7 +178,7 @@
                 Скачиваем cmake - https://cmake.org/install/>. Устанавоиваем как обычно. CMake может использовать множество компиляторов 
                 для сборки проекта ($ cmake -G "cfg_name"), по умолчанию cmake использут для сборки nmake и, соответсвенно, создаёт 
                 Makefile для него. Мы будем использовать MinGW-W64, имя конфига - "MinGW Makefiles" (cmake -G "MinGW Makefiles"). 
-                Скачиваем MinGW-W64 - http://mingw-w64.org/doku.php/download, там выбираем "MingW-W64-builds" (хоть в таблице и напасано 
+                Скачиваем MinGW-W64 - http://mingw-w64.org/&shy;doku.php/download, там выбираем "MingW-W64-builds" (хоть в таблице и напасано 
                 версия gcc - 7.0.0, в дистрибутиве будет версия 8.1.0). Устанавливаем обычно с такими параметрами:
             </p>
 
@@ -196,7 +196,7 @@
             </p>
             
             <ul class="plain">
-                <li>Добавляем в переменную %path% путь к папке bin компилятора (например <nobr>"E:\Devtools\mingw-w64\mingw64\bin")</nobr></li> 
+                <li>Добавляем в переменную %path% путь к папке bin компилятора (например <nobr>"E:\Devtools\&shy;mingw-w64\mingw64\bin")</nobr></li> 
                 <li>Путь к cmake - "E:\Devtools\cmake-3.18.2-win64-x64\bin" </li>
                 <li>Переменную для cmake - %CC% = "E:\Devtools\mingw-w64\mingw64\bin\gcc" </li> 
                 <li>Переменную для cmake - %CXX% = "E:\Devtools\mingw-w64\mingw64\bin\g++" </li>

@@ -22,12 +22,13 @@
         <!-- Подключение скрипта Prism -->
         <script src="../js/prism.js"></script>
 
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
         <div class="A4">
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
             
             <p class="section">
                 ШПАРГАЛКА БИБЛИОТЕК - АНАЛОГОВ STL
@@ -46,8 +47,8 @@
                 тактов процессора. Можно увеличить или уменьшить вместительность. Это встроеный slice:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">vector := []int{}</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">vector := []int{}</code></pre>
  
             <p class="subsection">
                 Стек
@@ -60,9 +61,9 @@
                 проект копируются сниппеты:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">//Push
-        stack = append(key, value)</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">//Push
+    stack = append(key, value)</code></pre>
 
             <p class="subsection">
                 Очередь
@@ -77,20 +78,20 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-go">import "github.com/gammazero/deque"</code></pre>
+    <code class="language-go">import "github.com/gammazero/deque"</code></pre>
 
             <p class="plain">
                 Реализуемые операции:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func (q *Deque) PushBack(elem interface{}) 
-        func (q *Deque) PushFront(elem interface{}) 
-        func (q *Deque) PopBack() interface{} 
-        func (q *Deque) PopFront() interface{} 
-        func (q *Deque) Back() interface{} 
-        func (q *Deque) Front() interface{} 
-        func (q *Deque) At(i int) interface{}</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func (q *Deque) PushBack(elem interface{}) 
+    func (q *Deque) PushFront(elem interface{}) 
+    func (q *Deque) PopBack() interface{} 
+    func (q *Deque) PopFront() interface{} 
+    func (q *Deque) Back() interface{} 
+    func (q *Deque) Front() interface{} 
+    func (q *Deque) At(i int) interface{}</code></pre>
 
             <p class="subsection">
                 Двусвязный список
@@ -102,19 +103,19 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-go">import "container/list"</code></pre>
+    <code class="language-go">import "container/list"</code></pre>
 
             <p class="plain">
                 Как и ожидается, поддерживает операции вставки (в начало, в конец, до и после элемента, указатель на который 
                 передан) и удаления.
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func (l *List) PushBack(v interface{}) *Element 
-        func (l *List) PushFront(v interface{}) *Element 
-        func (l *List) InsertAfter(v interface{}, mark *Element) *Element 
-        func (l *List) InsertBefore(v interface{}, mark *Element) *Element 
-        func (l *List) Remove(e *Element) interface{}</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func (l *List) PushBack(v interface{}) *Element 
+    func (l *List) PushFront(v interface{}) *Element 
+    func (l *List) InsertAfter(v interface{}, mark *Element) *Element 
+    func (l *List) InsertBefore(v interface{}, mark *Element) *Element 
+    func (l *List) Remove(e *Element) interface{}</code></pre>
 
             <p class="plain">
                 Gо не предоставляет специфического синтаксиса для итераторов. Потому следующий/предыдущий элемент 
@@ -122,9 +123,9 @@
                 список, без неожиданностей.
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func (e *Element) Next() *Element 
-        func (e *Element) Prev() *Element</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func (e *Element) Next() *Element 
+    func (e *Element) Prev() *Element</code></pre>
 
             <p class="subsection">
                 Очередь с приоритетом
@@ -140,16 +141,16 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-go">import "container/heap"</code></pre>
+    <code class="language-go">import "container/heap"</code></pre>
 
             <p class="plain">
                 Это классическая Двоичная куча. Реализует вставку и удаление за O(log n).
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func Pop(h Interface) interface{}
-        func Push(h Interface, x interface{})
-        func Remove(h Interface, i int) interface{}</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func Pop(h Interface) interface{}
+    func Push(h Interface, x interface{})
+    func Remove(h Interface, i int) interface{}</code></pre>
 
             <p class="subsection">
                 Хэш таблица
@@ -161,17 +162,17 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-go">unorderedMap := make(map[string]int)</code></pre>
+    <code class="language-go">unorderedMap := make(map[string]int)</code></pre>
 
             <p class="plain">
                 Результат make(map) является указателем, и способ работы немного отличается от стандартных контейнеров:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">// Проверка вхождения: 
-        _, ok := unorderedMap["route"] 
-        // Удаление элемента: 
-        delete(unorderedMap, "route") // Нахождение длины: n := len(unorderedMap)</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">// Проверка вхождения: 
+    _, ok := unorderedMap["route"] 
+    // Удаление элемента: 
+    delete(unorderedMap, "route") // Нахождение длины: n := len(unorderedMap)</code></pre>
 
             <p class="plain">
                 «runtime/map», в отличии от std::unordered_map заботится о программисте — удалять значения во время 
@@ -188,10 +189,10 @@
                 Нужно лишь указать пустое значение, что бы указать, что важен только ключ.
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">var m = make(map[string]struct{}) 
-        m["!"] = struct{}{} 
-        , ok := m["!"] // true</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">var m = make(map[string]struct{}) 
+    m["!"] = struct{}{} 
+    , ok := m["!"] // true</code></pre>
 
             <p class="plain">
                 Но эта реализация не поддерживает сложных операторов. Для объединения, пересечения, разности из 
@@ -199,23 +200,23 @@
                 https://github.com/deckarep/golang-set
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">import "github.com/deckarep/golang-set"</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">import "github.com/deckarep/golang-set"</code></pre>
 
             <p class="plain">
                 Самая нужная часть API:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">Add(i interface{}) bool 
-        Remove(i interface{}) 
-        Cardinality() int // len() 
-        Contains(i ...interface{}) bool 
-        IsSubset(other Set) bool 
-        Intersect(other Set) Set 
-        Union(other Set) Set 
-        Difference(other Set) Set 
-        SymmetricDifference(other Set) Set</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">Add(i interface{}) bool 
+    Remove(i interface{}) 
+    Cardinality() int // len() 
+    Contains(i ...interface{}) bool 
+    IsSubset(other Set) bool 
+    Intersect(other Set) Set 
+    Union(other Set) Set 
+    Difference(other Set) Set 
+    SymmetricDifference(other Set) Set</code></pre>
 
             <p class="subsection">
                 Множество Int
@@ -225,8 +226,8 @@
                 В экспериментальной части стандарной библиотеки есть оптимизированное множесво int, экономящее каждый бит.
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">import "golang.org/x/tools/container/intsets"</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">import "golang.org/x/tools/container/intsets"</code></pre>
 
             <p class="plain">
                 Оно также поддерживает объединение, пересечение, разность множеств.
@@ -243,36 +244,36 @@
                 В стандартной библиотеке go деревьев нет, широко используется репозиторий, содержащий AVL, Красно-Чёрные и B-деревья.
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">import "github.com/emirpasic/gods/trees/avltree"</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">import "github.com/emirpasic/gods/trees/avltree"</code></pre>
 
             <p class="plain">
                 Наиболее употребимые методы API:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func (tree *Tree) Get(key interface{}) (value interface{}, found bool) 
-        func (tree *Tree) Put(key interface{}, value interface{}) 
-        func (tree *Tree) Remove(key interface{}) 
-        func (tree *Tree) Size() int 
-        func (tree *Tree) Keys() []interface{} 
-        func (tree *Tree) Values() []interface{} 
-        func (tree *Tree) Left() *Node 
-        func (tree *Tree) Right() *Node</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func (tree *Tree) Get(key interface{}) (value interface{}, found bool) 
+    func (tree *Tree) Put(key interface{}, value interface{}) 
+    func (tree *Tree) Remove(key interface{}) 
+    func (tree *Tree) Size() int 
+    func (tree *Tree) Keys() []interface{} 
+    func (tree *Tree) Values() []interface{} 
+    func (tree *Tree) Left() *Node 
+    func (tree *Tree) Right() *Node</code></pre>
 
             <p class="plain">
                 Есть два особо важных метода деревев:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func (tree *Tree) Ceiling(key interface{}) (ceiling *Node, found bool)</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func (tree *Tree) Ceiling(key interface{}) (ceiling *Node, found bool)</code></pre>
 
             <p class="plain">
                 возвращает наименьший существующий элемент больще ключа.
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func (tree *Tree) Floor(key interface{}) (floor *Node, found bool)</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func (tree *Tree) Floor(key interface{}) (floor *Node, found bool)</code></pre>
 
             <p class="plain">
                 возвращает наибольший существующий элемент меньше ключа.<br>
@@ -280,8 +281,8 @@
                 Задачи на это относительно часто попадаются в собеседованиях. В реальной жизни используется в индексах баз данных:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">select x from table where x &lt;= $1 limit 1;</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">select x from table where x &lt;= $1 limit 1;</code></pre>
 
             <p class="plain">
                 При наличии индекса отработает за O(log n), за 1 поиск границы в B-дереве.
@@ -304,8 +305,8 @@
                 Есть сторонняя библиотека: https://github.com/willf/bloom
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">import "github.com/willf/bloom"</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">import "github.com/willf/bloom"</code></pre>
 
             <p class="plain">
                 Не так часто используется, API можно и подсмотреть.
@@ -323,8 +324,8 @@
                 Самая популярная библиотека для этого сейчас https://github.com/axiomhq/hyperloglog
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">import "github.com/axiomhq/hyperloglog"</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">import "github.com/axiomhq/hyperloglog"</code></pre>
 
             <p class="subsection">
                 Сортировки
@@ -336,28 +337,29 @@
                 и не стабильные, не дающие гарантии на последовательность остальных полей. И то и другое есть в стандартной библиотеке:
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func Sort(data Interface)</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func Sort(data Interface)</code></pre>
 
             <p class="plain">
                 Это реализация быстрой сортировки Хоара, нестабильная. Но для участков длины &lt; 12 используется сортировка кучей, 
                 в качестве оптимизации.
             </p>
 
-    <pre class="line-numbers">
-        <code class="language-go">func Stable(data Interface)</code></pre>
+            <pre class="line-numbers">
+    <code class="language-go">func Stable(data Interface)</code></pre>
 
             <p class="plain">
                 Внутри это сортирова слиянием, но, в целях эффективности, при достижении рекурсивным алгоритмом блоков меньше 20 
                 элементов используется сортировка вставками. Это классические алгоритмы, работающие за O(n log n). 
             </p>
 
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
-
         </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
     </body>
 </html>

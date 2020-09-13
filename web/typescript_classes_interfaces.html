@@ -22,12 +22,13 @@
         <!-- Подключение скрипта Prism -->
         <script src="../js/prism.js"></script>
 
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
         <div class="A4">
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
 
             <p class="section">
                 TYPESCRIPT КЛАССЫ И ИНТЕРФЕЙСЫ
@@ -71,11 +72,11 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-typescript">class PizzaMaker {
-                    static create(event: { name: string; toppings: string[] }) {
-                        return { name: event.name, toppings: event.toppings };
-                    }
-                }</code></pre>
+    <code class="language-typescript">class PizzaMaker {
+        static create(event: { name: string; toppings: string[] }) {
+            return { name: event.name, toppings: event.toppings };
+        }
+    }</code></pre>
  
             <p class="plain">
                 PizzaMaker — это простой класс. Он имеет статический метод, называемый create. Что делает этот метод особенным, так это то, 
@@ -84,14 +85,14 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-typescript">const pizza = PizzaMaker.create({
-                    name: 'Inferno',
-                    toppings: ['cheese', 'peppers'],
-                });
-                
-                console.log(pizza);
-
-                // Output: { name: 'Inferno', toppings: [ 'cheese', 'peppers' ] }</code></pre>
+    <code class="language-typescript">const pizza = PizzaMaker.create({
+        name: 'Inferno',
+        toppings: ['cheese', 'peppers'],
+    });
+    
+    console.log(pizza);
+    
+    // Output: { name: 'Inferno', toppings: [ 'cheese', 'peppers' ] }</code></pre>
 
             <p class="plain">
                 Вызов метода PizzaMaker.create() возвращает новый объект — не класс — со свойствами name и toppings, определенными в 
@@ -102,20 +103,19 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-typescript">class PizzaMaker {
-                    create(event: { name: string; toppings: string[] }) {
-                        return { name: event.name, toppings: event.toppings };
-                    }
-                } 
-                    
-                const pizzaMaker = new PizzaMaker();const pizza = pizzaMaker.create({
-                    name: 'Inferno',
-                    toppings: ['cheese', 'peppers'],
-                }); 
-                
-                console.log(pizza);
-
-                // Output: { name: 'Inferno', toppings: [ 'cheese', 'peppers' ] }</code></pre>
+    <code class="language-typescript">class PizzaMaker {
+        create(event: { name: string; toppings: string[] }) {
+            return { name: event.name, toppings: event.toppings };
+        }
+    } 
+        
+    const pizzaMaker = new PizzaMaker();const pizza = pizzaMaker.create({
+        name: 'Inferno',
+        toppings: ['cheese', 'peppers'],
+    }); 
+    
+    console.log(pizza);
+    // Output: { name: 'Inferno', toppings: [ 'cheese', 'peppers' ] }</code></pre>
 
             <p class="plain">
                 Мы получаем тот же результат, что и при использовании метода create как статического (static) метода. Возможность 
@@ -128,12 +128,12 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-typescript">class Pizza {
-                    constructor(
-                        public name: string,
-                        public toppings: string[]
-                    ) {}
-                }</code></pre>
+    <code class="language-typescript">class Pizza {
+        constructor(
+            public name: string,
+            public toppings: string[]
+        ) {}
+    }</code></pre>
 
             <p class="plain">
                 В определении класса Pizza мы используем удобную возможность сокращения в TypeScript для определения свойств класса из 
@@ -142,10 +142,9 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-typescript">const pizza = new Pizza('Inferno', ['cheese', 'peppers']);
-                console.log(pizza);
-
-                // Output: Pizza { name: 'Inferno', toppings: [ 'cheese', 'peppers' ] }</code></pre>
+    <code class="language-typescript">const pizza = new Pizza('Inferno', ['cheese', 'peppers']);
+    console.log(pizza);
+    // Output: Pizza { name: 'Inferno', toppings: [ 'cheese', 'peppers' ] }</code></pre>
 
             <p class="plain">
                 Помимо названия Pizza перед объектом pizza, который показывает, что данный объект фактически является экземпляром класса 
@@ -154,21 +153,21 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-typescript">class Pizza {
-                    constructor(
-                        public name: string,
-                        public toppings: string[]
-                    ) {}
-                }
-                  
-                class PizzaMaker {
-                    static create(event: Pizza) {
-                        return {
-                            name: event.name,
-                            toppings: event.toppings
-                        };
-                    }
-                }</code></pre>
+    <code class="language-typescript">class Pizza {
+        constructor(
+            public name: string,
+            public toppings: string[]
+        ) {}
+    }
+      
+    class PizzaMaker {
+        static create(event: Pizza) {
+            return {
+                name: event.name,
+                toppings: event.toppings
+            };
+        }
+    }</code></pre>
 
             <p class="plain">
                 Мы сделали класс PizzaMaker более декларативным и, следовательно, гораздо более удобочитаемым. Как вариант, если нам 
@@ -197,19 +196,19 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-typescript">interface Pizza {
-                    name: string;
-                    toppings: string[];
-                } 
-                
-                class PizzaMaker {
-                    static create(event: Pizza) {
-                        return {
-                            name: event.name,
-                            toppings: event.toppings
-                        };
-                    }
-                }</code></pre>
+    <code class="language-typescript">interface Pizza {
+        name: string;
+        toppings: string[];
+    } 
+    
+    class PizzaMaker {
+        static create(event: Pizza) {
+            return {
+                name: event.name,
+                toppings: event.toppings
+            };
+        }
+    }</code></pre>
 
             <p class="plain">
                 Поскольку Pizza как класс или как интерфейс используется классом PizzaMaker исключительно для проверки типов, рефакторинг 
@@ -229,19 +228,19 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-typescript">interface Pizza {
-                    name: string;
-                    toppings: string[];
-                } 
-                
-                class PizzaMaker {
-                    static create(event: Pizza) {
-                        return {
-                            name: event.name,
-                            toppings: event.toppings
-                        };
-                    }
-                }</code></pre>
+    <code class="language-typescript">interface Pizza {
+        name: string;
+        toppings: string[];
+    } 
+    
+    class PizzaMaker {
+        static create(event: Pizza) {
+            return {
+                name: event.name,
+                toppings: event.toppings
+            };
+        }
+    }</code></pre>
 
             <p class="plain">
                 Это плохо, потому что у нас отсутствует прекрасная возможность для дальнейшего улучшения декларативного характера и 
@@ -257,26 +256,25 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-typescript">class Pizza {
-                    constructor(
-                        public name: string,
-                        public toppings: string[]
-                    ) {};
-
-                } 
-                
-                class PizzaMaker {
-                    static create(event: Pizza) {
-                        return new Pizza(
-                            event.name,
-                            event.toppings);
-                        }
-                    } 
-                    
-                const pizza = PizzaMaker.create({
-                    name: 'Inferno',
-                    toppings: ['cheese', 'peppers']
-                });</code></pre>
+    <code class="language-typescript">class Pizza {
+        constructor(
+            public name: string,
+            public toppings: string[]
+        ) {};
+    } 
+    
+    class PizzaMaker {
+        static create(event: Pizza) {
+            return new Pizza(
+                event.name,
+                event.toppings);
+            }
+        } 
+        
+    const pizza = PizzaMaker.create({
+        name: 'Inferno',
+        toppings: ['cheese', 'peppers']
+    });</code></pre>
 
             <p class="plain">
                 Мы применяем структуру, в которой метод PizzaMaker.create() принимает аргумент event, сохраняя при этом возможность 
@@ -304,11 +302,13 @@
                 У нас есть комплексный объектно-ориентированный дизайн в сочетании с универсальной проверкой типов.<br>
             </p>
 
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
         </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
     </body>
 </html>

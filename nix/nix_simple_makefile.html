@@ -22,12 +22,13 @@
         <!-- Подключение скрипта Prism -->
         <script src="../js/prism.js"></script>
 
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
         <div class="A4">
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
 
             <p class="section">
                 ПРОСТОЙ MAKEFILE
@@ -48,44 +49,38 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-cpp">/* main.cpp */
-                #include &lt;iostream&gt;
-                #include "functions.h"
-                
-                using namespace std;
-                
-                int main(){
-                    print_hello();
-                    cout &lt;&lt; endl;
-                    cout &lt;&lt; "The factorial of 5 is " &lt;&lt; factorial(5) &lt;&lt; endl;
-                    return 0;
-                }
-
-                /* hello.cpp */
-
-                #include &lt;iostream&gt;
-                #include "functions.h"
-                
-                using namespace std;
-                
-                void print_hello(){
-                   cout &lt;&lt; "Hello World!";
-                }
-
-                /* factorial.cpp */
-
-                #include "functions.h"
-                int factorial(int n){
-                    if(n!=1){
-                	    return(n * factorial(n-1));
-                    }
-                    else return 1;
-                }
-
-                /* functions.h */
-
-                void print_hello();
-                int factorial(int n);</code></pre>
+    <code class="language-cpp">/* main.cpp */
+    #include &lt;iostream&gt;
+    #include "functions.h"
+    
+    using namespace std;
+    
+    int main(){
+        print_hello();
+        cout &lt;&lt; endl;
+        cout &lt;&lt; "The factorial of 5 is " &lt;&lt; factorial(5) &lt;&lt; endl;
+        return 0;
+    
+    /* hello.cpp 
+    #include &lt;iostream&gt;
+    #include "functions.h"
+    
+    using namespace std;
+    
+    void print_hello(){
+       cout &lt;&lt; "Hello World!";
+    
+    /* factorial.cpp 
+    #include "functions.h"
+    int factorial(int n){
+        if(n!=1){
+    	    return(n * factorial(n-1));
+        }
+        else return 1;
+    
+    /* functions.h 
+    void print_hello();
+    int factorial(int n);</code></pre>
 
             <p class="subsection">
                 Программа make
@@ -96,7 +91,7 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">make</code></pre>
+    <code class="language-shell">make</code></pre>
 
             <p class="plain">
                 то программа попытается найти файл с именем по умолчание Makefile в текущем каталоге и выполнить 
@@ -105,7 +100,7 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-shell">make -f MyMakefile</code></pre>
+    <code class="language-shell">make -f MyMakefile</code></pre>
 
             <p class="plain">
                 Есть еще множество других параметров, нам пока не нужных. О них можно узнать в ман-странице.
@@ -129,7 +124,7 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-bash">g++ main.cpp hello.cpp factorial.cpp -o hello</code></pre>
+    <code class="language-bash">g++ main.cpp hello.cpp factorial.cpp -o hello</code></pre>
 
             <p class="plain">
                 Каждый раз набирать такое неудобно, поэтому будем автоматизировать.
@@ -144,16 +139,16 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-makefile">цель: зависимости
-                    [tab] команда</code></pre>
+    <code class="language-makefile">цель: зависимости
+        [tab] команда</code></pre>
 
             <p class="plain">
                 Для нашего примера мейкфайл будет выглядеть так:
             </p>
 
             <pre class="line-numbers">
-                <code class="language-makefile">all:
-                        g++ main.cpp hello.cpp factorial.cpp -o hello</code></pre>
+    <code class="language-makefile">all:
+            g++ main.cpp hello.cpp factorial.cpp -o hello</code></pre>
 
             <p class="plain">
                 Обратите внимание, что строка с командой должна начинаться с табуляции! Сохраните это под именем Makefile-1 в 
@@ -175,22 +170,21 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-makefile">all: hello
-
-                hello: main.o factorial.o hello.o
-                    g++ main.o factorial.o hello.o -o hello
-                
-                main.o: main.cpp
-                    g++ -c main.cpp
-                
-                factorial.o: factorial.cpp
-                    g++ -c factorial.cpp
-                
-                hello.o: hello.cpp
-                    g++ -c hello.cpp
-                
-                clean:
-                    rm -rf *.o hello</code></pre>
+    <code class="language-makefile">all: hel
+    hello: main.o factorial.o hello.o
+        g++ main.o factorial.o hello.o -o hello
+    
+    main.o: main.cpp
+        g++ -c main.cpp
+    
+    factorial.o: factorial.cpp
+        g++ -c factorial.cpp
+    
+    hello.o: hello.cpp
+        g++ -c hello.cpp
+    
+    clean:
+        rm -rf *.o hello</code></pre>
             
             <p class="plain">
                 Это надо сохранить под именем Makefile-2 все в том же каталоге<br>
@@ -251,26 +245,28 @@
             </p>
 
             <pre class="line-numbers">
-                <code class="language-makefile">CC=g++
-                CFLAGS=-c -Wall
-                LDFLAGS=
-                SOURCES=main.cpp hello.cpp factorial.cpp
-                OBJECTS=$(SOURCES:.cpp=.o)
-                EXECUTABLE=hello
-                
-                all: $(SOURCES) $(EXECUTABLE)
-                    
-                $(EXECUTABLE): $(OBJECTS) 
-                    $(CC) $(LDFLAGS) $(OBJECTS) -o $@
-                
-                .cpp.o:
-                    $(CC) $(CFLAGS) $&lt; -o $@</code></pre>
-                    
-            <div class="menu">
-                <ul>
-                    <li><a href="../index.html">На главную</a></li> 
-                </ul>      
-            </div>
+    <code class="language-makefile">CC=g++
+    CFLAGS=-c -Wall
+    LDFLAGS=
+    SOURCES=main.cpp hello.cpp factorial.cpp
+    OBJECTS=$(SOURCES:.cpp=.o)
+    EXECUTABLE=hello
+    
+    all: $(SOURCES) $(EXECUTABLE)
+        
+    $(EXECUTABLE): $(OBJECTS) 
+        $(CC) $(LDFLAGS) $(OBJECTS) -o $@
+    
+    .cpp.o:
+        $(CC) $(CFLAGS) $&lt; -o $@</code></pre>
+            
         </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index.html">На главную</a></li> 
+            </ul>      
+        </div>
+
     </body>
 </html>
