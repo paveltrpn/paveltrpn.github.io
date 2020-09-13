@@ -3,11 +3,12 @@ body {
     font-family: 'Roboto', 'Droid Sans', 'Ubuntu Sans', sans-serif; /* Семейство шрифтов */
     font-size: 16pt; /* Размер основного шрифта в пунктах  */
     background: white; 
-    color: #333; /* Цвет основного текста */ 
+    color: #333; /* Цвет основного текста */
+    width: 100%; 
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: auto;
+    margin-right: auto;
 
     line-height: 1.5em; /* Высота строки */
     letter-spacing: 0.1pt; /* Зазор между буквами */
