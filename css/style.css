@@ -4,7 +4,6 @@ body {
     font-size: 16pt; /* Размер основного шрифта в пунктах  */
     background: white; 
     color: #333; /* Цвет основного текста */
-    width: 100%; 
     margin-top: 0px;
     margin-bottom: 0px;
     margin-left: auto;
@@ -14,10 +13,15 @@ body {
     letter-spacing: 0.1pt; /* Зазор между буквами */
 
     display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
     flex-direction: column;
     justify-content: center;
+    flex: 1 0 auto;
     align-items: center;
-    align-self: center;
     min-height: 100vh;
 }
 
@@ -133,7 +137,7 @@ a {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 1650px;
+    width: 100%;
     background-color:#333; 
 }
 
