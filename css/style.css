@@ -16,9 +16,14 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    align-content: center;
+    align-self: center;
+    min-height: 100vh;
+}
 
-    text-align: center; 
+.A4 {  
+    width: 1300px;
+    background: white;
+    flex: 1 0 auto;
 }
 
 /* Основной текст */
@@ -26,7 +31,7 @@ body {
     text-align: justify; /* Выравнивание по ширине */
     margin-left: 60px; /* Отступ слева в пикселах */
     margin-right: 60px; /* Отступ справа в пикселах */
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .plain li {
@@ -79,15 +84,6 @@ a {
     font-size: 1em;
 } 
 
-.A4 {  
-    width: 1300px;
-    background: white;
-    /* position: relative; */
-    display: block;
-    /* Устанавливает минимальную высоту основного div в % от высоты окна браузера*/
-    min-height: 100vh;
-}
-
 .msc_text {
     font-family: 'Roboto Mono', monospace;
     font-size: 11pt;
@@ -134,7 +130,8 @@ a {
     
 .menu {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
     width: 1650px;
     background-color:#333; 
 }
