@@ -20,7 +20,6 @@ body {
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     flex: 1 0 auto;
     align-items: center;
 }
@@ -136,7 +135,6 @@ a {
 .menu {
     display: flex;
     justify-content: space-around;
-    align-items: center;
     width: 100%;
     background-color:#333; 
 }
