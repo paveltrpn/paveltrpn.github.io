@@ -5,10 +5,11 @@ body {
     background: white; 
     color: #333; /* Цвет основного текста */
 
-    width: 100%;
-    min-width: 1024px;
+    /* width: 100%; */
+    /* min-width: 1024px; */
     
     margin: 0 auto;
+    margin: 0 100px 0 100px;
     
     line-height: 1.5em; /* Высота строки */
     letter-spacing: 0.1pt; /* Зазор между буквами */
