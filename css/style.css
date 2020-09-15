@@ -22,7 +22,7 @@ body {
 }
 
 .A4 {  
-    width: 1300px;
+    max-width: 1300px;
     background: white;
     flex-grow: 1;
 }
