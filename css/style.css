@@ -5,10 +5,6 @@ body {
     background: white; 
     color: #333; /* Цвет основного текста */
 
-    /* width: 100%; */
-    /* min-width: 1024px; */
-    
-    margin: 0 auto;
     margin: 0 100px 0 100px;
     
     line-height: 1.5em; /* Высота строки */
@@ -136,7 +132,6 @@ a {
     width: 100%;
     background-color:#333; 
 }
-
 
 .menu ul {
     list-style-type: none;
