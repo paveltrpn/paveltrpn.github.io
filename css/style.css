@@ -20,7 +20,8 @@ body {
 }
 
 .A4 {  
-    width: 1300px;
+    max-width: 1080px;
+    margin: 0 auto;
     background: white;
     flex-grow: 1;
 }
