@@ -5,7 +5,8 @@ body {
     background: white; 
     color: #333; /* Цвет основного текста */
 
-    margin: 0 100px 0 100px;
+    max-width: 100%;
+    margin: 0 5% 0 5%;
     
     line-height: 1.5em; /* Высота строки */
     letter-spacing: 0.1pt; /* Зазор между буквами */
@@ -19,7 +20,7 @@ body {
 }
 
 .A4 {  
-    max-width: 1300px;
+    width: 1300px;
     background: white;
     flex-grow: 1;
 }
