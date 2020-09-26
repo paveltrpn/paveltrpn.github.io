@@ -108,6 +108,7 @@ a {
     body, page {
         margin: 0;
         box-shadow: 0;
+        font-size: 14pt;
     }
     /* Исключем из печати верхнее и нижнее меню */
     .menu, .menu *
@@ -132,7 +133,10 @@ a {
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color:#333; 
+    background-color:#333;
+    box-shadow: 0 0 32px #333;
+    /* Отступ снизу на величину размера тени */
+    margin-bottom: 32px;
 }
 
 .menu ul {
@@ -218,7 +222,7 @@ a {
     font-family: 'Roboto Mono', monospace;
     position: relative;
     display: block;
-    padding: .5em .5em .5em 2em; 
+    padding: .5em 2em .5em 2em; 
     margin: .5em 5em;
     background: rgb(218, 218, 218);
     color: #444;

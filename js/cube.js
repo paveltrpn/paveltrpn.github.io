@@ -48,7 +48,7 @@ var cube_c = (function () {
     }
     cube_c.prototype.setup = function () {
         this.html_canvas = document.querySelector('#glcanvas');
-        this.gl = this.html_canvas.getContext('webgl');
+        this.gl = this.html_canvas.getContext('webgl2');
         this.wnd_width = this.gl.drawingBufferWidth;
         this.wnd_height = this.gl.drawingBufferHeight;
         this.aspect = this.wnd_width / this.wnd_height;
