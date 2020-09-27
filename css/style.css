@@ -5,7 +5,7 @@ body {
     background: white; 
     color: #333; /* Цвет основного текста */
 
-    max-width: 100%;
+    /* max-width: 100%; */
     margin: 0 5% 0 5%;
     
     line-height: 1.5em; /* Высота строки */
@@ -20,7 +20,7 @@ body {
 }
 
 .A4 {  
-    max-width: 1080px;
+    /* max-width: 1080px; */
     margin: 0 auto;
     background: white;
     flex-grow: 1;
@@ -137,6 +137,7 @@ a {
     box-shadow: 0 0 32px #333;
     /* Отступ снизу на величину размера тени */
     margin-bottom: 32px;
+    margin-top: 32px;
 }
 
 .menu ul {
