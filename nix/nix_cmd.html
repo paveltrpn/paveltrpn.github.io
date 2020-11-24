@@ -70,6 +70,53 @@
     $ sudo apt-get -s install mc
     </code></pre>            
             
+
+            <p class="plain">
+                Просмотр всех установленных пакетов:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">$ dpkg --get-selections | grep -v deinstall</code></pre>
+
+            <p class="plain">
+                Можно также убрать всю лишнюю информацию и сохранить только имена пакетов:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">$ dpkg -l | grep ^ii | awk '{ print $2}'</code></pre>
+
+            <p class="plain">
+                Как удалить пакет Ubuntu в терминале:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">$ sudo apt remove имя_пакета</code></pre>
+
+            <p class="plain">
+                Будет выполнено полное удаление пакета, включая конфигурационные файлы и зависимости, 
+                только рекомендованные программы останутся. Если вы хотите использовать apt-get чтобы удалить deb ubuntu, 
+                то порядок действий немного другой. Для обычного удаления пакета выполните:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">$ sudo apt-get remove имя_пакета</code></pre>
+
+            <p class="plain">
+                Для удаления пакета вместе с его конфигурационными файлами, выполните:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">$ sudo apt-get purge имя_пакета</code></pre>
+
+            <p class="plain">
+                А чтобы, также удалить зависимости, установленные вместе с пакетом, нужно после одной из предыдущих команд 
+                выполнить (будут удаленны не только явно указанные зависимости, но и программы установленные как рекомендованные):
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">$ sudo apt autoremove</code></pre>
+
+
         </div>
 
         <div class="menu">
