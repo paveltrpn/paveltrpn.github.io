@@ -1,4 +1,4 @@
-var top_source = `
+var top_style = `
 <style>
     .top_grid {
         display: grid;
@@ -32,7 +32,9 @@ var top_source = `
     }
 
 </style>
+`
 
+var top_source = `
 <div class="top_grid">
     <div>
         <a href="index.html">
@@ -47,7 +49,29 @@ var top_source = `
     </div>
 
     <div>
-        <a href="https://habr.com/ru/post/425837/">
+        <a href="articles.html">
+            ARTICLES
+        </a>
+    </div>
+</div>
+`
+
+var top_article_source = `
+<div class="top_grid">
+    <div>
+        <a href="../../index.html">
+            LOG
+        </a>
+    </div>
+
+    <div>
+        <a href="../../links.html">
+            LINKS
+        </a>
+    </div>
+
+    <div>
+        <a href="../../articles.html">
             ARTICLES
         </a>
     </div>
@@ -55,8 +79,19 @@ var top_source = `
 `
 
 function main() {
-    var elem = document.getElementById("top");
-    elem.innerHTML = top_source;
+    let elem = document.getElementById("top");
+
+    if (elem != null) {
+        elem.insertAdjacentHTML("beforeend", top_style);
+        elem.insertAdjacentHTML("beforeend", top_source);
+    }
+
+    elem = document.getElementById("top_article");
+
+    if (elem != null) {
+        elem.insertAdjacentHTML("beforeend", top_style);
+        elem.insertAdjacentHTML("beforeend", top_article_source);
+    }
 }
 
 main();
