@@ -12,7 +12,7 @@ pre[class*="language-"] {
 	background: none;
 	text-shadow: 0 1px white;
 	font-family: Roboto Mono, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 18px;
+	font-size: 22px;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
@@ -53,10 +53,8 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 /* Code blocks */
 pre[class*="language-"] {
 	padding: 1em;
-	margin-left: 60px; /* Отступ слева в пикселах */
-    margin-right: 60px; /* Отступ справа в пикселах */
 	border: 2px solid lightgray;
-	margin: .5em 60px;
+	/* margin: .5em 60px; */
 	overflow: auto;
 }
 

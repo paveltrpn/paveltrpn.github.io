@@ -1,7 +1,7 @@
 
 body {
     font-family: 'Roboto', 'Droid Sans', 'Ubuntu Sans', sans-serif; /* Семейство шрифтов */
-    font-size: 14pt; /* Размер основного шрифта в пунктах  */
+    font-size: 22px; /* Размер основного шрифта в пунктах  */
     background: white; 
     color: #333; /* Цвет основного текста */
 
@@ -25,8 +25,7 @@ body {
 }
 
 .A4 {  
-    width: 1080px;
-    margin: 0 auto;
+    max-width: 26cm;
     background: white;
 }
 
@@ -39,7 +38,7 @@ body {
 
 .record > a {
     font-family: monospace;
-    font-size: 20px;
+    font-size: 26px;
     text-decoration: none;
     color: #333;
 }
@@ -51,8 +50,8 @@ body {
 /* Основной текст */
 .plain {
     text-align: justify; /* Выравнивание по ширине */
-    margin-left: 60px; /* Отступ слева в пикселах */
-    margin-right: 60px; /* Отступ справа в пикселах */
+    margin-left: 30px; /* Отступ слева в пикселах */
+    margin-right: 30px; /* Отступ справа в пикселах */
     margin-top: 0px; 
     margin-bottom: 0px;
     word-break: break-word;
@@ -63,8 +62,8 @@ body {
     font-size: 24pt;
     font-weight: bold;
     text-align: center; 
-    margin-left: 60px;
-    margin-right: 60px;
+    margin-left: 30px;
+    margin-right: 30px;
     word-break: break-all;
 }
 
@@ -74,12 +73,11 @@ body {
     font-size: 18pt;
     font-weight: bold;
     text-align: justify; 
-    margin-left: 60px; 
-    margin-right: 60px; 
+    margin-left: 30px; 
+    margin-right: 30px; 
 }
 
 .date {
-    font-size: 14pt;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 2px;
