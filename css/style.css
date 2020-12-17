@@ -1,13 +1,13 @@
 
 body {
     font-family: 'Roboto', 'Droid Sans', 'Ubuntu Sans', sans-serif; /* Семейство шрифтов */
-    font-size: 22px; /* Размер основного шрифта в пунктах  */
+    font-size: 18px; /* Размер основного шрифта в пунктах  */
     background: white; 
     color: #333; /* Цвет основного текста */
 
     margin: 0px; 
     
-    line-height: 1.8em; /* Высота строки */
+    line-height: 1.4em; /* Высота строки */
     letter-spacing: 0.07em; /* Зазор между буквами */
 
     display: flex;
@@ -37,8 +37,9 @@ body {
 }
 
 .record > a {
-    font-family: monospace;
-    font-size: 26px;
+    /* font-family: monospace; */
+    /* font-size: 26px; */
+    font-weight: bold;
     text-decoration: none;
     color: #333;
 }

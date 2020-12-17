@@ -23,7 +23,7 @@ var top_style = `
         color: white;
         border: 2px solid white;
         text-align: center;
-        padding: 5px 5px;
+        padding: 15px 5px;
     }
 
     .top_grid > div > a:hover { 
