@@ -2,7 +2,7 @@ var top_style = `
 <style>
     .top_grid {
         display: grid;
-        grid-template-rows: 1fr;
+        grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 32px;
     }
@@ -23,7 +23,7 @@ var top_style = `
         color: white;
         border: 2px solid white;
         text-align: center;
-        padding: 15px 5px;
+        padding: 35px 5px;
     }
 
     .top_grid > div > a:hover { 
@@ -53,6 +53,24 @@ var top_source = `
             ARTICLES
         </a>
     </div>
+
+    <div>
+        <a href="javascript:void(0)">
+        &#9746;
+        </a>
+    </div>
+
+    <div>
+        <a href="javascript:void(0)">
+        &#9746;
+        </a>
+    </div>
+
+    <div>
+        <a href="javascript:void(0)">
+        &#9746;
+        </a>
+    </div>
 </div>
 `
 
@@ -73,6 +91,24 @@ var top_article_source = `
     <div>
         <a href="../../articles.html">
             ARTICLES
+        </a>
+    </div>
+
+    <div>
+        <a href="javascript:void(0)">
+        &#9746;
+        </a>
+    </div>
+
+    <div>
+        <a href="javascript:void(0)">
+        &#9746;
+        </a>
+    </div>
+
+    <div>
+        <a href="javascript:void(0)">
+        &#9746;
         </a>
     </div>
 </div>

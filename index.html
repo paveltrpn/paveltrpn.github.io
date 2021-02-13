@@ -17,7 +17,105 @@
     
             <div class="A4">
             
-            <div class="record"> <!-- =========== НАЧАЛО ЗАПИСИ =========== -->
+            <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+
+            <div class="record"> 
+            <!-- 05.02.2021 -->
+            <p class="subsection" style="margin-left: 0.5em;">
+                <span class="date">05.02.2021</span>
+            </p>
+
+            <p class="subsection">
+                C++20 Abbreviated Function Templates.
+            </p>
+
+            <p class="plain"> 
+                In C++17 you might write a function to give animals head scratches as a function template, so it can be called with any type of animal:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-cpp">template &lt;class Animal&gt;
+    void give_head_scratches (Animal const& the_animal);</code></pre>
+
+
+            <p class="plain"> 
+                In C++20 you can simplify this using auto:
+            </p>
+        
+            <pre class="line-numbers">
+    <code class="language-cpp">void give_head_scratches (auto const& the_animal);</code></pre>
+
+            <p class="plain"> 
+                This version is less verbose, requires coming up with fewer names, and is more consistent with C++14 lambdas.
+            </p>
+
+            <p class="subsection">
+                C++20 Constrained Auto.
+            </p>
+
+            <p class="plain"> 
+                C++20 gives us Concepts to help solve the problem of any type we can give in template. If we have some animal concept which defines 
+                what interface a type representing an animal should have then we can use it like so:
+            </p>
+        
+            <pre class="line-numbers">
+    <code class="language-cpp">template &lt;animal Animal&gt;
+    void give_head_scratches (Animal const& the_animal);</code></pre>
+
+            <p class="plain"> 
+                This is quite verbose and repetitive. Ideally we’d be able to use the concept name directly in the function parameter list like this:
+            </p>
+        
+            <pre class="line-numbers">
+    <code class="language-cpp">void give_head_scratches (animal auto const& the_animal);</code></pre>
+
+            
+            <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+            <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+
+            <div class="record"> 
+            <!-- 06.02.2021 -->
+            <p class="subsection" style="margin-left: 0.5em;">
+                <span class="date">06.02.2021</span>
+            </p>
+
+            <p class="subsection">
+                Ротационная прошивка.
+            </p>
+
+            <p class="plain"> 
+                Принцип работы ротационной прошивки заключается в обработке заранее подготовленной поверхности по траектории 
+                движения инструмента вдоль обрабатываемой поверхности, при этом заготовка и инструмент получают синхронное 
+                вращение, с контактом резца в заготовке практически стремящемся к "одной точке" (при этом сам резец инструмента 
+                в прошивке конструктивно установлен под небольшим углом).
+            </p>
+            <br>
+            <p class="plain">
+                В статье МГТУ им. Н.Э. Баумана  "Aнализ точности гранных отверстий, получаемых методом качающегося прошивания" от 04.04.11 г. 
+                (авторы: Зубков Н. Н., Ломакин А. В.; УДК 621.9.04) более детально описан принцип работы прошивных головок и приведен анализ точности 
+                получаемых многогранных отверстий
+            </p>
+            <br>
+            <p class="plain">
+                <b>Видео процесса:</b><br>
+                <a href="https://youtu.be/J2OAISkHHbI">https://youtu.be/J2OAISkHHbI</a>
+            </p>
+            <br>
+            <p class="plain">
+                <b>Инструмент:</b><br>
+                <a href="https://osnastka.pro/broaching_head">https://osnastka.pro/broaching_head</a>
+            </p>
+            <br>
+            <div style="text-align: center;">
+                <img src="assets/broacing_head.png" style="width: 68%;"></img>
+            </div>
+
+            <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+            <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+
+            <div class="record">
             <!-- 13.12.2020 -->
             <p class="subsection" style="margin-left: 0.5em;">
                 <span class="date">13.12.2020</span>
@@ -161,7 +259,7 @@
             <div class="record">
             <!-- 05.09.2020 -->
             <p class="subsection" style="margin-left: 0.5em;">
-                <span class="date">05.09.2020</span> <br>
+                <span class="date">05.09.2020</span> <br> <br>
                 Шпаргалка по хоткеям в VSCode
             </p>
 
@@ -173,7 +271,7 @@
             <div class="record">
             <!-- 03.09.2020 -->
             <p class="subsection" style="margin-left: 0.5em;">
-                <span class="date">03.09.2020</span> <br>
+                <span class="date">03.09.2020</span> <br> <br>
                 Как сделать перенос тегов в коде VS?
             </p>
 
@@ -213,7 +311,7 @@
             <div class="record">
                 <!-- 28.08.2020 -->
             <p class="subsection" style="margin-left: 0.5em;">
-                <span class="date">28.08.2020</span> <br>
+                <span class="date">28.08.2020</span> <br> <br>
                 Установка и использование CMake под Windows.
             </p>
 
@@ -285,7 +383,7 @@
             <div class="record">
             <!-- 01.01.2020 -->
             <p class="subsection" style="margin-left: 0.5em;">
-                <span class="date">01.01.2020</span> <br>
+                <span class="date">01.01.2020</span> <br> <br>
                 Как обновить Node.js до последней версии?
             </p>
 
