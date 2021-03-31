@@ -17,13 +17,13 @@ var top_style = `
     .top_grid > div > a {
         font-family: Roboto Mono, monospace;
         font-weight: bold;
-        font-size: 48px;
+        font-size: 40px;
         letter-spacing: 0.1em;
         text-decoration: none;
         color: white;
         border: 2px solid white;
         text-align: center;
-        padding: 35px 5px;
+        padding: 25px 5px;
     }
 
     .top_grid > div > a:hover { 
