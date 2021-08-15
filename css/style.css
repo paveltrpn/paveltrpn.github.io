@@ -1,7 +1,10 @@
 
+/* Подключение шрифта  'Source Serif Pro'*/
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@500&display=swap');
+
 body {
-    font-family: 'Roboto Mono', 'Courier New', monospace; /* Семейство шрифтов */
-    font-size: 18px; /* Размер основного шрифта в пунктах  */
+    font-family: 'Source Serif Pro', Serif; /* Семейство шрифтов */
+    font-size: 16px; /* Размер основного шрифта в пунктах  */
     background: white; 
     color: #333; /* Цвет основного текста */
 
@@ -40,7 +43,7 @@ body {
     /* font-size: 24px; */
     line-height: 1.4em;
     font-weight: bold;
-    text-decoration: 2px underline;
+    /* text-decoration: 2px underline; */
     color: #333;
 }
 
@@ -60,7 +63,7 @@ body {
 
 /* Заголовок темы или раздела */
 .section {
-    font-size: 24pt;
+    font-size: 20pt;
     font-weight: bold;
     text-align: center; 
     margin-left: 30px;
