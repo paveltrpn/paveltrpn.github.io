@@ -4,7 +4,7 @@
 
 body {
     font-family: 'Source Serif Pro', Serif; /* Семейство шрифтов */
-    font-size: 16px; /* Размер основного шрифта в пунктах  */
+    font-size: 1.1em; /* Размер основного шрифта в пунктах  */
     background: white; 
     color: #333; /* Цвет основного текста */
 
@@ -63,7 +63,7 @@ body {
 
 /* Заголовок темы или раздела */
 .section {
-    font-size: 20pt;
+    font-size: 1.5em;
     font-weight: bold;
     text-align: center; 
     margin-left: 30px;
@@ -75,7 +75,7 @@ body {
 /* Заголовок подраздела */
 .subsection {
     word-break: break-word;
-    font-size: 18pt;
+    font-size: 1.3em;
     font-weight: bold;
     text-align: justify; 
     margin-left: 30px; 
@@ -94,7 +94,7 @@ body {
     на исходные материалы и т.д. 
 */
 .small {
-    font-size: 10pt;
+    font-size: .6em;
     text-align: center;
     margin-left: 60px;  
     margin-right: 60px; 
@@ -113,7 +113,7 @@ body {
     body, page {
         margin: 0;
         box-shadow: 0;
-        font-size: 14pt;
+        font-size: 1em;
     }
     /* Исключем из печати верхнее и нижнее меню */
     .menu, .menu *
