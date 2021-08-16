@@ -4,13 +4,13 @@
 
 body {
     font-family: 'Source Serif Pro', Serif; /* Семейство шрифтов */
-    font-size: 1.1em; /* Размер основного шрифта в пунктах  */
+    font-size: 1.0em; /* Размер основного шрифта в пунктах  */
     background: white; 
     color: #333; /* Цвет основного текста */
 
     margin: 0px; 
     
-    line-height: 1.4em; /* Высота строки */
+    line-height: 1.5em; /* Высота строки */
     letter-spacing: 0.07em; /* Зазор между буквами */
 
     display: flex;
@@ -37,14 +37,6 @@ body {
     margin: 20px auto;
     padding: 10px 20px;
     border-radius: 10px 10px 10px 10px;
-}
-
-.record_grid { 
-    display: flex;
-    flex-flow: row;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-wrap: nowrap;
 }
 
 .record a {
