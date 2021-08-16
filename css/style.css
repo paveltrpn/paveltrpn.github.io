@@ -39,8 +39,15 @@ body {
     border-radius: 10px 10px 10px 10px;
 }
 
+.record_grid { 
+    display: flex;
+    flex-flow: row;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-wrap: nowrap;
+}
+
 .record a {
-    /* font-size: 24px; */
     line-height: 1.4em;
     font-weight: bold;
     /* text-decoration: 2px underline; */
@@ -94,7 +101,7 @@ body {
     на исходные материалы и т.д. 
 */
 .small {
-    font-size: .6em;
+    font-size: .7em;
     text-align: center;
     margin-left: 60px;  
     margin-right: 60px; 
