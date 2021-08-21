@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Начало работы с Bullet Physics Engine</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="stylesheet" href="../../css/prism.css"/> <!-- Тема подсветки кода для Prism -->
+        <script src="../../js/top_bottom.js" defer></script>
+
+        <!-- Подключение локального MathJax -->
+        <script type="text/javascript" id="MathJax-script" async
+        src="../../js/MathJax3.0.0/es5/tex-svg.js">
+            MathJax.Hub.Config({
+                extensions: ["tex2jax.js","TeX/noErrors.js"],
+	            jax: ["input/TeX","output/HTML-CSS"],
+	            tex2jax: {inlineMath: [['$','$'],["\\(","\\)"]] },
+	            "HTML-CSS": {availableFonts:["TeX"]},
+            });
+        </script>
+        <!-- ============================== -->
+    </head>
+    <body>
+        <!-- Подключение скрипта Prism -->
+        <script src="../../js/prism.js"></script>
+
+        <div class="container">
+
+        <div id="top_article" class="menu"></div> <!-- Сюда вставляется код заголовка -->
+
+        <div class="A4">
+
+            <div class="record">
+
+            <p class="section">
+                Начало работы с Bullet Physics Engine
+            </p>
+
+                       
+            <p class="plain">
+                Bullet Physics - обширная библиотека для симуляции физических эффектов в реальном времени, предназначенная для игр, специальных эффектов, машинного обучения и т.д.
+                Включает в себя различные инструменты для симуляции физики твёрдых тел, связанных и не связанных ограничителями, симуляции ткани, упругих, мягких объектов,
+                библиотеку методов линейной алгебры и средства для распаралеливания расчётов.
+                <br><br>
+                В этой заметке будет описано как скачать и собрать Bullet Physics Engine из исходиков и показана небольшая программа, демонстрирующая
+                работу этой замечательнйо библиотеки. 
+            </p>
+
+            
+            <p class="subsection">
+                Получение дистрибутива библиотеки
+            </p>
+
+            <p class="plain">
+                Скачиваем исходные коды с github.com:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">git clone https://github.com/bulletphysics/bullet3</code></pre>
+            
+            <p class="subsection">
+                Сборка
+            </p>
+
+            <p class="plain">
+                Собираем с помощью CMake, традиционным способом:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">cd &lt;bullet_dir&gt;
+    mkdir build
+    cd build
+    cmake ..
+    make -j&lt;over 9000 cores&gt;
+    make install</code></pre>
+
+            </div> <!--class record-->
+
+        </div> <!--class A4-->
+
+        <div class="menu" id="bottom"></div>
+        
+        </div>
+        
+    </body>
+</html>
