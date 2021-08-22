@@ -119,7 +119,7 @@
             <div style="text-align: center;"><img src="bp_test_exemple_browser.gif" style="width:50%;"></div>
 
             <p class="subsection">
-                Демо для теста свежесобранного bullet
+                Демо для теста свежесобранного bullet engine
             </p>
 
             <p class="plain">
@@ -187,7 +187,17 @@
     ...</code></pre>
 
             <p class="plain">
-                Разберём подробнее что тут к чему
+                Разберём подробнее что тут к чему (опираясь на официальную документацию <i>bullet engine</i>).<br><br>
+                &emsp;&emsp;<b><i>btDefaultCollisionConfiguration</i></b> - класс служит для настройки стекового аллокатора памяти, pool аллокатора <i>bullet engine</i>.<br>
+                &emsp;&emsp;<b><i>btCollisionDispatcher</i></b> - класс предоставляет алгоритмы для управления Convex-Convex и Convex-Concave тел, участвующих во 
+                взаимодействии.<br>
+                &emsp;&emsp;<b><i>btBroadphaseInterface</i></b> - класс предоставляет интерфейс для определения перекрывающихся AABB-пар объектов. 
+                Некоторые имплементации этого интерфейса включают в себя <i>btAxisSweep3</i>, <i>bt32BitAxisSweep3</i> и <i>btDbvtBroadphase</i>. 
+                Действительную обработку перекрытий и столкновений AABB-пар, а так-же хранение, добавление и удаление таких пар берёт на себя класс <i>btOverlappingPairCache</i><br>
+                &emsp;&emsp;<b><i>btSequentialImpulseConstraintSolver</i></b> - это быстрая имплементация (с использованием SIMD) метода Гаусса — Зейделя (классический итерационный метод решения СЛАУ).<br>
+                &emsp;&emsp;<b><i>btDiscreteDynamicsWorld</i></b> - обеспечивает дискретное моделирование твердотельных объектов, этот класс заменяет устаревшие <i>CcdPhysicsEnvironment/CcdPhysicsController</i>.<br>
+                &emsp;&emsp;<b><i>CDebugDraw</i></b> - класс, унаследованный от <i>btIDebugDraw</i> и предоставляющий средства для отладочного вывода
+                (рендера) тел, зарегестрированных в <i>btDiscreteDynamicsWorld</i>.<br>
             </p>
 
             </div> <!--class record-->

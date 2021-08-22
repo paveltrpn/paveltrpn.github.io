@@ -10,7 +10,7 @@ body {
 
     margin: 0px; 
     
-    line-height: 1.5em; /* Высота строки */
+    line-height: 1.7em; /* Высота строки */
     letter-spacing: 0.07em; /* Зазор между буквами */
 
     display: flex;
@@ -68,7 +68,7 @@ body {
     margin-left: 30px;
     margin-right: 30px;
     /* word-break: break-all; */
-    line-height: 1.4em;
+    line-height: 1.7em;
 }
 
 /* Заголовок подраздела */
@@ -76,9 +76,10 @@ body {
     word-break: break-word;
     font-size: 1.5em;
     font-weight: bold;
-    text-align: justify; 
+    text-align: left; 
     margin-left: 30px; 
     margin-right: 30px; 
+    line-height: 1.7em;
 }
 
 .date {
