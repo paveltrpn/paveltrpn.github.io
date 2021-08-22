@@ -151,16 +151,40 @@
     ...</code></pre>
 
             <p class="plain">
-                В глабальном скоупе объявляем всё необходимое для <i>bullet engine</i>:
+                В глабальном скоупе объявляем всё необходимое для <i>bullet engine</i> и напишем функцию для
+                инициализации всего этого:
             </p>
 
             <pre class="line-numbers">
-    <code class="language-cpp">btDefaultCollisionConfiguration* 		collisionConfiguration;
+    <code class="language-cpp">...
+    btDefaultCollisionConfiguration* 		collisionConfiguration;
     btCollisionDispatcher* 					dispatcher;
     btBroadphaseInterface* 					overlappingPairCache;
     btSequentialImpulseConstraintSolver* 	solver;
     btDiscreteDynamicsWorld* 				dynamicsWorld;
-    CDebugDraw*								debugDraw;</code></pre>
+    CDebugDraw*								debugDraw;
+    
+    ...
+
+    void initBulletPhysicsWorld() {
+        collisionConfiguration = new btDefaultCollisionConfiguration();
+    
+        dispatcher = new btCollisionDispatcher(collisionConfiguration);
+    
+        overlappingPairCache = new btDbvtBroadphase();
+    
+        solver = new btSequentialImpulseConstraintSolver;
+    
+        debugDraw = new CDebugDraw;
+    
+        dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
+    
+        debugDraw->setDebugMode(btIDebugDraw::DBG_DrawWireframe);
+        dynamicsWorld->setDebugDrawer(debugDraw);
+        
+        dynamicsWorld->setGravity(btVector3(0, -10, 0));
+    }
+    ...</code></pre>
 
             <p class="plain">
                 Разберём подробнее что тут к чему
