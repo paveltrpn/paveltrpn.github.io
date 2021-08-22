@@ -54,7 +54,7 @@
                 Скачиваем исходные коды с github.com:
             </p>
 
-            <pre class="line-numbers">
+            <pre>
     <code class="language-bash">git clone https://github.com/bulletphysics/bullet3</code></pre>
             
             <p class="subsection">
@@ -65,13 +65,70 @@
                 Собираем с помощью CMake, традиционным способом:
             </p>
 
-            <pre class="line-numbers">
+            <pre>
     <code class="language-bash">cd &lt;bullet_dir&gt;
     mkdir build
     cd build
-    cmake ..
+    cmake -DCMAKE_INSTALL_PREFIX=&lt;path&gt; .. -G "MinGW Makefiles"
     make -j&lt;over 9000 cores&gt;
     make install</code></pre>
+
+            <p class="plain">
+                Единственное "но" в моём случае и с моим окружением (Windows 10, MinGW-W64, Cmake 3.18.2, GCC 11.1.0) <i>cmake</i> выдал следующее -  
+            </p>
+
+            <pre>
+    <code class="language-bash">CMake Error at Extras/BulletRoboticsGUI/CMakeLists.txt:188 (INSTALL):
+    INSTALL FILES given no DESTINATION!
+      
+      
+    CMake Error at Extras/BulletRobotics/CMakeLists.txt:309 (INSTALL):
+    INSTALL FILES given no DESTINATION!
+      
+      
+    -- Configuring incomplete, errors occurred!
+    See also "E:/github.com/bullet3/build/CMakeFiles/CMakeOutput.log".</code></pre>
+
+             <p class="plain">
+                Ситуацию удалось исправить редактированием соответствующих фаилов <i>CMakeLists.txt</i> в строках 188 и 309 соответственно, 
+                было:
+            </p>
+
+            <pre>
+    <code class="language-cmake">...
+        DESTINATION
+        ${PKGCONFIG_INSTALL_PREFIX}</code></pre>
+
+            <p class="plain">
+                Стало:
+            </p>
+
+            <pre>
+    <code class="language-cmake">...
+        DESTINATION include
+        ${PKGCONFIG_INSTALL_PREFIX}</code></pre>
+
+            <p class="plain">
+                <i>make install</i> в моём случае делает непонятные вещи, и поэтому вручную помещяем фаилы <i>*.a</i> из папки <i>build/lib</i> и 
+                заголовочные файлы в выбраную для установки папку.
+                <br><br>
+                В общем случае, если <i>\build\examples\ExampleBrowser\App_ExampleBrowser.exe</i> создан, запускается и показывает такие вещи, то 
+                сборку можно считать законченой.
+            </p>
+
+            <div style="text-align: center;"><img src="bp_test_exemple_browser.gif" style="width:auto;"></div>
+
+            <p class="subsection">
+                Демо для теста свежесобранного bullet
+            </p>
+
+            <p class="plain">
+                Тестировать всё это добро будем с помощью демки, в которой будем использовать <i>GLM, GLFW</i>. Собственно демо будет основано на 
+                встроенных примерах из дистрибутива <i>bullet</i>, но для лучшего усвоения материала напишем своё демо. Само демо можно найти тут - 
+                <a href="https://github.com/paveltrpn/demos">https://github.com/paveltrpn/demos</a> в папке 014_*. <br>Для сборки делаем <i>make</i> в папке 
+                <i>demos/014_*</i>, при этом в папке <i>demos/extern/bellet</i> и <i>demos/extern/GLM</i> должны лежать собранные файлы и заголовки соостветствующих 
+                библиотек, ну и соответственно собраны и настроены дополнительные зависимости.
+            </p>
 
             </div> <!--class record-->
 
