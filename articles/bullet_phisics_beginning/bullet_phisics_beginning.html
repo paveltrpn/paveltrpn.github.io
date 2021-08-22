@@ -112,22 +112,58 @@
                 <i>make install</i> в моём случае делает непонятные вещи, и поэтому вручную помещяем фаилы <i>*.a</i> из папки <i>build/lib</i> и 
                 заголовочные файлы в выбраную для установки папку.
                 <br><br>
-                В общем случае, если <i>\build\examples\ExampleBrowser\App_ExampleBrowser.exe</i> создан, запускается и показывает такие вещи, то 
+                В общем случае, если <i>/build/examples/ExampleBrowser/App_ExampleBrowser.exe</i> создан, запускается и показывает такие вещи, то 
                 сборку можно считать законченой.
             </p>
 
-            <div style="text-align: center;"><img src="bp_test_exemple_browser.gif" style="width:auto;"></div>
+            <div style="text-align: center;"><img src="bp_test_exemple_browser.gif" style="width:50%;"></div>
 
             <p class="subsection">
                 Демо для теста свежесобранного bullet
             </p>
 
             <p class="plain">
-                Тестировать всё это добро будем с помощью демки, в которой будем использовать <i>GLM, GLFW</i>. Собственно демо будет основано на 
-                встроенных примерах из дистрибутива <i>bullet</i>, но для лучшего усвоения материала напишем своё демо. Само демо можно найти тут - 
-                <a href="https://github.com/paveltrpn/demos">https://github.com/paveltrpn/demos</a> в папке 014_*. <br>Для сборки делаем <i>make</i> в папке 
-                <i>demos/014_*</i>, при этом в папке <i>demos/extern/bellet</i> и <i>demos/extern/GLM</i> должны лежать собранные файлы и заголовки соостветствующих 
-                библиотек, ну и соответственно собраны и настроены дополнительные зависимости.
+                Тестировать всё это добро будем с помощью демки. Собственно демо будет основано на 
+                встроенных примерах из дистрибутива <i>bullet</i>, но для лучшего усвоения материала перепишем всё самостоятельно. Само демо можно найти тут - 
+                <a href="https://github.com/paveltrpn/demos">https://github.com/paveltrpn/demos</a> в папке 014_*. 
+                <br><br>
+                Использовать будем C++ (конечно-же), OpenGL и всё необходимое для него (GLM, GLFW, GLEW), а так же самописные вспомогательные классы (не будем на них 
+                останавливаться подробно) для организации простой геометрии, загрузки текстур с диска (обёртка над libjpeg, libtga) и др.
+                <br><br>
+                Базовая структура приложения выглядит так:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-cpp">...
+    void main(int argc, char *argv[]) {
+        //Инициализация приложения, создание окна, загрузка ресурсов, в том числе
+        //инициализация bullet engine
+        appSetup();
+    
+        //Очевидно, главный цикл
+        appLoop();
+
+        //Освобождаем ресурсы
+        appDefer();
+
+        return 0;
+    }
+    ...</code></pre>
+
+            <p class="plain">
+                В глабальном скоупе объявляем всё необходимое для <i>bullet engine</i>:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-cpp">btDefaultCollisionConfiguration* 		collisionConfiguration;
+    btCollisionDispatcher* 					dispatcher;
+    btBroadphaseInterface* 					overlappingPairCache;
+    btSequentialImpulseConstraintSolver* 	solver;
+    btDiscreteDynamicsWorld* 				dynamicsWorld;
+    CDebugDraw*								debugDraw;</code></pre>
+
+            <p class="plain">
+                Разберём подробнее что тут к чему
             </p>
 
             </div> <!--class record-->

@@ -40,7 +40,7 @@ body {
 }
 
 .record a {
-    line-height: 1.4em;
+    line-height: 1.0em;
     font-weight: bold;
     /* text-decoration: 2px underline; */
     color: #333;
@@ -62,7 +62,7 @@ body {
 
 /* Заголовок темы или раздела */
 .section {
-    font-size: 1.5em;
+    font-size: 1.8em;
     font-weight: bold;
     text-align: center; 
     margin-left: 30px;
@@ -74,7 +74,7 @@ body {
 /* Заголовок подраздела */
 .subsection {
     word-break: break-word;
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-weight: bold;
     text-align: justify; 
     margin-left: 30px; 
