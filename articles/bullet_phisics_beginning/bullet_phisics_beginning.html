@@ -97,7 +97,8 @@
             <pre>
     <code class="language-cmake">...
         DESTINATION
-        ${PKGCONFIG_INSTALL_PREFIX}</code></pre>
+        ${PKGCONFIG_INSTALL_PREFIX}
+    ...</code></pre>
 
             <p class="plain">
                 Стало:
@@ -106,7 +107,8 @@
             <pre>
     <code class="language-cmake">...
         DESTINATION include
-        ${PKGCONFIG_INSTALL_PREFIX}</code></pre>
+        ${PKGCONFIG_INSTALL_PREFIX}
+    ...</code></pre>
 
             <p class="plain">
                 <i>make install</i> в моём случае делает непонятные вещи, и поэтому вручную помещяем фаилы <i>*.a</i> из папки <i>build/lib</i> и 
