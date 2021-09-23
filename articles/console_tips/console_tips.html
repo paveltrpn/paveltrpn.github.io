@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Console tips</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="stylesheet" href="../../css/prism.css"/> <!-- Тема подсветки кода для Prism -->
+        <script src="../../js/top_bottom.js" defer></script>
+
+        <!-- Подключение локального MathJax -->
+        <script type="text/javascript" id="MathJax-script" async
+        src="../../js/MathJax3.0.0/es5/tex-svg.js">
+            MathJax.Hub.Config({
+                extensions: ["tex2jax.js","TeX/noErrors.js"],
+	            jax: ["input/TeX","output/HTML-CSS"],
+	            tex2jax: {inlineMath: [['$','$'],["\\(","\\)"]]},
+	            "HTML-CSS": {availableFonts:["TeX"]}
+            });
+        </script>
+        <!-- ============================== -->
+
+    </head>
+    <body>
+        <!-- Подключение скрипта Prism -->
+        <script src="../../js/prism.js"></script>
+
+        <div class="container">
+
+        <div id="top_article" class="menu"></div> <!-- Сюда вставляется код заголовка -->
+
+        <div class="A4">
+
+            <div class="record">
+            
+            <p class="subsection">
+                HOW-TO на разные темы.
+            </p>
+            
+            <p class="plain">
+                <b>Установка python 3.9</b> в Linux Mint 20.0 (после установки запускаться будет как :~$python3.9).
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">sudo apt-get update
+    sudo apt install software-properties-common
+    sudo add-apt-repository ppa:deadsnakes/ppa
+    sudo apt install python3.9
+    sudo apt install python3.9-dev</code></pre>
+
+            <p class="plain">
+                По умолчанию в Linux Mint 20.2 не установлен pip, поэтому нужно сделать:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">sudo apt install python3-pip</code></pre>
+
+            <p class="plain">
+                Зависимости для конкретной версии python через pip устанавливаются так:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">python3.9 -m pip install numpy</code></pre>
+                
+            <p class="plain">
+                <b>Исправляем работу (или неработу) PyImgui в Linux Mint 20.2.</b>
+                <br><br>
+                Имеется стек - VirtualBox 6.1 -> Linux Mint 20.2 -> Python 3.9 + PyOpenGL + GLFW, на котором с аппартным ускорением работает OpenGL не выше 2.1.
+                При этом хочется использовать PyImgui (pip-ом устанавливается в версии 1.65) но завести всё это не получается т.к. PyOpenGL выпадает с
+                ошибками GL_INVALID_OPERATION при вызовах glUniform*, glAttribLocation* и т.д. видимо из-за попытки PyImgui использовать программируемый пайплайн рендера 
+                OpenGL 3.3+. 
+                <br><br>
+                В файле ~/.local/lib/python3.9/site-packages/imgui/integrations/glfw.py имеется следующее:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-python">...
+    from .opengl import ProgrammablePipelineRenderer
+
+    class GlfwRenderer(ProgrammablePipelineRenderer):
+        def __init__(self, window, attach_callbacks=True):
+    ...</code></pre>
+
+            <p class="plain">
+                Хотя класс GlfwRenderer унаследован от ProgrammablePipelineRenderer, в файле ~/.local/lib/python3.9/site-packages/imgui/integrations/opengl.py 
+                так же определён класс FixedPipelineRenderer и если внести небольшие изменения, то всё заведётся на старом профайле OpenGL 2.1:
+            </p>
+    
+            <pre class="line-numbers">
+    <code class="language-python">...
+    from .opengl import ProgrammablePipelineRenderer
+    from .opengl import FixedPipelineRenderer
+
+    class GlfwRenderer(FixedPipelineRenderer):
+        def __init__(self, window, attach_callbacks=True):
+    ...</code></pre>
+
+        </div>
+
+        </div>
+        
+        <div class="menu" id="bottom"></div>
+        
+        </div>
+        
+    </body>
+</html>
