@@ -33,13 +33,74 @@
             <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
             
             <p class="plain">
+                <b>Установка ядра 5.8 под Linux Mint 20</b>
+            </p>
+
+            <p class="plain">
+                Ядро по умолчанию в Mint 20 - 5.4. Ядро 5.8 понадобилось, чтобы в VMWare Player 16 заработал OpenGL 4.1.   
+                Установка ядра 5.8 без сборки из *.deb пакетов очень проста. Скачиваем:
+            </p>
+
+            <p class="plain" style="text-align: left;">
+                &emsp;&emsp; - https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8/amd64/linux-headers-5.8.0-050800-generic_5.8.0-050800.202008022230_amd64.deb<br>
+                &emsp;&emsp; - https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8/amd64/linux-image-unsigned-5.8.0-050800-generic_5.8.0-050800.202008022230_amd64.deb<br>
+                &emsp;&emsp; - https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8/amd64/linux-modules-5.8.0-050800-generic_5.8.0-050800.202008022230_amd64.deb  
+            </p>
+
+            <p class="plain">
+                Нужно убедиться что в папке нет других *.deb пакетов. Далее просто запускаем:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">sudo dpkg -i *.deb</code></pre>
+
+            <p class="plain">
+                После перезагрузки ваполним:
+            </p>
+                
+            <pre class="line-numbers">
+    <code class="language-bash">uname -a</code></pre>
+
+            </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+            <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="plain">
+                <b>Cборка Mesa3d 20.2</b>
+            </p>
+
+            <p class="plain">
+                Скачиваем и паспаковываем дистрибутив с сайта Mesa 3d:
+            </p>
+
+            <p class="plain" style="text-align: left;">
+                &emsp;&emsp; - https://docs.mesa3d.org/download.html
+            </p>
+
+            <p class="plain">
+                Вообще, сборка описана там же на сайте. Собираем по инструкции https://docs.mesa3d.org/install.html. Если в кратце, то:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">meson builddir/
+    ninja -C builddir/
+    sudo ninja -C builddir/ install</code></pre>
+                
+            <p class="plain">
+                Там будет много зависимостей от X11, устанавливаем все, конфигурирум и собираем через Meson и Ninja. После сборки Ninja закинет  
+                собраные бинарники в - `/usr/local/lib/x86_64-linux-gnu`, перемещаем всё это добро в `/usr/lib/x86_64-linux-gnu`.
+            </p>
+
+            </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+            <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="plain">
                 <b>Изменение удаленного URL Git.</b>
             </p>
 
             <pre class="line-numbers">
     <code class="language-bash">git remote set-url {remote-name} {remote-url}</code></pre>
-
-            
                 
             </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
@@ -124,6 +185,17 @@
     git push -u origin main</code></pre>
                 
         </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+        <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="plain">
+                <b>Модуль для автокомплита из bpy для Blender.</b>
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">python3.9 -m pip install fake-bpy-module-2.93</code></pre>
+                
+            </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
         </div>
         
