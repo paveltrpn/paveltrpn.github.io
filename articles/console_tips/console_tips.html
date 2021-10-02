@@ -197,6 +197,188 @@
                 
             </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
+            <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+
+            <p class="section">
+                НАСТРОЙКА GOLANG В LINUX
+            </p>
+
+            <p class="small">
+                (http://blog.sedicomm.com/2018/01/21/kak-ustanovit-golang-yazyk-programmirovaniya-go-v-linux/)
+            </p>
+
+            <p class="subsection">
+                Загрузка дистрибутива Golang
+            </p>
+
+            <p class="plain">
+                Скачиваем дистрибутив, например отсюда — <i>https://golang.org/dl/</i>, или так
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">$ wget -c https://storage.googleapis.com/golang/go{version}.linux-amd64.tar.gz</code></pre>
+ 
+            <p class="plain">
+                Распаковываем в /usr/local, формируя дерево каталога Golang в /usr/local/go:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">$ tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz</code></pre>
+            
+            <p class="subsection">
+                Настройка среды GoLang в Linux
+            </p>
+
+            <p class="plain">
+                Сначала настройте рабочее пространство Go, создав каталог ~/go_projects, который является корнем вашего 
+                рабочего пространства. Рабочее пространство состоит из трех каталогов, а именно:
+            </p>
+
+            <p class="plain">
+                <i>
+                &emsp;&emsp; bin, который будет содержать исполняемые двоичные файлы Go;<br> 
+                &emsp;&emsp; src, который сохранит ваши исходные файлы;<br> 
+                &emsp;&emsp; pkg, который будет хранить объекты пакета.<br>
+                </i> 
+            </pre>
+
+            <p class="plain">
+                Теперь создайте указанное выше дерево каталогов следующим образом:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">$ mkdir -p ~/go_projects/{bin,src,pkg}
+    $ cd ~/go_projects
+    $ ls</code></pre>
+
+            <p class="plain">
+                Вот и пришло время запустить Go, как и остальные Linux-программы, его каталог установки должен быть 
+                сохранен как одно из значений переменной среды PATH.
+            </p>
+
+            <p class="plain">
+                Теперь добавьте /usr/local/go/bin в переменную среды PATH, вставив строку приведенную ниже в 
+                файл /etc/profile для общесистемной установки или $HOME/.profile или $HOME./Bash_profile для 
+                пользовательской установки, используя ваш любимый редактор, откройте соответствующий файл профиля 
+                пользователя в соответствии с вашим дистрибутивом и добавьте строку приведенную ниже, сохраните файл и выйдите из него:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">export PATH=$PATH:/usr/local/go/bin</code></pre>
+
+            <p class="plain">
+                Затем установите значения переменных среды GOPATH и GOBIN в файле профиля пользователя 
+                (~/.profile или ~/bash_profile), чтобы указать на ваш каталог рабочей области.
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">export GOPATH="$HOME/go_projects"
+    export GOBIN="$GOPATH/bin"</code></pre>
+
+            <p class="plain">
+                <b>Примечание.</b> Если вы установили GoLang в пользовательский каталог, отличный от значения по умолчанию (/usr/local/), 
+                вы должны указать этот каталог как значение переменной GOROOT. Например, если вы установили GoLang в домашний каталог, 
+                добавьте строки приведенные ниже в файл $HOME/.profile или $HOME/.bash_profile.
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">export GOROOT=$HOME/go
+    export PATH=$PATH:$GOROOT/bin</code></pre>
+
+            <p class="plain">
+                Последним шагом в этом разделе является внесение изменений в профиль пользователя в текущем сеансе bash следующим образом:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">$ source ~/.bash_profile
+    или
+    $ source ~/.profile</code></pre>
+
+            <p class="subsection">
+                Выключаем go-lint в vs code
+            </p>
+
+            <p class="plain">
+                После установки расширений golang в vs code среди прочего начинает работать go-lint, ругаясь на все 
+                стиливые недочёты кода. Исправляется редактирование settings.json. Выключаем так: 
+            </p>
+
+            <p class="plain">
+            <i>
+            &emsp;&emsp;File &rArr; Preferences &rArr; Settings;<br>
+            &emsp;&emsp;Выбираем где угодно - Edit in settings.json;<br>
+            &emsp;&emsp;Добавляем - "go.lintFlags": ["--disable=all"]<br>
+            </i>
+            </p>
+
+        </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+        
+        <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="plain">
+                <b>whereis</b> - locate the binary, source, and manual page files for a command
+            </p>
+
+        <pre class="line-numbers">
+    <code class="language-bash">whereis {command}</code></pre>
+                
+        </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+        <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="plain">
+                <b>which</b> - locate a command
+            </p>
+
+        <pre class="line-numbers">
+    <code class="language-bash">which {command}</code></pre>
+                
+        </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+        
+        <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+        <div class="record"> 
+            
+            <p class="plain">
+                <b>Create your</b> first golang project
+            </p>
+
+        <pre class="line-numbers">
+    <code class="language-bash">mkdir hello-world
+    cd hello-world
+    go mod init github.com/marcofranssen/hello-world</code></pre>
+                
+        </div> 
+        <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+        <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+        <div class="record"> 
+            
+            <p class="plain">
+                <b>Выключаем golang language server (gopls)</b>, в settings.json нужно добавить:
+            </p>
+
+        <pre class="line-numbers">
+    <code class="language-json">"go.languageServerExperimentalFeatures": {
+    "diagnostics": false
+    },</code></pre>
+                
+        </div> 
+        <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+        <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+        <div class="record"> 
+            
+            <p class="plain">
+                <b>Отключаем старые модули golang</b>, чтобы локальный импорт работал:
+            </p>
+
+        <pre class="line-numbers">
+    <code class="language-bash">go env -w GO111MODULE=off
+    paveltrpn@paveltrpn:~/code/go_hello$ set GOPATH=~\code</code></pre>
+                
+        </div> 
+        <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
         </div>
         
         <div class="menu" id="bottom"></div>
