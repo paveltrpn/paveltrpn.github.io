@@ -354,13 +354,11 @@
         <div class="record"> 
             
             <p class="plain">
-                <b>Выключаем golang language server (gopls)</b>, в settings.json нужно добавить:
+                <b>Выключаем golang language server (gopls)</b>, помогает при "бесконечном" сохранении файла, в settings.json нужно добавить:
             </p>
 
         <pre class="line-numbers">
-    <code class="language-json">"go.languageServerExperimentalFeatures": {
-    "diagnostics": false
-    },</code></pre>
+    <code class="language-json">"go.useLanguageServer": false</code></pre>
                 
         </div> 
         <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
