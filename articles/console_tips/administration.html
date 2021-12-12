@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Administration tips</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="stylesheet" href="../../css/prism.css"/> <!-- Тема подсветки кода для Prism -->
+        <script src="../../js/top_bottom.js" defer></script>
+
+        <!-- Подключение локального MathJax -->
+        <script type="text/javascript" id="MathJax-script" async
+        src="../../js/MathJax3.0.0/es5/tex-svg.js">
+            MathJax.Hub.Config({
+                extensions: ["tex2jax.js","TeX/noErrors.js"],
+	            jax: ["input/TeX","output/HTML-CSS"],
+	            tex2jax: {inlineMath: [['$','$'],["\\(","\\)"]]},
+	            "HTML-CSS": {availableFonts:["TeX"]}
+            });
+        </script>
+        <!-- ============================== -->
+
+    </head>
+    <body>
+        <!-- Подключение скрипта Prism -->
+        <script src="../../js/prism.js"></script>
+
+        <div class="container">
+
+        <div id="top_article" class="menu"></div> <!-- Сюда вставляется код заголовка -->
+
+        <div class="A4">
+
+            <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="plain">
+                <b>Установка ядра 5.8 под Linux Mint 20</b>
+            </p>
+
+            <p class="plain">
+                Ядро по умолчанию в Mint 20 - 5.4. Ядро 5.8 понадобилось, чтобы в VMWare Player 16 заработал OpenGL 4.1.   
+                Установка ядра 5.8 без сборки из *.deb пакетов очень проста. Скачиваем:
+            </p>
+
+            <p class="plain" style="text-align: left;">
+                &emsp;&emsp; - https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8/amd64/linux-headers-5.8.0-050800-generic_5.8.0-050800.202008022230_amd64.deb<br>
+                &emsp;&emsp; - https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8/amd64/linux-image-unsigned-5.8.0-050800-generic_5.8.0-050800.202008022230_amd64.deb<br>
+                &emsp;&emsp; - https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.8/amd64/linux-modules-5.8.0-050800-generic_5.8.0-050800.202008022230_amd64.deb  
+            </p>
+
+            <p class="plain">
+                Нужно убедиться что в папке нет других *.deb пакетов. Далее просто запускаем:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">sudo dpkg -i *.deb</code></pre>
+
+            <p class="plain">
+                После перезагрузки ваполним:
+            </p>
+                
+            <pre class="line-numbers">
+    <code class="language-bash">uname -a</code></pre>
+
+            </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+            <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="plain">
+                <b>Cборка Mesa3d 20.2</b>
+            </p>
+
+            <p class="plain">
+                Скачиваем и паспаковываем дистрибутив с сайта Mesa 3d:
+            </p>
+
+            <p class="plain" style="text-align: left;">
+                &emsp;&emsp; - https://docs.mesa3d.org/download.html
+            </p>
+
+            <p class="plain">
+                Вообще, сборка описана там же на сайте. Собираем по инструкции https://docs.mesa3d.org/install.html. Если в кратце, то:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">meson builddir/
+    ninja -C builddir/
+    sudo ninja -C builddir/ install</code></pre>
+                
+            <p class="plain">
+                Там будет много зависимостей от X11, устанавливаем все, конфигурирум и собираем через Meson и Ninja. После сборки Ninja закинет  
+                собраные бинарники в - `/usr/local/lib/x86_64-linux-gnu`, перемещаем всё это добро в `/usr/lib/x86_64-linux-gnu`.
+            </p>
+
+            </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+            <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="plain">
+                <b>Изменение удаленного URL Git.</b>
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">git remote set-url {remote-name} {remote-url}</code></pre>
+                
+            </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+        <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="plain">
+                <b>whereis</b> - locate the binary, source, and manual page files for a command
+            </p>
+
+        <pre class="line-numbers">
+    <code class="language-bash">whereis {command}</code></pre>
+                
+        </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+        <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="plain">
+                <b>which</b> - locate a command
+            </p>
+
+        <pre class="line-numbers">
+    <code class="language-bash">which {command}</code></pre>
+                
+        </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+        
+        <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+
+            <p class="plain">
+                <b>Собираем xed под Ubuntu 21.10</b>:
+            </p>
+
+            <p class="plain">
+                Скачиваем:
+            </p>
+
+        <pre class="line-numbers">
+    <code class="language-bash">git clone https://github.com/linuxmint/xed</code></pre>
+                
+            <p class="plain">
+                Устанавливаем зависимости:
+            </p>
+            
+            <pre class="line-numbers">
+    <code class="language-bash">sudo apt-get install meson
+    sudo apt-get install libxml2*dev
+    sudo apt-get install libglib2*dev
+    sudo apt-get install build-essential libgtk-3-dev
+    sudo apt-get install gir1.2-gtksource
+    sudo apt-get install libgtksourceview-4-dev
+    sudo apt-get install libpeas*dev
+    sudo apt-get install libxapp*dev
+    sudo apt-get install libgspell-1*dev
+    sudo apt-get install intltool
+    sudo apt-get install itstool</code></pre>
+
+            <p class="plain">
+                Компилируем, собираем и устанавливаем:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash">ninja -v -C build
+    sudo ninja install -v -C build
+    // Это нужно чтобы избежать рантайм ошибки
+    sudo /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/</code></pre>
+
+        </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+        </div>
+        
+        <div class="menu" id="bottom"></div>
+        
+        </div>
+        
+    </body>
+</html>
