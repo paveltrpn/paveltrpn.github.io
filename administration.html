@@ -3,13 +3,13 @@
     <head>
         <title>Administration tips</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="../../css/style.css">
-        <link rel="stylesheet" href="../../css/prism.css"/> <!-- Тема подсветки кода для Prism -->
-        <script src="../../js/top_bottom.js" defer></script>
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/prism.css"/> <!-- Тема подсветки кода для Prism -->
+        <script src="./js/top_bottom.js" defer></script>
 
         <!-- Подключение локального MathJax -->
         <script type="text/javascript" id="MathJax-script" async
-        src="../../js/MathJax3.0.0/es5/tex-svg.js">
+        src="./js/MathJax3.0.0/es5/tex-svg.js">
             MathJax.Hub.Config({
                 extensions: ["tex2jax.js","TeX/noErrors.js"],
 	            jax: ["input/TeX","output/HTML-CSS"],
@@ -168,6 +168,96 @@
 
         </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
+        <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            <p class="subsection">
+                Сборка и установка gcc из исходников под Ubuntu.
+            </p>
+
+            <p class="plain">
+                Это - коротка статья о компиляции GCC 10.1 из исходных кодов под Ubuntu 20.04 x64. По умолчанию
+                Ubuntu 20.04 имеет GCC версии 9.3, которя не плоха, однако версия 10 имеет законченную поддержку
+                стандартов C++11, C++14, C++17 и частичную поддержку стандарта C++20. GCC 10 поддерживает C11 и C++14
+                по умолчанию, больше нет необходимости использовать ключи -std=c11 или -std=c++14.<br>
+                <br>
+                Для начала, давайте убедимся, что у нас установлены все обновления:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">sudo apt update
+    sudo apt upgrade</code></pre>
+
+            <p class="plain">
+                Теперь, установим тулчейн GCC и несколко дополнительных утилит вместе с ним:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">sudo apt install build-essential wget m4 flex bison</code></pre>
+
+            <p class="plain">
+                Далее, загрузим исходный код GCC 10 и пререквизиты (prerequisites) с сайта http://gcc.gnu.org/mirrors.html:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">cd ~
+    wget https://ftpmirror.gnu.org/gcc/gcc-10.1.0/gcc-10.1.0.tar.xz
+    tar xf gcc-10.1.0.tar.xz
+    cd gcc-10.1.0
+    contrib/download_prerequisites</code></pre>
+
+            <p class="plain">
+                Теперь мы можем сконфигурировать и собрать исходный код. Чтобы сохранить систему чистой, будем
+                использовать папку /usr/local/gcc-10.1.0 для установки и добавим суффикс -10.1 к компиляторам
+                GCC из данного пакета. Обычно, мы не хотим смешивать установленный по умолчанию GCC с новой 
+                версией, потому что другие пакеты могут зависеть от него. 
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">cd ~
+    mkdir build && cd build
+    ../gcc-10.1.0/configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu 
+    --prefix=/usr/local/gcc-10.1.0 --enable-checking=release --enable-languages=c,c++,fortran 
+    --disable-multilib --program-suffix=-10.1</code></pre>
+
+            <p class="plain">
+                Теперь можно выполнять сборку GCC, лучше обычно дважды задать количство ядер процессора
+                на компьютере, что бы ускорить сборку. У меня четыре ядра, так что я буду использовать 8
+                параллельных потоков для сборки GCC.
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">make -j 8</code></pre>
+
+            <p class="plain">
+                В зависимости от производительности компьютера, сборка может занять от 30 минут до
+                нескольких часов.
+            </p>
+
+            <p class="plain">
+                Когда предидущий ээтап будет закончен можну выполнить установку GCC:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">sudo make install-strip</code></pre>
+
+            <p class="plain">
+                Если вы хотите установить компиляторы перманентно в системную директорию, добавьте
+                эти строки в конец файла .bashrc.
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">export export PATH=/usr/local/gcc-10.1.0/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/local/gcc-10.1.0/lib64:$LD_LIBRARY_PATH</code></pre>
+
+            <p class="plain">
+                Вставьте в конец файла .bashrc строчки, упомянутые выше, сохраните файл и закройте редактор.
+                Теперь, нужно скащать Bash перезагрузить .bashrc (это произойдёт автоматически, после перезагрузки компьютера):
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">.bashrc</code></pre>
+    
+        </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+        
         </div>
         
         <div class="menu" id="bottom"></div>

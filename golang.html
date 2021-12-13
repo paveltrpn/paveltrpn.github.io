@@ -3,26 +3,13 @@
     <head>
         <title>Golang setup</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="../../css/style.css">
-        <link rel="stylesheet" href="../../css/prism.css"/> <!-- Тема подсветки кода для Prism -->
-        <script src="../../js/top_bottom.js" defer></script>
-
-        <!-- Подключение локального MathJax -->
-        <script type="text/javascript" id="MathJax-script" async
-        src="../../js/MathJax3.0.0/es5/tex-svg.js">
-            MathJax.Hub.Config({
-                extensions: ["tex2jax.js","TeX/noErrors.js"],
-	            jax: ["input/TeX","output/HTML-CSS"],
-	            tex2jax: {inlineMath: [['$','$'],["\\(","\\)"]]},
-	            "HTML-CSS": {availableFonts:["TeX"]}
-            });
-        </script>
-        <!-- ============================== -->
-
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/prism.css"/> <!-- Тема подсветки кода для Prism -->
+        <script src="./js/top_bottom.js" defer></script>
     </head>
     <body>
         <!-- Подключение скрипта Prism -->
-        <script src="../../js/prism.js"></script>
+        <script src="./js/prism.js"></script>
 
         <div class="container">
 
@@ -172,6 +159,14 @@
     go install -v golang.org/x/tools/gopls@latest</code></pre>
 
             <p class="plain">
+                После этого нужно собрать аддон для дебагера golang - glv-dap, как это делает автоматом vs code,
+                но из консоли не получилось, трейс выдал отсутствие каких-то зависимостей.
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-javascript">sudo go build -o /usr/paveltrpn/go/bin/dlv-dap github.com/go-delve/delve/cmd/dlv</code></pre>
+
+            <p class="plain">
                 Потом прописываем путь к ним в settings.json:
             </p>
 
@@ -198,7 +193,8 @@
             <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
 
             <p class="plain">
-                <b>Выключаем golang language server (gopls)</b>, помогает при "бесконечном" сохранении файла, в settings.json нужно добавить:
+                <b>Выключаем golang language server (gopls)</b>, помогает при "бесконечном" сохранении файла
+                в vs code. В settings.json нужно добавить:
             </p>
 
         <pre class="line-numbers">
