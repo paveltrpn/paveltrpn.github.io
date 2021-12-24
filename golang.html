@@ -32,7 +32,7 @@
             </p>
 
             <pre class="line-numbers">
-    <code class="language-shell">$ wget -c https://storage.googleapis.com/golang/go{version}.linux-amd64.tar.gz</code></pre>
+    <code class="language-shell">$ wget -c https://storage.googleapis.com/golang/go1.17.5.linux-amd64.tar.gz</code></pre>
  
             <p class="plain">
                 Распаковываем в /home/{USER}/go-{VERSION}, формируя дерево каталога Golang в /home/{USER}/go-{VERSION}/go:
@@ -180,19 +180,6 @@
             <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
 
             <p class="plain">
-                <b>Создание golang проекта</b>
-            </p>
-
-        <pre class="line-numbers">
-    <code class="language-bash">mkdir hello-world
-    cd hello-world
-    go mod init github.com/marcofranssen/hello-world</code></pre>
-
-            </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
-
-            <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-
-            <p class="plain">
                 <b>Выключаем golang language server (gopls)</b>, помогает при "бесконечном" сохранении файла
                 в vs code. В settings.json нужно добавить:
             </p>
@@ -230,6 +217,35 @@
     sudo apt-get install libgl-dev
     sudo apt-get install -y libxxf86vm-dev</code></pre>
 
+        </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+        <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+
+        <p class="plain">
+            <b>Настройка нового проекта.</b> В среде Ubuntu 21.10, Golang 1.17.5, VSCode.
+        </p>
+
+        <p class="plain">
+            Дерево каталога организуем согласно https://github.com/golang-standards/project-layout - 
+            ./prj-name/cmd; ./prj-name/internal; ./prj-name/pkg и т.д.
+            В ./prj-name запускаем:
+        </p>
+
+        <pre class="line-numbers">
+    <code class="language-bash">go mod init prj-name</code></pre>
+
+        <p class="plain">
+            Если в родительской директории есть ещё код, то gopls выпадет с ошибкой некорректной настройки
+            workspace. Для исправления ситуации нужно настроить gopls для работы с т.н. "Multiple modules".
+            Пока что фича эксперементальная, немного описано тут - https://go.googlesource.com/tools/+/refs/heads/master/gopls/doc/workspace.md.
+            Для начала работы дописываем в settings.json:            
+        </p>
+
+        <pre class="line-numbers">
+    <code class="language-bash">"gopls": {
+        "build.experimentalWorkspaceModule": true
+    }</code></pre>
+    
         </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
         </div>
