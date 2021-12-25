@@ -35,14 +35,15 @@
     <code class="language-shell">$ wget -c https://storage.googleapis.com/golang/go1.17.5.linux-amd64.tar.gz</code></pre>
  
             <p class="plain">
-                Распаковываем в /home/{USER}/go-{VERSION}, формируя дерево каталога Golang в /home/{USER}/go-{VERSION}/go:
+                Распаковываем в /home/{USER}/go, потом переименуем в /home/{USER}/go-{VERSION}:
             </p>
 
             <pre class="line-numbers">
-    <code class="language-shell">$ tar -C /home/{USER}/go-{VERSION} -xzf go$VERSION.$OS-$ARCH.tar.gz</code></pre>
+    <code class="language-shell">$ tar -xzf go$VERSION.$OS-$ARCH.tar.gz
+    $ mv /home/{USER}/go /home/{USER}/go-{VERSION}</code></pre>
             
             <p class="plain">
-                Теперь добавляем /home/{USER}/go-{VERSION}/go/bin в переменную среды PATH, вставив строку приведенную ниже в 
+                Теперь добавляем /home/{USER}/go-{VERSION}/bin в переменную среды PATH, вставив строку приведенную ниже в 
                 файл /etc/profile для общесистемной установки или $HOME/.profile и $HOME/.bashrc (или $HOME./bash_profile) для 
                 пользовательской установки, используя ваш любимый редактор, откройте соответствующий файл профиля 
                 пользователя в соответствии с вашим дистрибутивом и добавьте строку приведенную ниже, сохраните файл и выйдите из него:
@@ -62,6 +63,17 @@
     $ source ~/.profile
     или
     $ source ~/.bashrc</code></pre>
+
+            <p class="plain">
+                <b>VSCode под Linux</b> может выдавать ошибку о том, что не нашел бинарники golang - <i>failed 
+                to find the go binary in either goroot() or path</i>, чтобы исправить можно захарткодить GOROOT в 
+                settings.json 
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-json">...
+        "go.goroot": "/home/paveltrpn/go-1.17.5",
+    ...</code></pre>
 
             </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
             

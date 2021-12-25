@@ -22,7 +22,7 @@
     </head>
     <body>
         <!-- Подключение скрипта Prism -->
-        <script src="../../js/prism.js"></script>
+        <script src="./js/prism.js"></script>
 
         <div class="container">
 
@@ -256,6 +256,87 @@
             <pre class="line-numbers">
     <code class="language-shell">.bashrc</code></pre>
     
+        </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+                
+        <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="subsection">
+                Настройка Manjaro (на примере 21.2.0)
+            </p>
+
+            <p class="plain">
+                По умолчанию vmware linux tools установлены, можно проверить:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">sudo pacman -Q | grep open-vm-tools</code></pre>
+
+            <p class="plain">
+                <b>Устанавливаем</b> основные зависимости (пакетный менеджер тут pacman):
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell">$ sudo pacman -Syu git # если ещё не установлен
+    $ sudo pacman -Syu xed mc conky
+    $ sudo pacman -Syu binutils make gcc pkg-config fakeroot</code></pre>
+
+            <p class="plain">
+                памятка по pacman:
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-shell"># Синхронизовать локальную базу данных репозиториев и обновить все пакеты
+    $ sudo pacman -Syu {name}
+
+    # Установить новый пакет
+    $ sudo pacman -S {name}
+
+    # Удалить пакет не трогая зависимости
+    $ sudo pacman -R {name}
+
+    # Удалить пакет и его зависимости
+    $ sudo pacman -Rs {name}
+
+    # Поиск пакета в базе данных по регулярному выражению или ключевому слову
+    $ sudo pacman -Ss {search_pattern}
+
+    # Вывести список установленных пакетов и их версии
+    $ sudo pacman -Q 
+
+    # Вывести список явно установленных пакетов и их версии
+    $ sudo pacman -Qe 
+    
+    # Определить, какому из пакетов принадлежит данный файл
+    $ sudo pacman -Qo
+
+    # Очистить кеш пакетов для высвобождения дискового пространства
+    $ sudo pacman -Scc </code></pre>
+
+            <p class="plain">
+                Для <b>устанавки</b> VSCode или любого другого пакета, который собирается из
+                репозитория AUR (исходников) нужно что бы в системы были установлены зависимости для сборки - 
+                <i>binutils, make, gcc, pkg-config, fakeroot</i>, далее пакет выкачевается и собирается (на 
+                примере VSCode):
+            </p>
+
+        <pre class="line-numbers">
+    <code class="language-shell">$ git clone https://aur.archlinux.org/visual-studio-code-bin.git
+    $ cd visual-studio-code-bin/
+    # Далее собираем, но по умолчанию makepkg использует
+    # один поток, можно подправить конфиг для исправления
+    $ xed /etc/makepkg.conf 
+    # Строка MAKEFLAGS="-j8"
+    $ makepkg -si
+    # Тут -s - Install missing dependencies using pacman
+    #     -i - Install or upgrade the package after a successful build using pacman</code></pre>
+
+            <p class="plain">
+                <b>Добавляем автозапуск</b> через gnome-tweaks:
+            </p>
+
+        <pre class="line-numbers">
+    <code class="language-shell">$ gnome-tweaks</code></pre>
+
         </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
         
         </div>
