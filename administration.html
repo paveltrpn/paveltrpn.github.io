@@ -277,7 +277,7 @@
 
             <pre class="line-numbers">
     <code class="language-shell">$ sudo pacman -Syu git # если ещё не установлен
-    $ sudo pacman -Syu xed mc conky
+    $ sudo pacman -Syu xed mc conky cmake
     $ sudo pacman -Syu binutils make gcc pkg-config fakeroot</code></pre>
 
             <p class="plain">
@@ -336,9 +336,30 @@
 
         <pre class="line-numbers">
     <code class="language-shell">$ gnome-tweaks</code></pre>
+    
+            </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+            
+            <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+                
+                <p class="plain">
+                    <b>Как изменить shell?</b>
+                </p>
+    
+        <pre class="line-numbers">
+    <code class="language-bash">$ echo $SHELL # используемая оболочка
+    $ cat /etc/shells # доступные оболочки   
+    $ chsh -s {path} # например /bin/bash </code></pre> 
+
+        <p class="plain">
+            PS1 - переменная в bashrc, которая отвечает за формат строки преглашения в шеле.
+        </p>
+
+        <pre class="line-numbers">  
+    <code class="language-bash"># алиас на ls для вывода всех файлов в список в алфавитном порядке
+    alias ls='ls --color=auto -l -A -X'</code></pre>
 
         </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
-        
+
         </div>
         
         <div class="menu" id="bottom"></div>
