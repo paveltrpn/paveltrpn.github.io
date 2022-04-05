@@ -96,40 +96,75 @@
             <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
             
             <p class="plain">
-                <b>Изменение удаленного URL Git.</b>
+                <b>Git tips</b>
             </p>
 
             <pre class="line-numbers">
-    <code class="language-bash">git remote set-url {remote-name} {remote-url}</code></pre>
+    <code class="language-bash"># Установить асевдоним удалённого репозитория
+    git remote set-url {remote-name} {remote-url}</code></pre>
                 
             </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
         <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
             
             <p class="plain">
-                <b>whereis</b> - locate the binary, source, and manual page files for a command
+                <b>Command line tips</b>
             </p>
 
         <pre class="line-numbers">
-    <code class="language-bash">whereis {command}</code></pre>
-                
-        </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
-
-        <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-            
-            <p class="plain">
-                <b>which</b> - locate a command
-            </p>
-
-        <pre class="line-numbers">
-    <code class="language-bash">which {command}</code></pre>
+    <code class="language-bash"># locate the binary, source, and manual page files for a command
+    whereis {command}
+    
+    # locate a command
+    which {command}</code></pre>
                 
         </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
         
         <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+            
+            <p class="plain">
+                <b>Работа с пакетами в Ubuntu</b>
+            </p>
+
+            <pre class="line-numbers">
+    <code class="language-bash"># Вывести список установленных пакетов (и отфильтровать по имени)
+    sudo apt list --installed | grep {package-name}
+    # или
+    dpkg-query -l {package-name}
+
+    # Вывести список пакетов к которым доступны обновления (И посчитать сколько их)
+    apt list --upgradable | wc -l
+
+    # добавить репозиторий
+    sudo add-apt-repository ppa:{repo-name}/ppa
+
+    # удалить репозиторий
+    sudo add-apt-repository --remove ppa:{repo-name}/ppa
+    
+    # и потом не забыть сделать
+    sudo apt update
+
+    # установить из *.deb пакета (на примере vs code)
+    apt-get install -f ./code_1.39.2-1571154070_amd64.deb
+
+    # Обновить один конкртный пакет
+    sudo apt-get install --only-upgrade {package-name}</code></pre>
+
+        <p class="plain">
+                <b>Принудительно включаем X.Org</b> вместо Wayland в Ubuntu
+        </p>
+
+        <pre class="line-numbers">
+    <code class="language-bash">sudo xed /etc/gdm3/custom.conf
+    # и там раскомментируем строку
+    # WaylandEnable=false</code></pre>
+
+        </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+        <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
 
             <p class="plain">
-                <b>Собираем xed под Ubuntu 21.10</b>:
+                <b>Собираем xed под Ubuntu 21.10</b>
             </p>
 
             <p class="plain">
@@ -169,8 +204,8 @@
         </div> <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
         <div class="record"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-            <p class="subsection">
-                Сборка и установка gcc из исходников под Ubuntu.
+            <p class="plain">
+                <b>Сборка и установка gcc из исходников под Ubuntu</b>
             </p>
 
             <p class="plain">
