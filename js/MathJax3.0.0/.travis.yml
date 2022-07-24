@@ -1,13 +1,13 @@
 language: node_js
 node_js:
-- stable
+  - stable
 sudo: false
 script:
-- npm install
-- npm test
+  - npm install
+  - npm test
 branches:
   only:
-  - "/^\\d+\\.\\d+/"
+    - "/^\\d+\\.\\d+/"
 deploy:
   provider: npm
   email: mjadmin@mathjax.org

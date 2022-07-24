@@ -6,18 +6,17 @@ quickly and easily.
 
 There are lots and lots of ways to get involved, this document covers:
 
-* [reporting an issue](#reporting-an-issue)
-    * [bug reports](#bug-reports)
-    * [feature requests](#feature-requests)
-    * [change requests](#change-requests)
-* [working on MathJax core](#working-on-mathjax-core)
-    * [key branches and tags](#key-branches--tags)
-    * [submitting pull requests](#submitting-pull-requests)
-    * [testing and quality assurance](#testing-and-quality-assurance)
-    * [writing documentation](#writing-documentation)
-    * [translation](#translation)
-* [Conduct](#conduct)
-
+- [reporting an issue](#reporting-an-issue)
+  - [bug reports](#bug-reports)
+  - [feature requests](#feature-requests)
+  - [change requests](#change-requests)
+- [working on MathJax core](#working-on-mathjax-core)
+  - [key branches and tags](#key-branches--tags)
+  - [submitting pull requests](#submitting-pull-requests)
+  - [testing and quality assurance](#testing-and-quality-assurance)
+  - [writing documentation](#writing-documentation)
+  - [translation](#translation)
+- [Conduct](#conduct)
 
 ## Reporting An Issue
 
@@ -32,19 +31,19 @@ requests](#feature-requests), [change requests](#change-requests), and
 [submitting pull requests](#submitting-pull-requests), but please
 respect the following restrictions:
 
-* Please **search for existing issues**. Help us keep duplicate issues
+- Please **search for existing issues**. Help us keep duplicate issues
   to a minimum by checking to see if someone has already reported your
   problem or requested your idea.
 
-* Please **do not** use the issue tracker for personal support
+- Please **do not** use the issue tracker for personal support
   requests (use [the MathJax User Group](https://groups.google.com/forum/#!forum/mathjax-users)).
 
-* Please **be civil**. Keep the discussion on topic and respect the
+- Please **be civil**. Keep the discussion on topic and respect the
   opinions of others. See also our [Conduct Guidelines](#conduct)
 
 ### Bug Reports
 
-A bug is a *demonstrable problem* that is caused by the code in the
+A bug is a _demonstrable problem_ that is caused by the code in the
 repository. Good bug reports are extremely helpful &mdash; thank you!
 
 Guidelines for bug reports:
@@ -116,16 +115,15 @@ do you expect to happen instead?
 * Browser: Chrome 29.0.1547.57
 ```
 
-
 ### Feature Requests
 
 Feature requests are welcome. Before you submit one, be sure to have:
 
-1. **Used the GitHub search** to check that the feature hasn't already    been requested.
+1. **Used the GitHub search** to check that the feature hasn't already  been requested.
 2. Take a moment to think about whether your idea fits with the scope
    and aims of the project, or if it might better fit being a [custom
    extension](https://github.com/mathjax/MathJax-third-party-extensions).
-3. Remember, it's up to *you* to make a strong case to convince the
+3. Remember, it's up to _you_ to make a strong case to convince the
    project's leaders of the merits of this feature. Please provide as
    much detail and context as possible, this means explaining the use
    case and why it is likely to be common.
@@ -140,13 +138,13 @@ a refactor, or an improvement to a feature, etc., please be sure to:
 2. Take a moment to think about the best way to make a case for, and
    explain what you're thinking. Are you sure this shouldn't really be
    a [bug report](#bug-reports) or a [feature
-   request](#feature-requests)?  Is it really one idea or is it many?
+   request](#feature-requests)? Is it really one idea or is it many?
    What's the context? What problem are you solving? Why is what you
    are suggesting better than what's already there?
 
 ## Working on MathJax core
 
-You want to contribute code? We describe how below.  First, note that the MathJax source code is in the <https://github.com/mathjax/MathJax-src> repository, not the <https://github.com/mathjax/MathJax> repository, which contains the packaged component files for distribution on CDNs and the [mathjax npm package](https://www.npmjs.com/package/mathjax) (the source code is included in the [mathjax-full npm package](https://www.npmjs.com/package/mathjax-src)).
+You want to contribute code? We describe how below. First, note that the MathJax source code is in the <https://github.com/mathjax/MathJax-src> repository, not the <https://github.com/mathjax/MathJax> repository, which contains the packaged component files for distribution on CDNs and the [mathjax npm package](https://www.npmjs.com/package/mathjax) (the source code is included in the [mathjax-full npm package](https://www.npmjs.com/package/mathjax-src)).
 
 ### Key Branches & Tags
 
@@ -159,38 +157,37 @@ MathJax uses several permanent branches in the [MathJax source repository](https
   site.
 
 - **[master](https://github.com/mathjax/MathJax-src)** contains the latest
-  release of MathJax. This branch may be used in production. Do 
+  release of MathJax. This branch may be used in production. Do
   **NOT** use this branch to work on MathJax's source.
 
 These branches reflect version 3 of MathJax, which is substantially
-different from the version 2 codebase.  Version 2 will continue to be
+different from the version 2 codebase. Version 2 will continue to be
 maintained while web sites transition to version 3, with work being
 done using the following branches  in the [MathJax distribution
 repository](https://github.com/mathjax/MathJax):
 
 - **[legacy-v2-develop](https://github.com/mathjax/MathJax/tree/legacy-v2-develop)** 
   is the development branch for changes to the legacy version 2 code.
-  Any  pull requests for version 2 should be branched from here.  Do
+  Any  pull requests for version 2 should be branched from here. Do
   **NOT** use  this branch for a production site.
 
 - **[legacy-v2](https://github.com/mathjax/MathJax/tree/legacy-v2)**
   is the  branch that contains any updates to version 2 following
-  the release of  version 3.  Do **NOT** use this branch to work on
+  the release of  version 3. Do **NOT** use this branch to work on
   MathJax's source.
 
 In addition to these branches, MathJax uses tags to identify the
-various versions.  These can be checked out to obtain the specified
+various versions. These can be checked out to obtain the specified
 release; for example, `git checkout 2.7.5` would get you the files for
 version 2.7.5 of MathJax.
 
 Note that version 3 is written in Typescript, and so must be compiled
 to obtain usable javascript files, and that the components need to be
-built once that is done.  See the
+built once that is done. See the
 [documentation](https://docs.mathjax.org/en/latest/web/hosting.html#getting-mathjax-via-git)
 for details. For version 2, the source javascript files are not
 compressed until a release is made, so you should use the copies in
 the `unpacked` directory during development.
-  
 
 ### Submitting Pull Requests
 
@@ -203,14 +200,14 @@ merged.
 
 ##### Need Help?
 
-If you're not completely clear on how to submit/update/*do* Pull
+If you're not completely clear on how to submit/update/_do_ Pull
 Requests, please check out our [source control
 policies](https://github.com/mathjax/MathJax/wiki/Source-control-policies). For
 more insights, check the excellent in depth [Git Workflow
 guide](https://github.com/TryGhost/Ghost/wiki/Git-Workflow) from
 Ghost, in particular
 
-* [Ghost Workflow guide: commit messages](https://github.com/TryGhost/Ghost/wiki/Git-workflow#commit-messages)
+- [Ghost Workflow guide: commit messages](https://github.com/TryGhost/Ghost/wiki/Git-workflow#commit-messages)
 
 ### Testing and Quality Assurance
 
@@ -224,7 +221,6 @@ instructions](https://gist.github.com/piscisaureus/3342247) on
 configuring your GitHub repository to allow you to checkout pull
 requests in the same way as branches.
 
-
 ### Writing documentation
 
 MathJax's main documentation can be found at [docs.mathjax.org](http://docs.mathjax.org).
@@ -233,10 +229,9 @@ The source of the docs is hosted in the
 
 The documentation is generated using
 [Sphinx-doc](http://sphinx-doc.org/) and hosted on [Read the
-docs](http://readthedocs.org).  You can clone the repo and submit pull
+docs](http://readthedocs.org). You can clone the repo and submit pull
 requests following the [pull-request](#submitting-pull-requests)
 guidelines.
-
 
 ### Translation
 
@@ -273,7 +268,7 @@ Please keep unstructured critique to a minimum. If you have solid
 ideas you want to experiment with, make a fork and see how it works.
 
 We will exclude you from interaction if you insult, demean or harass
-anyone.  That is not welcome behaviour. We interpret the term
+anyone. That is not welcome behaviour. We interpret the term
 "harassment" as including the definition in the [Unacceptable
 Behavior](https://numfocus.org/code-of-conduct#unacceptable-behavior)
 section of the [NumFOCUS code of
@@ -299,8 +294,8 @@ for further suggestions on appropriate behavior.
 
 ## References
 
-* We heavily borrowed from Mozilla and Ghost -- thank you!
-  * <https://github.com/TryGhost/Ghost/blob/master/CONTRIBUTING.md>
-  * <https://github.com/mozilla/rust/wiki/Note-development-policy>
-* <https://github.com/jden/CONTRIBUTING.md/blob/master/CONTRIBUTING.md>
-* <http://blog.discourse.org/2013/03/the-universal-rules-of-civilized-discourse/>
+- We heavily borrowed from Mozilla and Ghost -- thank you!
+  - <https://github.com/TryGhost/Ghost/blob/master/CONTRIBUTING.md>
+  - <https://github.com/mozilla/rust/wiki/Note-development-policy>
+- <https://github.com/jden/CONTRIBUTING.md/blob/master/CONTRIBUTING.md>
+- <http://blog.discourse.org/2013/03/the-universal-rules-of-civilized-discourse/>
