@@ -80,7 +80,14 @@ body > div {
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
-.article small {
+
+.article ul {
+  margin-left: 30px; /* Отступ слева */
+  margin-right: 40px;
+  text-align: justify; /* Выравнивание по ширине */
+  word-break: break-word;
+  font-weight: normal;
+  line-height: 1.4em;
 }
 
 @media print {
