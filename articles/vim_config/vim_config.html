@@ -227,7 +227,7 @@ use 'kyazdani42/nvim-tree.lua'
 # Опционально сразу же можно
 # установить набор иконок, они пригодятся
 # не только для этих плагинов. Тут необходимо, так же
-# установить пагченые шрифты семейства nerd, 
+# установить патченые шрифты семейства nerd, 
 # например Fira Code Nerd
 Plug 'ryanoasis/vim-devicons'
 use {'kyazdani42/nvim-web-devicons'}</code></pre>
@@ -268,7 +268,11 @@ Plug 'mileszs/ack.vim'
 
 # packer.nvim
 use 'ibhagwan/fzf-lua'
-</code></pre>
+use {
+  'nvim-telescope/telescope.nvim', tag = '0.1.0',
+-- or                            , branch = '0.1.x',
+  requires = { {'nvim-lua/plenary.nvim'} }
+}</code></pre>
       <h3>Строка состояния и закладки</h3>
       <p>
         Не то, что бы совсем необходимые вещи, но это определённо оживляет
@@ -303,10 +307,11 @@ use 'romgrk/barbar.nvim'</code></pre>
         специализированное решение, но несколько медленнее т.к. тянет с собой
         node.js runtime. Я использую его в дополнение к vim-go в качестве
         "generic" автодополнения.<br />
-        В случае Neovim вся работа идёт через нативный LSP сервер, который, тем
-        не менее, требует отдельного расширения для интеграции и настройки. Это
-        расширение может (и должно) быть дополнено специализированным решением
-        (може быть что то из этого - 'olexsmir/gopher.nvim', 'govim/govim').<br />
+        В случае <b>Neovim</b> вся работа идёт через нативный LSP сервер,
+        который, тем не менее, требует отдельного расширения для интеграции и
+        настройки. Это расширение может (и должно) быть дополнено
+        специализированным решением (може быть что то из этого -
+        'olexsmir/gopher.nvim', 'govim/govim').<br />
         Сюда же относится интеграция с git. Всегда полезно и удобно иметь
         возможность отслеживать измениения относительно последнего коммита и
         т.п.
@@ -322,6 +327,13 @@ Plug 'airbladbe/vim-gitgutter'
 # Требует отдельной настройки, которая
 # описана на гитхабе проекта
 use 'neovim/nvim-lspconfig'
+# Autocomplition engine
+# for work need do this:
+# sudo apt-get install python3-venv
+# :COQdeps
+use 'ms-jpq/coq_nvim'
+# snippets
+use 'ms-jpq/coq.artifacts'
 # Поддержка git
 use 'lewis6991/gitsigns.nvim'</code></pre>
       <h3>Дополнительные мелочи</h3>

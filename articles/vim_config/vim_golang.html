@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Готовим vim (nvim) для golang</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/prism.css" />
+  </head>
+  <body>
+    <!-- Подключение скрипта Prism -->
+    <script src="../../js/prism.js"></script>
+
+    <!-- Header begin -->
+    <div class="header">
+      <h1>Paveltrpn GitHub IO</h1>
+
+      <div>
+        <p><a href="../../index.html">Posts</a></p>
+        <p>About</p>
+        <p>Todo</p>
+      </div>
+    </div>
+    <!-- Header end -->
+
+    <div class="article">
+      <h2>Готовим vim (nvim) для golang</h2>
+      <p>
+        Настройка vim (neovim) для работы в качестве IDE для конкретного языка
+        программирования задача довольно нетривиальная, что бы не говорили
+        эксперты в интернете. Сходу трудно разобраться в обилии плагинов,
+        расширений этих плагинов и расширений расширений и т.д. Кто-то реализут
+        LSP, кто-то работает через native LSP, некоторые настолько стары, что
+        вообще обходятся без отдельного сервера, кто-то конкурирует с этими
+        решениями, размывая поляну для настроки, а сверху это ещё приправлено
+        движками автодополнения, сниппетов и пр.<br />
+        Среди всего этого разнообразися создётся ощущуние, что <b>golang</b> с
+        его экосистемой наиболее подготовлен для интеграции с vim - всё что
+        нужно поставляется вместе с дистрибутивом языка, либо поддерживается
+        самим гуглом, либо легко устанавливается. Такие инструменты как gopls,
+        staticcheck, delve, gofmt (goimports), т.е. весь джентельменский набор
+        находится на расстоянии вытянутой руки, довольно однозначен и активно
+        поддерживается.
+      </p>
+      <h3>Начинаем</h3>
+      <p>
+        Рассказ будет относится как к vim так и к neovim, перечень тоебований к
+        будующей сборке примерно такой:
+      </p>
+
+      <ul>
+        <li>Автодополнение в контектсе языка (и общее)</li>
+        <li>Отображение документации и информации о символах (например тип)</li>
+        <li>Go to definition и обратно</li>
+        <li>Линтер, форматирование, подсветка ошибок, staticcheck и т.д.</li>
+      </ul>
+
+      <h3>Neovim</h3>
+      <p>
+        Первым делом добавим возможность копировать и вставлять текст из
+        системного clipboard
+      </p>
+      <pre>
+<code class="language-bash"># для wayland
+sudo apt-get install wl-clipboard
+
+# для X11
+sudo apt-get install xclip</code></pre>
+      <p>
+        Настройка neovim будет идти с использованием нативного LSP сервера и
+        движка автодополнения coq.nvim. Тут существует возможности фактически
+        дублирования конфига vim, но нативное решение кажется более
+        подходящим.<br />
+        Подготовим файлы конфигурации и разместим их на своих местах (если это
+        ещё не сделано):
+      </p>
+      <pre>
+<code class="language-bash"># основной файл конфигурации
+touch ~/.config/nvim/init.lua
+
+# директория со скриптами инициализации
+# и насторойки плагинов. Подгружается
+# автоматически
+mkdir ~/.config/nvim/lua
+touch ~/.config/nvim/lua/nvim-lspconfig.lua</code></pre>
+      <p>Скачиваем и устанавливаем менеджер пакетов packer.nvim</p>
+      <pre>
+<code class="language-bash">curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></pre>
+      <p>
+        Далее показана та часть init.lua, которая отвечает за подключение
+        слбственно packer.nvim и плагинов, которые сдклают из ванильного neovim
+        подобие golang IDE
+      </p>
+      <pre>
+<code class="language-lua">
+local use = require('packer').use
+require('packer').startup(function()
+  -- Boilerplate для поддержки нативного LSP 
+  -- сервера
+  use 'neovim/nvim-lspconfig'
+  -- Автодополнение    
+  use 'ms-jpq/coq_nvim'
+  -- Сниппеты
+  use 'ms-jpq/coq.artifacts'
+
+end)</code></pre>
+      <p>
+        Дале по порядку, <b>neovim/nvim-lspconfig</b> - основной плагин всей
+        этой истории. Boilerplate для нативного LSP сервера. Имеет поддержку для
+        многих серверов, но нас интересует только gopls (и, возможно,
+        sumneko/lua-language-server, но тут не о нём). Файл конфигурации для
+        golang будет преведён ниже. Все привязки клавишь видны из него и
+        повторять их отдельно смысла не вижу. В целом подключается он без
+        проблем, единственное замечание - поделючение файла в init.lua должно
+        быть после всех остальных, иначе в моём конфиге не работали хоткей,
+        видимо их перетирал какойто другой плагин
+      </p>
+      <pre>
+<code class="language-lua"> -- init.lua
+...
+-- use 'neovim/nvim-lspconfig'
+-- This line placed last in file because i found 
+-- that some plugins in this config obscure 
+-- mappings of LSP server if it included before them
+require "nvim-lspconfig"
+-- EOF nvim.lua
+
+-- nvim-lspconfig.lua
+
+-- NEOVIM LSP DEFAULT CONFIG --
+-- Mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '&lt;space&gt;e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '&lt;space&gt;q', vim.diagnostic.setloclist, opts)
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  -- Enable completion triggered by &lt;c-x&gt;&lt;c-o&gt;
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '&lt;C-k&gt;', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '&lt;space&gt;wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '&lt;space&gt;wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '&lt;space&gt;wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '&lt;space&gt;D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '&lt;space&gt;rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '&lt;space&gt;ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '&lt;space&gt;f', vim.lsp.buf.formatting, bufopts)
+end
+
+local lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
+}
+
+util = require "lspconfig/util"
+
+require'lspconfig'.gopls.setup {
+    cmd = {'gopls'},
+    filetypes = {"go", "gomod"},
+    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+	-- for postfix snippets and analyzers
+	capabilities = capabilities,
+	    settings = {
+	      gopls = {
+		      experimentalPostfixCompletions = true,
+		      analyses = {
+		        unusedparams = true,
+		        shadow = true,
+		     },
+		     staticcheck = true,
+		    },
+	    },
+
+    on_attach = on_attach,
+    flags = lsp_flags,
+}</code></pre>
+      <p>
+        Автодополнение - <b>ms-jpq/coq_nvim</b> и сниппеты -
+        <b>ms-jpq/coq.artifacts</b> необходимые спутники LSP сервера. Их
+        подключение происходит просто в init.lua. У этой пары есть конкуренты в
+        виде группы nvim-cmp, но их подключени и настройка нескольео сложнее.
+        Нужно сказать, что перед использованием этих расштрений необходимо
+        сделать некоторые телодвижения
+      </p>
+      <pre>
+<code class="language-bash">sudo apt-get install python3-venv
+# далее в консоли neovim
+:COQdeps
+:COQnow</code></pre>
+      <p>
+        Подключаются эти расширения через init.lua, отдельный файл, на мой
+        взгляд, им не нужен
+      </p>
+      <pre>
+<code class="language-lua">...
+-- use 'ms-jpq/coq_nvim'
+-- Config coq.nvim autostart
+vim.cmd([[
+let g:coq_settings = {'auto_start': 'shut-up'}
+]])
+-- Config to use with gopls
+local lsp = require "lspconfig"
+local coq = require "coq"
+...</code></pre>
+      <p>
+        На этом минимальную настройку поддержки IDE функций golang в neovim
+        можно считать законченной. Сейчас мы уже имеем автодополнение кода по
+        вызову ctrl-c+ctrl-o, автодополнение кода на основе анализа имеющегося
+        текста, сниппеты, go to definition, просмотр godoc по K (shift-k),
+        индикацию ошибок прямо в коде и навигацию по ним. Чего не хватает -
+        возможностей vim-go, а именно вызова комманд go по горячим клаыишам,
+        например staticchek или goimports, но это решается подключением vim-go
+        по образцу конфигурации vim
+      </p>
+      <h2>Vim</h2>
+    </div>
+  </body>
+</html>
