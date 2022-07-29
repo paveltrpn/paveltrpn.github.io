@@ -88,7 +88,7 @@ touch ~/.config/nvim/lua/nvim-lspconfig.lua</code></pre>
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></pre>
       <p>
         Далее показана та часть init.lua, которая отвечает за подключение
-        слбственно packer.nvim и плагинов, которые сдклают из ванильного neovim
+        собственно packer.nvim и плагинов, которые сдклают из ванильного neovim
         подобие golang IDE
       </p>
       <pre>
@@ -223,11 +223,175 @@ local coq = require "coq"
         вызову ctrl-c+ctrl-o, автодополнение кода на основе анализа имеющегося
         текста, сниппеты, go to definition, просмотр godoc по K (shift-k),
         индикацию ошибок прямо в коде и навигацию по ним. Чего не хватает -
-        возможностей vim-go, а именно вызова комманд go по горячим клаыишам,
+        возможностей vim-go, а именно вызова комманд go по горячим клавишам,
         например staticchek или goimports, но это решается подключением vim-go
         по образцу конфигурации vim
       </p>
       <h2>Vim</h2>
+      <p>
+        Общение с системным clipboard в vim, скорее всего, будет доступго по
+        умолчанию, но в любом случае всё описано ниже
+      </p>
+      <pre>
+<code class="language-bash"># проверим есть ли поддежка
+vim --version | grep clipboard
+# должна присутствовать строчка +clipboard
+# если её нет, то необходимо пересобрать vim
+# с поддержкой clipboard
+
+git clone https://github.com/vim/vim
+cd vim/
+./configure\ 
+  --enable-cscope\
+  --with-features=huge\
+  --with-x\
+  --with-compiledby="some guy"
+make -j6
+sudo make install</code></pre>
+      <p>
+        Настраивать vim будем с использованием плагинов vim-go и coc.nvim (не
+        путать с решением выше, там coq). Подготовим файлы конфигурации и
+        разместим их на своих местах (если это ещё не сделано):
+      </p>
+      <pre>
+<code class="language-bash"># основной файл конфигурации
+touch ~/.vimrc
+mkdir ~/.vim
+
+# настройки плагина vim-go
+touch ~/.vim/vim-go.vim
+# настройки плагина coc.nvim
+touch ~/.vim/coc.vim
+# файл конфигурации coc.vim
+touch ~/.vim/coc-settings.json</code></pre>
+      <p>Скачиваем и устанавливаем менеджер пакетов vim-plug</p>
+      <pre>
+<code class="language-bash">curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</code></pre>
+      <p>
+        Далее показана та часть .vimrc, которая отвечает за подключение
+        собственно vim-plug и плагинов, которые сдклают из ванильного vim
+        подобие golang IDE
+      </p>
+      <pre>
+<code class="language-vim">call plug#begin()
+" Golang vim plugin
+  Plug 'fatih/vim-go'
+
+  " Autocomplete plugin. Very complex node.js plugin with many features,
+  " many languages support and so on. I prefer to use vim-go instead of it by now.
+  " May be plugged whihout golang extension just for autocomplete and use
+  " vim-go for golang features.
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
+...
+source ~/.vim/vim-go.vim
+source ~/.vim/coc.vim
+...
+      </code></pre>
+      <p>
+        <b>fatih/vim-go</b> - основной плагин, добавляет поддержку golang,
+        работает через общение с gopls и остальными утилитами golang. Позволяет
+        выполнять все необходимые манируляции с кодом через комманды - :GoRun,
+        :GoBuild, :GoLint, :GoFmt и т.д. В моём конфиге настроены несколько
+        шорткатов (помимо ctrl-x+ctrl-o и shift-k для godoc) - &lt;leader&gt;l
+        для вызова линтера (staticcheck), &lt;leader&gt;f для форматирования и
+        импортов (goimports).<br />
+        <b>neoclide/coc.nvim</b> - на самом деле это очень внушительный комбайн
+        для автодополнения кода, работы с LSP и ещё кучей возможностей.
+        Поддерживает собственные расширения (:CocInstall coc-go например,
+        CocUninstal - удалить, CocList - управление расширениями) через которые
+        можно настроить сам golang и вообще любой другой язык. В моём случае он
+        использует два расширения - coc-go для поддержкт golang, coc-snippets
+        очевидно для сниппетов и выполняет функцию нескучного автодопоaлнения
+        произвольного текста. Для работы использует node.js.<br />
+        Далее приведён vim-go.vim, который отвечает за насторйку этого
+        расширения. Файл конфигурации для coc.nvim слишком велик, что бы
+        привести его здесь, его можно найти в репозитории.
+      </p>
+      <pre>
+<code class="language-vim">" Plug 'fatih/vim-go'
+" Golang vim-go plugin hightlights options
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_extra_types = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+
+" Show identifier info in status bar
+let g:go_auto_type_info = 1
+
+let g:go_doc_popup_window = 1
+let g:go_metlainter_command = "staticcheck"
+" May be set to gofmt instead, beacuse of some people claims
+" that goimports may take long time for work.
+let g:go_fmt_command = "goimports" 
+" Some vim-go remaps for easy invoke `go vet`, `gofmt`,`staticcheck`
+" and `go-doc. Remaping works with \v, \f, \l and \d respectively
+autocmd FileType go nnoremap &lt;leader&gt;f :GoFmt&lt;CR&gt;
+autocmd FileType go nnoremap &lt;leader&gt;l :GoMetaLinter&lt;CR&gt;
+autocmd FileType go nnoremap &lt;leader&gt;d :GoDoc&lt;CR&gt;
+" go vet can be replaced with statickcheck
+" autocmd FileType go nnoremap &lt;leader&gt;v :GoVet!&lt;CR&gt;
+
+" Supress vim-go autocomplete preview window
+set completeopt-=preview
+
+" Autoclose vim-go autocomplete preview window when
+" close autocomplete popup hover window
+augroup completion_preview_close
+  autocmd!
+  autocmd CompleteDone * if !&amp;previewwindow &amp;&amp; &amp;completeopt =~ 'preview' | silent! pclose | augroup END</code></pre>
+      <p>
+        vim-go по умолчанию при вызове автодополнеaния показывает godoc в окне
+        preview vim. В конфиге прописан способ от этого избавится. Так же, этот
+        плагин отображает результат вызова линтера в quickfix, который, в свою
+        очередь любит появлятся не там где надо, поэтуму нстроено перемещение
+        этого pane в самую нижнюю позицию при его появлении и шорткат для
+        быстрого закрытия quickfix
+      </p>
+      <pre>
+<code class="language-vim">" Move newborn quickfix window to bottomest place.
+" This trigger takes advantage of the fact that the quickfix window 
+" can be easily distinguished by its file-type, qf. The wincmd J command 
+" is equivalent to the [Ctrl+W, Shift+J] shortcut sequence 
+" instructing Vim to move the current window to the very bottom of the screen
+:autocmd FileType qf wincmd J
+
+" Map to close quickfix window - &lt;leader&gt;q
+nnoremap &lt;leader&gt;q :cclose&lt;CR&gt;</code></pre>
+      <p>
+        coc-snippets может использовать в работе UltiSnips, для чего нужно
+        установить python расширение что бы была возможность выполнять комманду
+        :pyx
+      </p>
+      <pre>
+<code class="language-bash">pip install pynvim</code></pre>
+      <p>
+        С другой стороны, если эта фича не завелысь, можно отключить её в
+        coc-settings.json
+      </p>
+      <pre>
+<code class="language-bash">{
+  "languageserver": {
+    "go": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "trace.server": "verbose",
+      "filetypes": ["go"]
+    }
+  },
+  "snippets.ultisnips.enable": false,
+}</code></pre>
     </div>
   </body>
 </html>
