@@ -383,5 +383,16 @@ alias ls='ls --color=auto -l -A -X'</code></pre>
       </p>
       <p>/etc/default/locale - change to en_US</p>
     </div>
+
+    <div class="post">
+      <p>
+        <b>Скачиваем файлы с youtube</b>
+      </p>
+
+      <pre><code class="language-bash"># в mp4 и качестве не выше 720p 
+# и автоматическими субтитрами
+yt-dlp -f "bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best[ext=mp4]/best" --write-auto-sub --embed-subs URL</code></pre>
+    </div>
+
   </body>
 </html>
