@@ -89,7 +89,15 @@ git remote set-url {remote-name} {remote-url}</code></pre>
 whereis {command}
     
 # locate a command
-which {command}</code></pre>
+which {command}
+
+# fency ls alternative
+# sudo apt-get install exa
+exa
+
+# fency cat alternative
+# sudo apt-get install bat
+batcat</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
@@ -125,11 +133,10 @@ sudo apt-get install --only-upgrade {package-name}</code></pre>
 
       <p><b>Принудительно включаем X.Org</b> вместо Wayland в Ubuntu</p>
 
-      <pre>
-    <code class="language-bash">sudo xed /etc/gdm3/custom.conf
-    # и там раскомментируем строку
-    # WaylandEnable=false</code></pre>
-    </div>
+      <pre><code class="language-bash">sudo xed /etc/gdm3/custom.conf
+# и там раскомментируем строку
+# WaylandEnable=false</code></pre>
+</div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <div class="post">
@@ -147,26 +154,24 @@ sudo apt-get install --only-upgrade {package-name}</code></pre>
 
       <p>Устанавливаем зависимости:</p>
 
-      <pre>
-    <code class="language-bash">sudo apt-get install meson
-    sudo apt-get install libxml2*dev
-    sudo apt-get install libglib2*dev
-    sudo apt-get install build-essential libgtk-3-dev
-    sudo apt-get install gir1.2-gtksource
-    sudo apt-get install libgtksourceview-4-dev
-    sudo apt-get install libpeas*dev
-    sudo apt-get install libxapp*dev
-    sudo apt-get install libgspell-1*dev
-    sudo apt-get install intltool
-    sudo apt-get install itstool</code></pre>
+      <pre><code class="language-bash">sudo apt-get install meson
+sudo apt-get install libxml2*dev
+sudo apt-get install libglib2*dev
+sudo apt-get install build-essential libgtk-3-dev
+sudo apt-get install gir1.2-gtksource
+sudo apt-get install libgtksourceview-4-dev
+sudo apt-get install libpeas*dev
+sudo apt-get install libxapp*dev
+sudo apt-get install libgspell-1*dev
+sudo apt-get install intltool
+sudo apt-get install itstool</code></pre>
 
       <p>Компилируем, собираем и устанавливаем:</p>
 
-      <pre>
-    <code class="language-bash">ninja -v -C build
-    sudo ninja install -v -C build
-    // Это нужно чтобы избежать рантайм ошибки
-    sudo /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/</code></pre>
+      <pre><code class="language-bash">ninja -v -C build
+sudo ninja install -v -C build
+// Это нужно чтобы избежать рантайм ошибки
+sudo /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
@@ -187,9 +192,8 @@ sudo apt-get install --only-upgrade {package-name}</code></pre>
         Для начала, давайте убедимся, что у нас установлены все обновления:
       </p>
 
-      <pre>
-    <code class="language-shell">sudo apt update
-    sudo apt upgrade</code></pre>
+      <pre><code class="language-shell">sudo apt update
+sudo apt upgrade</code></pre>
 
       <p>
         Теперь, установим тулчейн GCC и несколко дополнительных утилит вместе с
@@ -204,12 +208,11 @@ sudo apt-get install --only-upgrade {package-name}</code></pre>
         сайта http://gcc.gnu.org/mirrors.html:
       </p>
 
-      <pre>
-    <code class="language-shell">cd ~
-    wget https://ftpmirror.gnu.org/gcc/gcc-10.1.0/gcc-10.1.0.tar.xz
-    tar xf gcc-10.1.0.tar.xz
-    cd gcc-10.1.0
-    contrib/download_prerequisites</code></pre>
+      <pre><code class="language-shell">cd ~
+wget https://ftpmirror.gnu.org/gcc/gcc-10.1.0/gcc-10.1.0.tar.xz
+tar xf gcc-10.1.0.tar.xz
+cd gcc-10.1.0
+contrib/download_prerequisites</code></pre>
 
       <p>
         Теперь мы можем сконфигурировать и собрать исходный код. Чтобы сохранить
@@ -219,12 +222,11 @@ sudo apt-get install --only-upgrade {package-name}</code></pre>
         версией, потому что другие пакеты могут зависеть от него.
       </p>
 
-      <pre>
-    <code class="language-shell">cd ~
-    mkdir build && cd build
-    ../gcc-10.1.0/configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu 
-    --prefix=/usr/local/gcc-10.1.0 --enable-checking=release --enable-languages=c,c++,fortran 
-    --disable-multilib --program-suffix=-10.1</code></pre>
+      <pre><code class="language-shell">cd ~
+mkdir build && cd build
+../gcc-10.1.0/configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu 
+--prefix=/usr/local/gcc-10.1.0 --enable-checking=release --enable-languages=c,c++,fortran 
+--disable-multilib --program-suffix=-10.1</code></pre>
 
       <p>
         Теперь можно выполнять сборку GCC, лучше обычно дважды задать количство
