@@ -85,7 +85,23 @@ git remote set-url {remote-name} {remote-url}</code></pre>
         <b>Command line tips</b>
       </p>
 
-      <pre><code class="language-bash"># locate the binary, source, and manual page files for a command
+      <pre><code class="language-bash"># pockets, that must be installed on clear system (deb)
+sudo apt-get install git mc exa tree g++ cmake pkg-config translate-shell batcat
+
+# common development libraries and sdk's
+sudo apt-get install libmesa-dev
+
+# .bashrc file tweak for support frequently used commands
+alias ll='exa -l'
+alias la='ls -A'
+alias l='ls -CF'
+alias tt='tree'
+# translate-shell aliases for russian to english and opposite translations
+alias tru='trans :ru'
+alias ten='trans :en'
+alias bat='batcat'
+
+# locate the binary, source, and manual page files for a command
 whereis {command}
     
 # locate a command
