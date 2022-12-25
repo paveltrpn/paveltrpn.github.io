@@ -412,5 +412,23 @@ alias ls='ls --color=auto -l -A -X'</code></pre>
 yt-dlp -f "bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best[ext=mp4]/best" --write-auto-sub --embed-subs URL</code></pre>
     </div>
 
+    <div class="post">
+      <p>
+        <b>Remove Linux Mint grub settings (splashscreen, boot options order etc.)<br></b>
+        For boot menu default option numeration see /boot/grub/grub.cfg, see "menuentry".
+      </p>
+
+      <pre><code class="language-bash">sudo nvim /etc/default/grub
+# for disable splashscreen  
+# set GRUB_CMDLINE_DEFAULT=""
+
+# set default boot option
+# GRUB_DEFAULT={x} where x - number
+# start from zero
+
+sudo update_grub
+# also here you can set grub timeuot</code></pre>
+    </div>
+
   </body>
 </html>
