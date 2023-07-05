@@ -15,7 +15,7 @@
       <p>
         <b>Установка ядра 5.8 под Linux Mint 20</b>
       </p>
-
+    
       <p>
         Ядро по умолчанию в Mint 20 - 5.4. Ядро 5.8 понадобилось, чтобы в VMWare
         Player 16 заработал OpenGL 4.1. Установка ядра 5.8 без сборки из *.deb
@@ -69,18 +69,9 @@ sudo ninja -C builddir/ install</code></pre>
       </p>
     </div>
 
-    <div class="post">
-      <p>
-        <b>Git tips</b>
-      </p>
-
-      <pre><code class="language-bash"># Установить асевдоним удалённого репозитория
-git remote set-url {remote-name} {remote-url}</code></pre>
-    </div>
-
-    <div class="post">
       <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
 
+    <div class="post">
       <p>
         <b>Command line tips</b>
       </p>
@@ -208,8 +199,8 @@ sudo /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/</code></pre>
         Для начала, давайте убедимся, что у нас установлены все обновления:
       </p>
 
-      <pre><code class="language-shell">sudo apt update
-sudo apt upgrade</code></pre>
+      <pre><code class="language-shell">$ sudo apt update
+$ sudo apt upgrade</code></pre>
 
       <p>
         Теперь, установим тулчейн GCC и несколко дополнительных утилит вместе с
@@ -217,18 +208,19 @@ sudo apt upgrade</code></pre>
       </p>
 
       <pre>
-    <code class="language-shell">sudo apt install build-essential wget m4 flex bison</code></pre>
+    <code class="language-shell">$ sudo apt install build-essential wget m4 flex bison</code></pre>
 
       <p>
         Далее, загрузим исходный код GCC 10 и пререквизиты (prerequisites) с
         сайта http://gcc.gnu.org/mirrors.html:
       </p>
 
-      <pre><code class="language-shell">cd ~
-wget https://ftpmirror.gnu.org/gcc/gcc-10.1.0/gcc-10.1.0.tar.xz
-tar xf gcc-10.1.0.tar.xz
-cd gcc-10.1.0
-contrib/download_prerequisites</code></pre>
+      <pre><code class="language-shell">$ cd ~
+$ wget https://ftpmirror.gnu.org/gcc/gcc-10.1.0/gcc-10.1.0.tar.xz
+$ tar xf gcc-10.1.0.tar.xz
+$ cd gcc-10.1.0
+# execute at top level of gcc directory
+$ ./contrib/download_prerequisites</code></pre>
 
       <p>
         Теперь мы можем сконфигурировать и собрать исходный код. Чтобы сохранить
@@ -238,11 +230,11 @@ contrib/download_prerequisites</code></pre>
         версией, потому что другие пакеты могут зависеть от него.
       </p>
 
-      <pre><code class="language-shell">cd ~
-mkdir build && cd build
-../gcc-10.1.0/configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu 
---prefix=/usr/local/gcc-10.1.0 --enable-checking=release --enable-languages=c,c++,fortran 
---disable-multilib --program-suffix=-10.1</code></pre>
+      <pre><code class="language-shell">$ cd ~
+$ mkdir build && cd build
+$ ../configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu 
+ --prefix=/usr/local/gcc-10.1.0 --enable-checking=release --enable-languages=c,c++,fortran 
+ --disable-multilib --program-suffix=-10.1</code></pre>
 
       <p>
         Теперь можно выполнять сборку GCC, лучше обычно дважды задать количство
@@ -250,7 +242,7 @@ mkdir build && cd build
         ядра, так что я буду использовать 8 параллельных потоков для сборки GCC.
       </p>
 
-      <pre><code class="language-shell">make -j 8</code></pre>
+      <pre><code class="language-shell">$ make -j 8</code></pre>
 
       <p>
         В зависимости от производительности компьютера, сборка может занять от
@@ -261,15 +253,19 @@ mkdir build && cd build
         Когда предидущий ээтап будет закончен можну выполнить установку GCC:
       </p>
 
-      <pre><code class="language-shell">sudo make install-strip</code></pre>
+      <pre><code class="language-shell">$ sudo make install-strip</code></pre>
 
       <p>
         Если вы хотите установить компиляторы перманентно в системную
         директорию, добавьте эти строки в конец файла .bashrc.
       </p>
 
-      <pre><code class="language-shell">export export PATH=/usr/local/gcc-10.1.0/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/gcc-10.1.0/lib64:$LD_LIBRARY_PATH</code></pre>
+      <pre><code class="language-shell">export PATH=/usr/local/gcc-10.1.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/gcc-10.1.0/lib64:$LD_LIBRARY_PATH
+# is it working? clangd still don't find proper inlude path until set new
+# compiler in .clang config file
+export CPLUS_INCLUDE_PATH=/usr/local/gcc-13.1.0/include:$CPLUS_INCLUDE_PATH
+export C_INCLUDE_PATH=/usr/local/gcc-13.1.0/include:$C_INCLUDE_PATH</code></pre>
 
       <p>
         Вставьте в конец файла .bashrc строчки, упомянутые выше, сохраните файл
