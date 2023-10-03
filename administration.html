@@ -156,8 +156,7 @@ sudo apt-get install --only-upgrade {package-name}</code></pre>
 
       <p>Скачиваем:</p>
 
-      <pre>
-    <code class="language-bash">git clone https://github.com/linuxmint/xed</code></pre>
+      <pre><code class="language-bash">git clone https://github.com/linuxmint/xed</code></pre>
 
       <p>Устанавливаем зависимости:</p>
 
@@ -207,8 +206,7 @@ $ sudo apt upgrade</code></pre>
         ним:
       </p>
 
-      <pre>
-    <code class="language-shell">$ sudo apt install build-essential wget m4 flex bison</code></pre>
+      <pre><code class="language-shell">$ sudo apt install build-essential wget m4 flex bison</code></pre>
 
       <p>
         Далее, загрузим исходный код GCC 10 и пререквизиты (prerequisites) с
@@ -220,7 +218,9 @@ $ wget https://ftpmirror.gnu.org/gcc/gcc-10.1.0/gcc-10.1.0.tar.xz
 $ tar xf gcc-10.1.0.tar.xz
 $ cd gcc-10.1.0
 # execute at top level of gcc directory
-$ ./contrib/download_prerequisites</code></pre>
+$ ./contrib/download_prerequisites
+# some dependencies
+$ sudo apt-get install flex</code></pre>
 
       <p>
         Теперь мы можем сконфигурировать и собрать исходный код. Чтобы сохранить
