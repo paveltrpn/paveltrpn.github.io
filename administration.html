@@ -11,8 +11,9 @@
     <!-- Подключение скрипта Prism -->
     <script src="js/prism.js"></script>
 
-    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div class="post">
+      <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+
       <p><b>Python setup</b>.</p>
 
       <p>
@@ -55,8 +56,9 @@ $ makepkg -si</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============= -->
 
-    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div class="post">
+      <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+
       <p>
         <b>Исправляем работу (или неработу) PyImgui в Linux Mint 20.2.</b>
         <br /><br />
@@ -96,46 +98,46 @@ class GlfwRenderer(FixedPipelineRenderer):
 def __init__(self, window, attach_callbacks=True):
 ...</code></pre>
     </div>
-    <!-- ============= КОНЕЦ ЗАПИСИ ===== --!>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============= --!>
 
+    
         <div class="post"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-            
-            <p>
-                <b>Модуль для автокомплита из bpy для Blender.</b>
-            </p>
+    <p>
+      <b>Модуль для автокомплита из bpy для Blender.</b>
+    </p>
 
-            <pre><code class="language-bash">python3.9 -m pip install fake-bpy-module-2.93</code></pre>
-                
-        </div> 
-        <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <pre><code class="language-bash">python3.9 -m pip install fake-bpy-module-2.93</code></pre>
 
-        <div class="post"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-            
-            <p>
-                <b>Зависимости для OpenGL проектов Python.</b>
-            </p>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
-            <pre><code class="language-bash">python3.10 -m pip install numpy
+    <div class="post">
+      <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+
+      <p>
+        <b>Зависимости для OpenGL проектов Python.</b>
+      </p>
+
+      <pre><code class="language-bash">python3.10 -m pip install numpy
 python3.10 -m pip install PyOpenGL
 python3.10 -m pip install PyOpenGL-accelerate
 python3.10 -m pip install imgui
 python3.10 -m pip install glfw</code></pre>
 
-        <p>
-            В Ubuntu 21.10 с Wayland обнаружился баг (видимо), который не даёт поднять glfw контекст.
-        </p>
+      <p>
+        В Ubuntu 21.10 с Wayland обнаружился баг (видимо), который не даёт
+        поднять glfw контекст.
+      </p>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
-                
-        </div> 
-        <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <div class="post">
+      <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
 
-        <div class="post"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-            
-            <p>
-                <b>Инициализация venv и работа с requirements.txt.</b>
-            </p>
+      <p>
+        <b>Инициализация venv и работа с requirements.txt.</b>
+      </p>
 
-            <pre><code class="language-bash"># Установим, собственно venv
+      <pre><code class="language-bash"># Установим, собственно venv
 sudo apt install python3.10-venv
 # Инициализация виртуального окружения в папке ./venv
 python3 -m venv ./venv
@@ -147,9 +149,8 @@ deactivate
 pip install -r requirements.txt
 # Создание requirements.txt
 pip freeze &gt; requirements.txt</code></pre>
-                
-        </div> 
-        <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div class="post">
@@ -186,6 +187,7 @@ pip freeze &gt; requirements.txt</code></pre>
 
       <pre><code class="language-bash">uname -a</code></pre>
     </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <div class="post">
       <p>
