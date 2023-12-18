@@ -20,24 +20,26 @@
       </p>
 
       <p>
-        Скачиваем дистрибутив, например отсюда — <i>https://golang.org/dl/</i>,
-        или так
+        Скачиваем дистрибутив, например отсюда —
+        <span>https://golang.org/dl/</span>, или так
       </p>
 
       <pre><code class="language-shell">$ wget -c https://storage.googleapis.com/golang/go1.17.5.linux-amd64.tar.gz</code></pre>
 
       <p>
-        Распаковываем в /home/{USER}/go, потом переименуем в
-        /home/{USER}/go-{VERSION}:
+        Распаковываем в <span>/home/{USER}/go</span>, потом переименуем в
+        <span>/home/{USER}/go-{VERSION}:</span>
       </p>
 
       <pre><code class="language-shell">$ tar -xzf go$VERSION.$OS-$ARCH.tar.gz
 $ mv /home/{USER}/go /home/{USER}/go-{VERSION}</code></pre>
 
       <p>
-        Теперь добавляем /home/{USER}/go-{VERSION}/bin в переменную среды PATH,
-        вставив строку приведенную ниже в файл /etc/profile для общесистемной
-        установки или $HOME/.profile и $HOME/.bashrc (или $HOME./bash_profile)
+        Теперь добавляем <span>/home/{USER}/go-{VERSION}/bin</span> в переменную
+        среды <span>PATH</span>, вставив строку приведенную ниже в файл
+        /etc/profile для общесистемной установки или
+        <span>$HOME/.profile</span> и
+        <span>$HOME/.bashrc (или $HOME./bash_profile)</span>
         для пользовательской установки, используя ваш любимый редактор, откройте
         соответствующий файл профиля пользователя в соответствии с вашим
         дистрибутивом и добавьте строку приведенную ниже, сохраните файл и
@@ -62,8 +64,8 @@ $ source ~/.bashrc</code></pre>
       <p>
         <b>VSCode под Linux</b> может выдавать ошибку о том, что не нашел
         бинарники golang -
-        <i>failed to find the go binary in either goroot() or path</i>, чтобы
-        исправить можно захарткодить GOROOT в settings.json
+        <span>failed to find the go binary in either goroot() or path</span>,
+        чтобы исправить можно захарткодить GOROOT в settings.json
       </p>
 
       <pre>
@@ -118,7 +120,7 @@ export GOBIN="$GOPATH/bin"</code></pre>
         отличный от значения по умолчанию (/usr/local/), вы должны указать этот
         каталог как значение переменной GOROOT. Например, если вы установили
         GoLang в домашний каталог, добавьте строки приведенные ниже в файл
-        $HOME/.profile или $HOME/.bash_profile.
+        <span>$HOME/.profile или $HOME/.bash_profile.</span>
       </p>
 
       <pre>

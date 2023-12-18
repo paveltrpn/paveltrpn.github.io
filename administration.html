@@ -43,8 +43,8 @@ sudo apt install python3.9-distutils</code></pre>
       <p class="plain"><b>Установка python 3.10</b> в Linux Manjaro 21.2.0.</p>
 
       <pre><code class="language-bash">$ git clone https://aur.archlinux.org/python310.git
-$ cd python310
-$ makepkg -si</code></pre>
+cd python310
+makepkg -si</code></pre>
 
       <p>
         Pip-а по умолчанию тоже нету, поэтому закачиваем
@@ -545,6 +545,120 @@ yt-dlp -f "bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best[ext=mp4]/best
 
 sudo update_grub
 # also here you can set grub timeuot</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b>Сборка llvm-clang с lldb</b> (да и вообще):</p>
+      <pre><code class="language-bash">cmake -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb;lld" -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind;compiler-rt" \
+-DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../llvm</code></pre>
+
+      <p>
+        !!!WARNING!!! - to build qt6 with qdoc required llvm toolchain and this
+        toolchain must be built with RTTI support, but RTTI disable by default
+        in llvm-clang config. It need to be enabled by this config command:
+      </p>
+
+      <pre><code class="language-bash">cmake -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb;lld" -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind;compiler-rt" \
+-DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_RTTI=1 -DLLVM_ENABLE_EH=1 ../llvm</code></pre>
+
+      <p>
+        Чтобы не делать глобальный make install (хотя это можно и не делать,
+        установка в /usr/local тоже нормально)
+      </p>
+
+      <pre><code class="language-bash">clangbuild=~/apps/llvm-project-llvmorg-13.0.1/build
+export PATH=$clangbuild/bin:$PATH
+export LD_LIBRARY_PATH=$clangbuild/lib:$LD_LIBRARY_PATH</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p>
+        <b>Infolada dns servers</b><br />
+        <span>217.113.115.150; 217.113.114.100</span>
+      </p>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p>
+        <b>Install nvidia drivers on debian 12.1.</b> pkgconfig must be
+        installed switch to terminal ctrl-alt-F1 (F2 and so on)
+      </p>
+
+      <pre><code class="language-bash">sudo service lightdm stop
+# nvidia run file must have to execution permissions
+sudo chmod 777 NVIDIA-....run</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p>
+        <b>llvm скачивам отсуда.</b><br />Всё что нужно есть - линтер, lsp
+        сервер, format и т.д. Как конфигурировать смотри выше, ведь
+        дополнительно ещё нужен lldb.
+        <span>git clone https://github.com/llvm/llvm-project.git</span>
+      </p>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b>Some git aliases</b></p>
+      <pre><code class="language-bash">git config --global alias.co checkout
+git config --global alias.ci commit
+git config --global alias.st status
+git config --global alias.br branch
+git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+git config --global alias.type 'cat-file -t'
+git config --global alias.dump 'cat-file -p'
+git log -p -2 --oneline --max-count=2 --pretty=oneline</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
   </body>
