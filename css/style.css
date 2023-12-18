@@ -1,21 +1,18 @@
 /* Подключение шрифта  'Source Serif Pro'*/
-@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@500&display=swap");
+
+/* connect fonts - Montserrat medium 500, Montserrat bold 700, Roboto Mono 500 */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto+Mono:wght@400&display=swap");
 
 body {
-  font-family: "Source Serif Pro", Serif; /* Семейство шрифтов */
+  font-family: Montserrat, Serif; /* Семейство шрифтов */
   font-size: 1em; /* Размер основного шрифта в пунктах  */
+  font-weight: 500;
   background: white;
   color: #333; /* Цвет основного текста */
-
-  margin: 0px;
-
-  line-height: 1em; /* Высота строки */
-  letter-spacing: 0.07em; /* Зазор между буквами */
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 a {
@@ -24,19 +21,24 @@ a {
   color: #3dabf5;
 }
 
-div > p {
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 body > div {
-  max-width: 20cm;
+  max-width: 24cm;
+  width: 100%;
 }
 
 .post img {
   width: 60%;
+}
+
+.post > p > span {
+  font-family: "Roboto mono", Monospace;
+  background-color: #f5f2f0;
+}
+
+.post > p {
+  text-align: justify; /* Выравнивание по ширине */
+  word-break: break-word;
+  line-height: 1.6em;
 }
 
 .header > div {
@@ -51,17 +53,6 @@ body > div {
 
 .header > div > p {
   font-weight: bold;
-}
-
-.post > p {
-  text-align: justify; /* Выравнивание по ширине */
-  word-break: break-word;
-  font-weight: normal;
-  line-height: 1.6em;
-}
-
-.post > p > span {
-  margin-left: -30px;
 }
 
 .article > p {
@@ -92,18 +83,4 @@ body > div {
   word-break: break-word;
   font-weight: normal;
   line-height: 1.4em;
-}
-
-@media print {
-  body,
-  page {
-    margin: 0;
-    box-shadow: 0;
-    font-size: 1em;
-  }
-  /* Исключем из печати верхнее и нижнее меню */
-  .menu,
-  .menu * {
-    display: none !important;
-  }
 }

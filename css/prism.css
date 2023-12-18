@@ -60,7 +60,6 @@ code[class*="language-"] ::selection {
 /* Code blocks */
 pre[class*="language-"] {
   padding: 1em;
-  border: 2px solid lightgray;
   /* margin: .5em 60px; */
   overflow: auto;
 }
