@@ -26,20 +26,20 @@ body > div {
   width: 100%;
 }
 
-.post img {
+body > div > img {
   width: 60%;
 }
 
-.post > p > span {
-  font-family: "Roboto mono", Monospace;
-  background-color: #f5f2f0;
-  font-size: 0.9em;
-}
-
-.post > p {
+body > div > p {
   text-align: justify; /* Выравнивание по ширине */
   word-break: break-word;
   line-height: 1.6em;
+}
+
+body > div > p > span {
+  font-family: "Roboto mono", Monospace;
+  background-color: #f5f2f0;
+  font-size: 0.9em;
 }
 
 .header > div {

@@ -11,7 +11,254 @@
     <script src="js/prism.js"></script>
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
+      <p>
+        <b>Загрузка дистрибутива Golang.</b>
+      </p>
+
+      <p>
+        Скачиваем дистрибутив, например отсюда —
+        <span>https://golang.org/dl/</span>, или так
+      </p>
+
+      <pre><code class="language-shell">$ wget -c https://storage.googleapis.com/golang/go1.17.5.linux-amd64.tar.gz</code></pre>
+
+      <p>
+        Распаковываем в <span>/home/{USER}/go</span>, потом переименуем в
+        <span>/home/{USER}/go-{VERSION}:</span>
+      </p>
+
+      <pre><code class="language-shell">$ tar -xzf go$VERSION.$OS-$ARCH.tar.gz
+$ mv /home/{USER}/go /home/{USER}/go-{VERSION}</code></pre>
+
+      <p>
+        Теперь добавляем <span>/home/{USER}/go-{VERSION}/bin</span> в переменную
+        среды <span>PATH</span>, вставив строку приведенную ниже в файл
+        /etc/profile для общесистемной установки или
+        <span>$HOME/.profile</span> и
+        <span>$HOME/.bashrc (или $HOME./bash_profile)</span>
+        для пользовательской установки, используя ваш любимый редактор, откройте
+        соответствующий файл профиля пользователя в соответствии с вашим
+        дистрибутивом и добавьте строку приведенную ниже, сохраните файл и
+        выйдите из него:
+      </p>
+
+      <pre><code class="language-shell">export PATH=$PATH:/home/{USER}/go-{VERSION}/bin
+export PATH=$PATH:/home/go/bin</code></pre>
+
+      <p>
+        Чтобы go запускался сразу, без перезапуска терминала, можно внести
+        изменения в профиль пользователя в текущем сеансе bash следующим
+        образом:
+      </p>
+
+      <pre><code class="language-shell">$ source ~/.bash_profile
+или
+$ source ~/.profile
+или
+$ source ~/.bashrc</code></pre>
+
+      <p>
+        <b>VSCode под Linux</b> может выдавать ошибку о том, что не нашел
+        бинарники golang -
+        <span>failed to find the go binary in either goroot() or path</span>,
+        чтобы исправить можно захарткодить GOROOT в settings.json
+      </p>
+
+      <pre>
+<code class="language-json">...
+    "go.goroot": "/home/paveltrpn/go-1.17.5",
+...</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div>
+      <p>
+        <b>Настройка среды GoLang в Linux</b> (для версий golang до 1.13, т.е.
+        без поддержки модулей).
+      </p>
+
+      <p>
+        Сначала настройте рабочее пространство Go, создав каталог ~/go_projects,
+        который является корнем вашего рабочего пространства. Рабочее
+        пространство состоит из трех каталогов, а именно:
+      </p>
+
+      <p>
+        <i>
+          &emsp;&emsp; bin, который будет содержать исполняемые двоичные файлы
+          Go;<br />
+          &emsp;&emsp; src, который сохранит ваши исходные файлы;<br />
+          &emsp;&emsp; pkg, который будет хранить объекты пакета.<br />
+        </i>
+      </p>
+
+      <p>Теперь создайте указанное выше дерево каталогов следующим образом:</p>
+
+      <pre>
+<code class="language-shell">$ mkdir -p ~/go_projects/{bin,src,pkg}
+$ cd ~/go_projects
+$ ls</code></pre>
+
+      <p>
+        Затем установите значения переменных среды GOPATH и GOBIN в файле
+        профиля пользователя (~/.profile или ~/bash_profile), чтобы указать на
+        ваш каталог рабочей области.
+      </p>
+
+      <pre>
+<code class="language-shell">export GOPATH="$HOME/go_projects"
+export GOBIN="$GOPATH/bin"</code></pre>
+
+      <p>
+        <b>Примечание.</b> Если вы установили GoLang в пользовательский каталог,
+        отличный от значения по умолчанию (/usr/local/), вы должны указать этот
+        каталог как значение переменной GOROOT. Например, если вы установили
+        GoLang в домашний каталог, добавьте строки приведенные ниже в файл
+        <span>$HOME/.profile или $HOME/.bash_profile.</span>
+      </p>
+
+      <pre>
+<code class="language-shell">export GOROOT=$HOME/go
+export PATH=$PATH:$GOROOT/bin</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div>
+      <p>
+        <b>Выключаем go-lint в vs code.</b>
+      </p>
+
+      <p>
+        После установки расширений golang в vs code среди прочего начинает
+        работать go-lint, ругаясь на все стиливые недочёты кода. Исправляется
+        редактирование settings.json. Выключаем так:
+      </p>
+
+      <p>
+        <i>
+          &emsp;&emsp;File &rArr; Preferences &rArr; Settings;<br />
+          &emsp;&emsp;Выбираем где угодно - Edit in settings.json;<br />
+          &emsp;&emsp;Добавляем - "go.lintFlags": ["--disable=all"]<br />
+        </i>
+      </p>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div>
+      <p>
+        <b>Ручная установка инструментов golang.</b>
+      </p>
+
+      <p>
+        Если через vscode не удаётся установить весь набор инструментов для
+        golang (такое случается в Ubuntu, трейс выдаёт permission denied), их
+        там штук десять, можно сделать это через терминал:
+      </p>
+
+      <pre>
+<code class="language-shell">go install -v github.com/ramya-rao-a/go-outline@latest
+go install -v github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest
+go install -v github.com/cweill/gotests/gotests@latest
+go install -v github.com/fatih/gomodifytags@latest
+go install -v github.com/josharian/impl@latest
+go install -v github.com/haya14busa/goplay/cmd/goplay@latest
+go install -v github.com/go-delve/delve/cmd/dlv@latest
+go get -x -d github.com/go-delve/delve/cmd/dlv@master
+go install -v honnef.co/go/tools/cmd/staticcheck@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install -v golang.org/x/tools/gopls@latest
+go install github.com/mgechev/revive@latest</code></pre>
+      <p>
+        После этого нужно собрать аддон для дебагера golang - glv-dap, как это
+        делает автоматом vs code, но из консоли не получилось, трейс выдал
+        отсутствие каких-то зависимостей.
+      </p>
+
+      <pre>
+<code class="language-javascript">sudo go build -o /usr/paveltrpn/go/bin/dlv-dap github.com/go-delve/delve/cmd/dlv</code></pre>
+
+      <p>Потом прописываем путь к ним в settings.json:</p>
+
+      <pre>
+<code class="language-javascript">"go.toolsEnvVars": {
+    "GOBIN": "/usr/paveltrpn/go/bin",
+}</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div>
+      <p>
+        <b>Выключаем golang language server (gopls)</b>, помогает при
+        "бесконечном" сохранении файла в vs code. В settings.json нужно
+        добавить:
+      </p>
+
+      <pre>
+<code class="language-json">"go.useLanguageServer": false</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div>
+      <p>
+        <b>Отключаем старые модули golang</b>, чтобы локальный импорт работал:
+      </p>
+
+      <pre>
+<code class="language-bash">go env -w GO111MODULE=off
+set GOPATH=~\code</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div>
+      <p><b>Зависимости для сборки golang glfw</b>:</p>
+
+      <pre>
+<code class="language-bash">sudo apt-get install libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev
+sudo apt-get install libglx-dev libgl-dev libxxf86vm-dev pkg-config</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+
+    <div>
+      <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+
+      <p>
+        <b>Настройка нового проекта.</b> В среде Ubuntu 21.10, Golang 1.17.5,
+        VSCode.
+      </p>
+
+      <p>
+        Дерево каталога организуем согласно
+        https://github.com/golang-standards/project-layout - ./prj-name/cmd;
+        ./prj-name/internal; ./prj-name/pkg и т.д. В ./prj-name запускаем:
+      </p>
+
+      <pre>
+<code class="language-bash">go mod init prj-name</code></pre>
+
+      <p>
+        Если в родительской директории есть ещё код, то gopls выпадет с ошибкой
+        некорректной настройки workspace. Для исправления ситуации нужно
+        настроить gopls для работы с т.н. "Multiple modules". Пока что фича
+        эксперементальная, немного описано тут -
+        https://go.googlesource.com/tools/+/refs/heads/master/gopls/doc/workspace.md.
+        Для начала работы дописываем в settings.json:
+      </p>
+
+      <pre>
+<code class="language-bash">"gopls": {
+    "build.experimentalWorkspaceModule": true
+}</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div>
       <p><b>Python setup</b>.</p>
 
       <p>
@@ -55,7 +302,7 @@ makepkg -si</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============= -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Исправляем работу (или неработу) PyImgui в Linux Mint 20.2.</b>
         <br /><br />
@@ -98,7 +345,7 @@ def __init__(self, window, attach_callbacks=True):
     <!-- ============= КОНЕЦ ЗАПИСИ ============= --!>
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Модуль для автокомплита из bpy для Blender.</b>
       </p>
@@ -107,7 +354,7 @@ def __init__(self, window, attach_callbacks=True):
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
-    <div class="post">
+    <div>
       <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
 
       <p>
@@ -127,7 +374,7 @@ python3.10 -m pip install glfw</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
-    <div class="post">
+    <div>
       <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
 
       <p>
@@ -150,7 +397,7 @@ pip freeze &gt; requirements.txt</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Установка ядра 5.8 под Linux Mint 20</b>
       </p>
@@ -186,7 +433,7 @@ pip freeze &gt; requirements.txt</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
-    <div class="post">
+    <div>
       <p>
         <b>Cборка Mesa3d 20.2</b>
       </p>
@@ -215,7 +462,7 @@ sudo ninja -C builddir/ install</code></pre>
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
 
-    <div class="post">
+    <div>
       <p>
         <b>Command line tips</b>
       </p>
@@ -292,7 +539,7 @@ batcat</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Работа с пакетами в Ubuntu</b>
       </p>
@@ -329,7 +576,7 @@ sudo apt-get install --only-upgrade {package-name}</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Собираем xed под Ubuntu 21.10</b>, полезная замена gedit, почему то
         не включённая в дистрибутив по умолчанию
@@ -363,7 +610,7 @@ sudo /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Сборка и установка gcc из исходников под Ubuntu</b>
       </p>
@@ -432,7 +679,7 @@ export C_INCLUDE_PATH=/usr/local/gcc-13.1.0/include:$C_INCLUDE_PATH</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>Настройка Manjaro (на примере 21.2.0)</b></p>
 
       <p>По умолчанию vmware linux tools установлены, можно проверить:</p>
@@ -509,7 +756,7 @@ $ makepkg -si
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Как изменить shell?</b>
       </p>
@@ -534,7 +781,7 @@ alias ls='ls --color=auto -l -A -X'</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
-    <div class="post">
+    <div>
       <p>
         <b>Convert input.mp4 to output gif </b>with scale to 320p, and trim from
         0s to 10s
@@ -544,7 +791,7 @@ alias ls='ls --color=auto -l -A -X'</code></pre>
     </div>
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Change system languge in ubuntu 22.04</b>, useful for preserve
         difficulties with iteraction with command line apps (like vim etc.)
@@ -552,7 +799,7 @@ alias ls='ls --color=auto -l -A -X'</code></pre>
       </p>
     </div>
 
-    <div class="post">
+    <div>
       <p><b>Download files from Youtube</b> using yt-dlp - yt fork.</p>
 
       <pre><code class="language-bash"># Download yt-dlp from github
@@ -561,7 +808,7 @@ alias ls='ls --color=auto -l -A -X'</code></pre>
 yt-dlp -f "bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best[ext=mp4]/best" --write-auto-sub --embed-subs URL</code></pre>
     </div>
 
-    <div class="post">
+    <div>
       <p>
         <b
           >Remove Linux Mint grub settings (splashscreen, boot options order
@@ -585,7 +832,7 @@ sudo update_grub
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>Сборка llvm-clang с lldb</b> (да и вообще):</p>
       <pre><code class="language-bash">cmake -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb;lld" -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind;compiler-rt" \
 -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../llvm</code></pre>
@@ -611,7 +858,7 @@ export LD_LIBRARY_PATH=$clangbuild/lib:$LD_LIBRARY_PATH</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Infolada dns servers</b><br />
         <span>217.113.115.150; 217.113.114.100</span>
@@ -620,7 +867,7 @@ export LD_LIBRARY_PATH=$clangbuild/lib:$LD_LIBRARY_PATH</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Install nvidia drivers on debian 12.1.</b> pkgconfig must be
         installed switch to terminal ctrl-alt-F1 (F2 and so on)
@@ -633,7 +880,7 @@ sudo chmod 777 NVIDIA-....run</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>llvm скачивам отсуда.</b><br />Всё что нужно есть - линтер, lsp
         сервер, format и т.д. Как конфигурировать смотри выше, ведь
@@ -644,7 +891,7 @@ sudo chmod 777 NVIDIA-....run</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>Some git aliases</b></p>
       <pre><code class="language-bash">git config --global alias.co checkout
 git config --global alias.ci commit
@@ -658,7 +905,7 @@ git log -p -2 --oneline --max-count=2 --pretty=oneline</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>Erase last commit locally</b> and at remote brunch</p>
       <pre><code class="language-bash">git reset --hard HEAD~1
 git push -f origin {branch}</code></pre>
@@ -666,7 +913,7 @@ git push -f origin {branch}</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>In c++ 'this'</b> - is a expression, 'new' - is a expression. Every
         expression has a value and this value can be ignored, so that
@@ -682,7 +929,7 @@ git push -f origin {branch}</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>Neovim first start</b>, packer install</p>
       <pre><code class="language-bash">$ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim</code></pre>
@@ -690,7 +937,7 @@ git push -f origin {branch}</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Для загрузки старого clang-format-11</b> в Debian 12.1. По умолчанию
         в нём 14-й. Рабочее решение - подключить репозитории от 11-го Debian
@@ -711,7 +958,7 @@ sudo apt install clang-format-11</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Библиотека </b> для векторизации на с++ - EVE
         <span>https://github.com/jfalcou/eve</span>
@@ -719,7 +966,7 @@ sudo apt install clang-format-11</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Debian 12.1 Firefox stable (non ESR) install </b>download from
         official site tarball archive, delete previous install
@@ -749,7 +996,7 @@ Name=Open in private mode</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>Install Google Chrome in Debian 12.1 </b></p>
       <pre><code class="language-bash">sudo apt install apt-transport-https curl -y
 curl -fSsL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor | sudo tee /usr/share/keyrings/google-chrome.gpg >> /dev/null
@@ -759,14 +1006,14 @@ sudo apt install google-chrome-stable</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>QT debug flags for QtWebWidget </b></p>
       <pre><code class="language-bash">export QTWEBENGINE_DISABLE_SANDBOX=1
 export QTWEBENGINE_CHROMIUM_FLAGS=--no-sandbox</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>VS Code (CTRL+Shift+P) </b>In order to have two separate VSCode
         windows open that point to the same workspace, press CTRL+Shift+P and
@@ -776,7 +1023,7 @@ export QTWEBENGINE_CHROMIUM_FLAGS=--no-sandbox</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>VSCode - change "show call hierarchy"</b> command shortcut (it
         shift-alt-H by default): call command pallete - shift-alt-p search "show
@@ -787,7 +1034,7 @@ export QTWEBENGINE_CHROMIUM_FLAGS=--no-sandbox</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Formatting with clang daemon. </b>Clang daemon uses last version of
         clang-format tool and maybe link it to itself when building llvm-clang
@@ -797,7 +1044,7 @@ export QTWEBENGINE_CHROMIUM_FLAGS=--no-sandbox</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Работаем с коммитами</b>, ищем комминт внёсший изменения в данных
         строчках.
@@ -811,7 +1058,7 @@ git log --pretty=short -u -L 1410,1410:{file}</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Grill the Committee 2018</b> - Herb Sutter first reason to use almost
         always auto is - not forget to initialize variable by some value, not
@@ -823,7 +1070,7 @@ git log --pretty=short -u -L 1410,1410:{file}</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Nice ripgrep and fzf</b> shortcuts to convinient search of
         directories to come and string in files. Add to .bashrc
@@ -833,7 +1080,7 @@ alias cdfzf="cd / &amp;&amp; cd \$(find * -type d 2&gt;&amp;1 | rg -v \"Permissi
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>vscode shortcuts</b> stored at ~/.config/Code/user/keybindings.json
         To change or find some shortcuts - ctrl+k ctrk+s. I change<br /><span>
@@ -846,7 +1093,7 @@ alias cdfzf="cd / &amp;&amp; cd \$(find * -type d 2&gt;&amp;1 | rg -v \"Permissi
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>C++ templates</b></p>
       <pre><code class="language-cpp">....
     double foo, bar;
@@ -866,7 +1113,7 @@ alias cdfzf="cd / &amp;&amp; cd \$(find * -type d 2&gt;&amp;1 | rg -v \"Permissi
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>For neovim config</b> see note_book/nvim_conf/nvim_setup.txt (maybe
         outdated) Basic usage. vim config file (.vimrc) location is ~/.vimrc.
@@ -877,7 +1124,7 @@ alias cdfzf="cd / &amp;&amp; cd \$(find * -type d 2&gt;&amp;1 | rg -v \"Permissi
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>To use tab wrapping</b> instead of straight line of tabs Preferences
         -&gt; Settings -&gt; search by "wrap tabs" or Workbench-&gt;Editor: Wrap
@@ -886,7 +1133,7 @@ alias cdfzf="cd / &amp;&amp; cd \$(find * -type d 2&gt;&amp;1 | rg -v \"Permissi
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>To build vim from source</b> (primarily for +clipboard)</p>
       <pre><code class="language-bash">sudo apt-get install xclip libncurses5-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev
 ./configure --with-features=huge --enable-pythoninterp=yes --enable-cscope --with-x
@@ -895,7 +1142,7 @@ sudo make install</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Prepare Qt6</b> (see also https://wiki.qt.io/Building_Qt_6_from_Git)
         !!!WARNING!!! - to build qt6 with qdoc required llvm toolchain and this
@@ -934,7 +1181,7 @@ cmake --install .</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>In windows to make a link</b> to exe file executable from console add
         the .LNK text to PATHEXT environment variable search переменные and in
@@ -943,7 +1190,7 @@ cmake --install .</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>To call msbuild</b> on .vxcproj file like that
         <span>msbuild some_proj.vcxproj /p:Configuration=RelWithDebInfo</span>
@@ -974,7 +1221,7 @@ cmake --install .</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Stackoverflow question</b> that exactly math to mine
         https://stackoverflow.com/questions/75734617/setting-the-main-window-qwidget-as-parent-of-qml-windows
@@ -982,14 +1229,14 @@ cmake --install .</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>Proper Bullet3</b> cmake configure command:</p>
       <pre><code class="language-bash">cmake .. -DCMAKE_INSTALL_PREFIX=/mnt/Fdisk_ext4_ssd_sata/code/extern_libs/bullet3-build \
 -DCMAKE_EXPORT_COMPMPILE_COMMANDS=1 -DUSE_DOUBLE_PRECISION=ON -DINSTALL_LIBS=ON -DCMAKE_BUILD_TYPE=Release</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>OSG build: </b></p>
       <pre><code class="language-bash">cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_INSTALL_PREFIX=/mnt/Fdisk_ext4_ssd_sata/code/extern_libs/OpenSceneGraph-build
 ninja -j 16
@@ -1019,7 +1266,7 @@ sudo apt -t bullseye install ffmpeg</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Some tips to configure and make OpenMW.</b> Build OpenSceneGraph (...
         or see below), Bullet3, Qt6. Or build OpenMW fork of OpensceneGraph -
@@ -1043,7 +1290,7 @@ cmake .. -DBULLET_ROOT=/mnt/Fdisk_ext4_ssd_sata/code/extern_libs/bullet3-build -
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Some example of regular expression</b> , taken from Angie 1.3.0
         (Nginx fork) release notes.
@@ -1056,7 +1303,7 @@ cmake .. -DBULLET_ROOT=/mnt/Fdisk_ext4_ssd_sata/code/extern_libs/bullet3-build -
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>C++ tips</b
         ><span>
@@ -1070,7 +1317,7 @@ cmake .. -DBULLET_ROOT=/mnt/Fdisk_ext4_ssd_sata/code/extern_libs/bullet3-build -
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p>
         <b>Funny journey with building boost</b> and boost unittest library with
         clang++ toolchain (including libc++)
@@ -1087,7 +1334,7 @@ linkflags="-stdlib=libc++ -L/usr/local/lib/x86_64-unknown-linux-gnu" -j 10</code
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b>Stole from </b> https://gist.github.com/awidegreen/3854277</p>
       <pre><code class="language-bash">Replace the word under cursor and all occurances:
 *     word under cursor 'foo'
@@ -1105,85 +1352,85 @@ C-r0     Press Ctrl-R and 0 to paste in</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <div class="post">
+    <div>
       <p><b></b></p>
       <pre><code class="language-bash"></code></pre>
     </div>
