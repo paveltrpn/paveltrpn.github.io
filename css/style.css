@@ -33,6 +33,7 @@ body > div {
 .post > p > span {
   font-family: "Roboto mono", Monospace;
   background-color: #f5f2f0;
+  font-size: 0.9em;
 }
 
 .post > p {

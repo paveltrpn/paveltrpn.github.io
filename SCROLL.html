@@ -1,8 +1,7 @@
 <!doctype html>
-
 <html>
   <head>
-    <title>Administration tips</title>
+    <title>SCROLL</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/prism.css" />
@@ -11,9 +10,8 @@
     <!-- Подключение скрипта Prism -->
     <script src="js/prism.js"></script>
 
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div class="post">
-      <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-
       <p><b>Python setup</b>.</p>
 
       <p>
@@ -42,7 +40,7 @@ sudo apt install python3.9-distutils</code></pre>
 
       <p class="plain"><b>Установка python 3.10</b> в Linux Manjaro 21.2.0.</p>
 
-      <pre><code class="language-bash">$ git clone https://aur.archlinux.org/python310.git
+      <pre><code class="language-bash">git clone https://aur.archlinux.org/python310.git
 cd python310
 makepkg -si</code></pre>
 
@@ -52,13 +50,12 @@ makepkg -si</code></pre>
         и потом:
       </p>
 
-      <pre><code class="language-bash">$ python3.10 get-pip.py</code></pre>
+      <pre><code class="language-bash">python3.10 get-pip.py</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============= -->
 
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div class="post">
-      <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-
       <p>
         <b>Исправляем работу (или неработу) PyImgui в Linux Mint 20.2.</b>
         <br /><br />
@@ -100,14 +97,14 @@ def __init__(self, window, attach_callbacks=True):
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============= --!>
 
-    
-        <div class="post"> <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
-    <p>
-      <b>Модуль для автокомплита из bpy для Blender.</b>
-    </p>
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p>
+        <b>Модуль для автокомплита из bpy для Blender.</b>
+      </p>
 
-    <pre><code class="language-bash">python3.9 -m pip install fake-bpy-module-2.93</code></pre>
-
+      <pre><code class="language-bash">python3.9 -m pip install fake-bpy-module-2.93</code></pre>
+    </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
     <div class="post">
@@ -283,7 +280,7 @@ sudo mount -o loop Morrowind.iso foo
 apt search --names-only '^gcc-?[0-9]*$'
 
 # Show files operated by some process
-strace -e trace=open,openat,close,read,write,connect,accept ./IntegraPlanetEarth 2> log.txt
+strace -e trace=open,openat,close,read,write,connect,accept ./IntegraPlanetEarth 2&gt; log.txt
 
 # How to install latest cmake from binary - download latest targz and sh install script and do this:
 sudo ./cmake-3.28.1-linux-x86_64.sh --prefix=/usr/local/ --exclude-subdir
@@ -413,7 +410,7 @@ $ sudo apt-get install flex</code></pre>
       </p>
 
       <pre><code class="language-shell">$ cd ~
-$ mkdir build && cd build
+$ mkdir build &amp;&amp; cd build
 $ ../configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu 
  --prefix=/usr/local/gcc-10.1.0 --enable-checking=release --enable-languages=c,c++,fortran 
  --disable-multilib --program-suffix=-10.1
@@ -832,7 +829,7 @@ git log --pretty=short -u -L 1410,1410:{file}</code></pre>
         directories to come and string in files. Add to .bashrc
       </p>
       <pre><code class="language-bash">alias rgfzf='rg . -n | fzf -e'
-alias cdfzf="cd / && cd \$(find * -type d 2&gt;&1 | rg -v \"Permission denied\" | fzf)"</code></pre>
+alias cdfzf="cd / &amp;&amp; cd \$(find * -type d 2&gt;&amp;1 | rg -v \"Permission denied\" | fzf)"</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
@@ -850,7 +847,7 @@ alias cdfzf="cd / && cd \$(find * -type d 2&gt;&1 | rg -v \"Permission denied\" 
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div class="post">
-      <p><b>c++, templates</b></p>
+      <p><b>C++ templates</b></p>
       <pre><code class="language-cpp">....
     double foo, bar;
     auto baz = make_pair&lt;double, double&gt;(foo, bar);
@@ -859,7 +856,7 @@ alias cdfzf="cd / && cd \$(find * -type d 2&gt;&1 | rg -v \"Permission denied\" 
 // defined as
 ....
     template&lt;typename T1, typename T2&gt;
-    std::pair&lt;T1, T2&gt; make_pair(T1 &&u, T2 &&v)
+    std::pair&lt;T1, T2&gt; make_pair(T1 &amp;&amp;u, T2 &amp;&amp;v)
 ....</code></pre>
       <p>
         and this template expects a reference, not an lvalue. If you try to
@@ -1061,7 +1058,7 @@ cmake .. -DBULLET_ROOT=/mnt/Fdisk_ext4_ssd_sata/code/extern_libs/bullet3-build -
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div class="post">
       <p>
-        <b>c++, tips</b
+        <b>C++ tips</b
         ><span>
           https://stackoverflow.com/questions/44210012/dynamic-cast-pointer-exception-catch<br />
           https://en.cppreference.com/w/cpp/language/dynamic_cast</span
@@ -1110,11 +1107,85 @@ C-r0     Press Ctrl-R and 0 to paste in</code></pre>
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div class="post">
       <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div class="post">
       <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div class="post">
+      <p><b></b></p>
+      <pre><code class="language-bash"></code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
   </body>
