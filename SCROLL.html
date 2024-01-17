@@ -805,7 +805,10 @@ alias ls='ls --color=auto -l -A -X'</code></pre>
       <pre><code class="language-bash"># Download yt-dlp from github
 # в mp4 и качестве не выше 720p 
 # и автоматическими субтитрами
-yt-dlp -f "bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best[ext=mp4]/best" --write-auto-sub --embed-subs URL</code></pre>
+yt-dlp -f "bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best[ext=mp4]/best" --write-auto-sub --embed-subs {URL}
+
+# mp3 audio part download
+yt-dlp -x --audio-format mp3 --audio-quality 0 {URL}</code></pre>
     </div>
 
     <div>
@@ -834,18 +837,31 @@ sudo update_grub
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
       <p><b>Сборка llvm-clang с lldb</b> (да и вообще):</p>
-      <pre><code class="language-bash">cmake -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb;lld" -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind;compiler-rt" \
--DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../llvm</code></pre>
-
       <p>
-        !!!WARNING!!! - to build qt6 with qdoc required llvm toolchain and this
-        toolchain must be built with RTTI support, but RTTI disable by default
-        in llvm-clang config. It need to be enabled by this config command:
+        llvm скачивам отсуда
+        <span>git clone https://github.com/llvm/llvm-project.git</span>. Всё что
+        нужно есть - линтер, lsp сервер, format и т.д.<br />There is a two
+        moments that need to consider:<br />
+        1) Building qt6 with qdoc required llvm toolchain and this toolchain
+        must be built with RTTI support, but RTTI disable by default in
+        llvm-clang config - <span>-DLLVM_ENABLE_RTTI=1</span><br />
+        2) Using lldb with qt creator need that lldb having a python support
+        (vscode not requires python support), therefore we must pass additional
+        parameter to cmake - <span>-DLLDB_ENABLE_PYTHON=ON</span>.<br />
+        In summary:
       </p>
+      <pre><code class="language-bash"># dependency for lldb python support
+sudo apt install swig
 
-      <pre><code class="language-bash">cmake -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb;lld" -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind;compiler-rt" \
--DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_RTTI=1 -DLLVM_ENABLE_EH=1 ../llvm</code></pre>
+mkdir build &amp;&amp; cd build
 
+cmake -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb;lld" \
+-DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind;compiler-rt" \
+-DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_RTTI=1 -DLLVM_ENABLE_EH=1 \
+-DLLDB_ENABLE_PYTHON=ON -DCMAKE_INSTALL_PREFIX=/usr/local ../llvm
+
+cmake --build . --parallel {N}
+cmake --install .</code></pre>
       <p>
         Чтобы не делать глобальный make install (хотя это можно и не делать,
         установка в /usr/local тоже нормально)
@@ -881,12 +897,7 @@ sudo chmod 777 NVIDIA-....run</code></pre>
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
-      <p>
-        <b>llvm скачивам отсуда.</b><br />Всё что нужно есть - линтер, lsp
-        сервер, format и т.д. Как конфигурировать смотри выше, ведь
-        дополнительно ещё нужен lldb.
-        <span>git clone https://github.com/llvm/llvm-project.git</span>
-      </p>
+      <p></p>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
@@ -1144,10 +1155,11 @@ sudo make install</code></pre>
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
       <p>
-        <b>Prepare Qt6</b> (see also https://wiki.qt.io/Building_Qt_6_from_Git)
-        !!!WARNING!!! - to build qt6 with qdoc required llvm toolchain and this
-        toolchain must be built with RTTI support, but RTTI disable by default
-        in llvm-clang config. It need to be enabled by this config command:
+        <b>Build Qt6 and qt-creator</b> from sources (see also
+        https://wiki.qt.io/Building_Qt_6_from_Git) !!!WARNING!!! - to build qt6
+        with qdoc required llvm toolchain and this toolchain must be built with
+        RTTI support, but RTTI disable by default in llvm-clang config. It need
+        to be enabled by this config command:
       </p>
       <pre><code class="language-bash">$ cmake -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb" -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind" \
 -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_RTTI=1 -DLLVM_ENABLE_EH=1 -G "Unix Makefiles" ../llvm</code></pre>
@@ -1164,20 +1176,57 @@ git clone git://code.qt.io/qt/qt5.git qt6
 git clone git://code.qt.io/qt/qt5.git
 # anyway there is many branches in this repo, including 6.x and 5.x
 
+# qt web engine dependency
+sudo apt install python3-html5lib
+# for vulkan api support
+sudo apt install libvulkan-dev
+
 # Switch to latest:
 cd qt6
 git switch v6.5
 # Init repo:
 perl init-repository
-# Configure, make and install (optionaly):
+# configure, make and install (optionaly):
 mkdir qt6-build
 cd qt6-build
 ../qt6/configure -release -nomake tests -prefix /path/to/install
 
+# another example config
+./configure -prefix /path/to/install \
+                -c++std c++20 \
+                -skip qtwebengine \
+                -inotify \
+                -sctp \
+                -eventfd \
+                -feature-vulkan \
+                -make tools \
+                -make examples \
+                -I $VULKAN_HEADERS_INSTALL_DIR/include/ \
+                -L $VULKAN_LOADER_INSTALL_DIR/lib 
+
+# build with clang++, with vulkan without web engine,
+# may be remove "-c++std c++20"?
+../qt6/configure -release -nomake tests -prefix /path/to/qt6-clang-install -c++std c++20 -skip qtwebengine -feature-vulkan -platform linux-clang-libc++
+
 cmake --build . --parallel 4
 # or
 gmake -j 12 - for Qt5.15.2
-cmake --install .</code></pre>
+cmake --install .
+
+# qt-creator obtain sources
+git clone https://github.com/qt-creator/qt-creator
+
+# configure, build
+mkdir qt-creator-build
+cmake -DCMAKE_BUILD_TYPE=Release -G Ninja -DCMAKE_PREFIX_PATH=/path/to/qt6-install ../qt-creator
+cmake --build . --parallel 14
+
+# install bold qt creator
+cmake --install . --prefix /prefix/path/qtcreator-12-install
+
+#install with all dependencies (need som 3rd paty lib)
+sudo apt install chrpath
+cmake --install . --prefix /mnt/Fdisk_ext4_ssd_sata/qtcreator-12-install --component Dependencies</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
@@ -1230,14 +1279,14 @@ cmake --install .</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
-      <p><b>Proper Bullet3</b> cmake configure command:</p>
+      <p><b>Build Bullet Physics</b> cmake configure command:</p>
       <pre><code class="language-bash">cmake .. -DCMAKE_INSTALL_PREFIX=/mnt/Fdisk_ext4_ssd_sata/code/extern_libs/bullet3-build \
 -DCMAKE_EXPORT_COMPMPILE_COMMANDS=1 -DUSE_DOUBLE_PRECISION=ON -DINSTALL_LIBS=ON -DCMAKE_BUILD_TYPE=Release</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
-      <p><b>OSG build: </b></p>
+      <p><b>Build OpenSceneGraph: </b></p>
       <pre><code class="language-bash">cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_INSTALL_PREFIX=/mnt/Fdisk_ext4_ssd_sata/code/extern_libs/OpenSceneGraph-build
 ninja -j 16
 ninja install</code></pre>
@@ -1322,10 +1371,16 @@ cmake .. -DBULLET_ROOT=/mnt/Fdisk_ext4_ssd_sata/code/extern_libs/bullet3-build -
         <b>Funny journey with building boost</b> and boost unittest library with
         clang++ toolchain (including libc++)
       </p>
-      <pre><code class="language-bash">./bootstrap.sh --with-toolset=clang
+      <pre><code class="language-bash"># build with clang c++ std library (instead of gcc std library)
+./bootstrap.sh --with-toolset=clang
 ./b2 clean
-././b2 toolset=clang cxxflags="-std=c++1y -stdlib=libc++ -I /usr/local/include/x86_64-unknown-linux-gnu/c++/v1" \
-linkflags="-stdlib=libc++ -L/usr/local/lib/x86_64-unknown-linux-gnu" -j 10</code></pre>
+./b2 toolset=clang cxxflags="-std=c++1y -stdlib=libc++ -I /usr/local/include/x86_64-unknown-linux-gnu/c++/v1" \
+linkflags="-stdlib=libc++ -L/usr/local/lib/x86_64-unknown-linux-gnu" -j 10
+
+# another way to install in custom directory
+DST_DIR=${HOME}/dev/emulator/src/boost
+./bootstrap.sh --prefix=${DST_DIR} --includedir=headers --libdir=dist --with-libraries=date_time
+./b2 --prefix=${DST_DIR} install</code></pre>
       <p>
         Specifying include and link directories for this build is necessary
         because of without it clang generate missing errors, maybe issued by
@@ -1353,8 +1408,12 @@ C-r0     Press Ctrl-R and 0 to paste in</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
-      <p><b></b></p>
-      <pre><code class="language-bash"></code></pre>
+      <p><b>Install and use</b> prettier for js, css and html format.</p>
+      <pre><code class="language-bash"># prerequisites - nodejs
+# install via npm
+npm install --save-dev --save-exact prettier
+# use on existing code base with already configured .prettierrc.json
+npx prettier . --write</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
