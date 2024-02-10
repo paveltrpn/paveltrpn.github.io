@@ -836,7 +836,7 @@ sudo update_grub
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
-      <p><b>Сборка llvm-clang с lldb</b> (да и вообще):</p>
+      <p><b>Build llvm-clang с lldb</b>:</p>
       <p>
         llvm скачивам отсуда
         <span>git clone https://github.com/llvm/llvm-project.git</span>. Всё что
@@ -855,7 +855,7 @@ sudo apt install swig
 
 mkdir build &amp;&amp; cd build
 
-cmake -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb;lld" \
+cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb;lld" \
 -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind;compiler-rt" \
 -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_RTTI=1 -DLLVM_ENABLE_EH=1 \
 -DLLDB_ENABLE_PYTHON=ON -DCMAKE_INSTALL_PREFIX=/usr/local ../llvm
@@ -941,8 +941,20 @@ git push -f origin {branch}</code></pre>
 
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
-      <p><b>Neovim first start</b>, packer install</p>
-      <pre><code class="language-bash">$ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+      <p><b>Neovim build, install and first start</b></p>
+      <pre><code class="language-bash">
+# dependencies
+sudo apt install ninja-build gettext libtool libtool-bin autoconf \
+automake pkg-config unzip lua-luv lua-luv-dev lua-lpeg-dev lua-mpack
+
+# get sources
+git clone https://github.com/neovim/neovim
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+
+# packer install
+$ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
@@ -1176,39 +1188,35 @@ git clone git://code.qt.io/qt/qt5.git qt6
 git clone git://code.qt.io/qt/qt5.git
 # anyway there is many branches in this repo, including 6.x and 5.x
 
-# qt web engine dependency
-sudo apt install python3-html5lib
-# for vulkan api support
-sudo apt install libvulkan-dev
+sudo apt install python3-html5lib libfontconfig1-dev libvulkan-dev libfreetype6-dev \
+libx11-dev libx11-xcb-dev libxext-dev libxfixes-dev libxi-dev libxrender-dev libxcb1-dev \
+libxcb-cursor-dev libxcb-glx0-dev libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev \
+libxcb-icccm4-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-randr0-dev \
+libxcb-render-util0-dev libxcb-util-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
+libxkbcommon-x11-dev nodejs yacc bison chrpath
 
-# Switch to latest:
+# Switch to latest (by lazygit or git checkout {v6.7}):
 cd qt6
-git switch v6.5
 # Init repo:
 perl init-repository
 # configure, make and install (optionaly):
 mkdir qt6-build
 cd qt6-build
-../qt6/configure -release -nomake tests -prefix /path/to/install
+../qt6/configure -release -nomake tests -prefix /path/to/install \
+-inotify -feature-vulkan -make tools -make examples
 
 # another example config
-./configure -prefix /path/to/install \
-                -c++std c++20 \
-                -skip qtwebengine \
-                -inotify \
-                -sctp \
-                -eventfd \
-                -feature-vulkan \
-                -make tools \
-                -make examples \
-                -I $VULKAN_HEADERS_INSTALL_DIR/include/ \
-                -L $VULKAN_LOADER_INSTALL_DIR/lib 
+./configure -prefix /path/to/install -c++std c++20 -skip qtwebengine \
+-inotify -sctp -eventfd -feature-vulkan -make tools \
+-make examples -I $VULKAN_HEADERS_INSTALL_DIR/include \
+-L $VULKAN_LOADER_INSTALL_DIR/lib 
 
 # build with clang++, with vulkan without web engine,
 # may be remove "-c++std c++20"?
-../qt6/configure -release -nomake tests -prefix /path/to/qt6-clang-install -c++std c++20 -skip qtwebengine -feature-vulkan -platform linux-clang-libc++
+../qt6/configure -release -nomake tests -prefix /path/to/qt6-clang-install -c++std c++20 \
+-skip qtwebengine -feature-vulkan -platform linux-clang-libc++
 
-cmake --build . --parallel 4
+cmake --build . --parallel {N}
 # or
 gmake -j 12 - for Qt5.15.2
 cmake --install .
@@ -1222,11 +1230,10 @@ cmake -DCMAKE_BUILD_TYPE=Release -G Ninja -DCMAKE_PREFIX_PATH=/path/to/qt6-insta
 cmake --build . --parallel 14
 
 # install bold qt creator
-cmake --install . --prefix /prefix/path/qtcreator-12-install
+cmake --install . --prefix /path/to/install/directory
 
-#install with all dependencies (need som 3rd paty lib)
-sudo apt install chrpath
-cmake --install . --prefix /mnt/Fdisk_ext4_ssd_sata/qtcreator-12-install --component Dependencies</code></pre>
+# or with dependecies libs (need chrpath to install):
+cmake --install . --prefix /patj/to/install --component Dependencies</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
@@ -1372,15 +1379,12 @@ cmake .. -DBULLET_ROOT=/mnt/Fdisk_ext4_ssd_sata/code/extern_libs/bullet3-build -
         clang++ toolchain (including libc++)
       </p>
       <pre><code class="language-bash"># build with clang c++ std library (instead of gcc std library)
-./bootstrap.sh --with-toolset=clang
+./bootstrap.sh --with-toolset=clang --prefix={DST_DIR} --libdir=dist??? --with-libraries=date_time??? \
+--includedir=headers??? 
 ./b2 clean
 ./b2 toolset=clang cxxflags="-std=c++1y -stdlib=libc++ -I /usr/local/include/x86_64-unknown-linux-gnu/c++/v1" \
 linkflags="-stdlib=libc++ -L/usr/local/lib/x86_64-unknown-linux-gnu" -j 10
-
-# another way to install in custom directory
-DST_DIR=${HOME}/dev/emulator/src/boost
-./bootstrap.sh --prefix=${DST_DIR} --includedir=headers --libdir=dist --with-libraries=date_time
-./b2 --prefix=${DST_DIR} install</code></pre>
+./b2 --prefix={DST_DIR} install</code></pre>
       <p>
         Specifying include and link directories for this build is necessary
         because of without it clang generate missing errors, maybe issued by
