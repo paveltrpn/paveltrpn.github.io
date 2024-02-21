@@ -514,10 +514,16 @@ rg . -n | fzf -e
 # How to make local copy of remote branch
 git checkout -b 12331 --no-track origin/12331
 
+# Run clang-format
+#   --verbose:  verbose output
+#   --dry-run:  do not modify any files
+#   --Werror:   reaport errors
+#   -i:         format and write files
 # Recursive format all nested directories
-find . | grep "\..*\.cpp$\|\..*\.h$" | xargs clang-format --dry-run --Werror --verbose
-# Or some directory nested directories
-find . | grep "\./src.*\.cpp$\|\./src.*\.h$" | xargs clang-format --dry-run --Werror
+find . | grep "\..*\.cpp$\|\..*\.h$" | xargs clang-format --verbose --dry-run --Werror 
+
+# Or some directory and all nested directories
+find . | grep "\./src.*\.cpp$\|\./src.*\.h$" | xargs clang-format --verbose --dry-run --Werror
 
 # Convert *.mdf to *.iso file:
 iat --iso -i Morrowind.mdf -o Morrowind.iso
@@ -1180,7 +1186,7 @@ sudo make install</code></pre>
         with gcc - there is a numeric_limits template error after run
         ./configure. Solved by adding <span>#include &lt;limits&gt;</span> in
         <span>qt5/qtbase/src/corelib/global/qglobal.h</span> within the #ifdef
-        __cplusplus block to the file
+        __cplusplus block to the file. For more info see - https://wiki.qt.io/Building_Qt_5_from_Git
       </p>
       <pre><code class="language-bash"># Download:
 git clone git://code.qt.io/qt/qt5.git qt6
@@ -1193,7 +1199,20 @@ libx11-dev libx11-xcb-dev libxext-dev libxfixes-dev libxi-dev libxrender-dev lib
 libxcb-cursor-dev libxcb-glx0-dev libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev \
 libxcb-icccm4-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-randr0-dev \
 libxcb-render-util0-dev libxcb-util-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev \
-libxkbcommon-x11-dev nodejs yacc bison chrpath
+libxkbcommon-x11-dev nodejs yacc bison chrpath libicu-dev libxslt-dev ruby \
+libxcursor-dev libxcomposite-dev libxdamage-dev libxrandr-dev libxtst-dev libxss-dev \ 
+libdbus-1-dev libevent-dev libcap-dev libpulse-dev libudev-dev libcups2-dev\ 
+libpci-dev libasound2-dev libegl1-mesa-dev gperf flex libnss3-dev libxshmfence-dev libgles2-mesa-dev
+
+# to build qt 5 with web engine python2 must be located in system.
+# try to install them manually:
+# download latest (2.7.18) zip source archive, unpack and:
+cd ../python2
+mkdir build
+cd build
+../configure
+make
+# add to path ../python2/build
 
 # Switch to latest (by lazygit or git checkout {v6.7}):
 cd qt6
@@ -1202,7 +1221,7 @@ perl init-repository
 # configure, make and install (optionaly):
 mkdir qt6-build
 cd qt6-build
-../qt6/configure -release -nomake tests -prefix /path/to/install \
+../qt6/configure -release {-developer-build} -nomake tests -prefix /path/to/install \
 -inotify -feature-vulkan -make tools -make examples
 
 # another example config
@@ -1379,12 +1398,11 @@ cmake .. -DBULLET_ROOT=/mnt/Fdisk_ext4_ssd_sata/code/extern_libs/bullet3-build -
         clang++ toolchain (including libc++)
       </p>
       <pre><code class="language-bash"># build with clang c++ std library (instead of gcc std library)
-./bootstrap.sh --with-toolset=clang --prefix={DST_DIR} --libdir=dist??? --with-libraries=date_time??? \
---includedir=headers??? 
+./bootstrap.sh --with-toolset=clang --prefix={DST_DIR} --with-libraries=all 
 ./b2 clean
 ./b2 toolset=clang cxxflags="-std=c++1y -stdlib=libc++ -I /usr/local/include/x86_64-unknown-linux-gnu/c++/v1" \
 linkflags="-stdlib=libc++ -L/usr/local/lib/x86_64-unknown-linux-gnu" -j 10
-./b2 --prefix={DST_DIR} install</code></pre>
+./b2 {--prefix={DST_DIR}} install</code></pre>
       <p>
         Specifying include and link directories for this build is necessary
         because of without it clang generate missing errors, maybe issued by
