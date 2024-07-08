@@ -1182,8 +1182,8 @@ sudo make install</code></pre>
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
       <p>
-        <b>Build Qt6 and qt-creator</b> from sources (see also
-        https://wiki.qt.io/Building_Qt_6_from_Git) !!!WARNING!!! - to build qt6
+      <b>Build Qt5 from sources</b> (see also https://doc.qt.io/qt-5/configure-options.html,
+        https://wiki.qt.io/Building_Qt_5_from_Git, https://wiki.qt.io/Building_Qt_6_from_Git) !!!WARNING!!! - to build qt5
         with qdoc required llvm toolchain and this toolchain must be built with
         RTTI support, but RTTI disable by default in llvm-clang config. It need
         to be enabled by this config command:
@@ -1191,18 +1191,21 @@ sudo make install</code></pre>
       <pre><code class="language-bash">$ cmake -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb" -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;libunwind" \
 -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_RTTI=1 -DLLVM_ENABLE_EH=1 -G "Unix Makefiles" ../llvm</code></pre>
       <p>
-        !!!WARNING!!! - Qt 5.15.2 can not be build by default in Debian 12.2
-        with gcc - there is a numeric_limits template error after run
+        !!!WARNING!!! - Qt 5.15.2 can not be build by default in Debian 12.2 (Kubuntu 23.10)
+        with gcc (gcc-13) - there is a numeric_limits template error after run
         ./configure. Solved by adding <span>#include &lt;limits&gt;</span> in
-        <span>qt5/qtbase/src/corelib/global/qglobal.h</span> within the #ifdef
-        __cplusplus block to the file. For more info see - https://wiki.qt.io/Building_Qt_5_from_Git
+        <span>qt5/qtbase/src/corelib/global/qglobal.h</span> and some others in qtwebengine/src/3rdparty 
+        For more info see - https://wiki.qt.io/Building_Qt_5_from_Git
       </p>
-      <pre><code class="language-bash"># Download:
-git clone git://code.qt.io/qt/qt5.git qt6
-# or just
-git clone git://code.qt.io/qt/qt5.git
-# anyway there is many branches in this repo, including 6.x and 5.x
-
+      <p>
+        !!!WARNING!!! - QtWebEngine in Qt 5.15.2 can not be build with gcc-13 cause of some compile
+        errors - lack of uintptr_t declaration (no <cstdint> include), substitution error in std::max() template
+        with an int and long int arguments, ffmpeg build fail because of some assembler instruction.
+        Solved by adding <span>#include &lt;cstdint&gt;</span>, cast second argument to int 
+        <span>std::max(16384, int(SIGSTKSZ))</span>, patch <span>3rdparty/chromium/third_party/ffmpeg/libavcodec/x86mathops.h</span>
+        (replace entire file) like suggest <span>https://git.ffmpeg.org/gitweb/ffmpeg.git/commitdiff/effadce6c756247ea8bae32dc13bb3e6f464f0eb</span> 
+      </p>
+      <pre><code class="language-bash"># dependencies (essential for multimedia and webengine)
 sudo apt install python3-html5lib libfontconfig1-dev libvulkan-dev libfreetype6-dev \
 libx11-dev libx11-xcb-dev libxext-dev libxfixes-dev libxi-dev libxrender-dev libxcb1-dev \
 libxcb-cursor-dev libxcb-glx0-dev libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev \
@@ -1211,27 +1214,65 @@ libxcb-render-util0-dev libxcb-util-dev libxcb-xinerama0-dev libxcb-xkb-dev libx
 libxkbcommon-x11-dev nodejs yacc bison chrpath libicu-dev libxslt-dev ruby \
 libxcursor-dev libxcomposite-dev libxdamage-dev libxrandr-dev libxtst-dev libxss-dev \ 
 libdbus-1-dev libevent-dev libcap-dev libpulse-dev libudev-dev libcups2-dev\ 
-libpci-dev libasound2-dev libegl1-mesa-dev gperf flex libnss3-dev libxshmfence-dev libgles2-mesa-dev
+libpci-dev libasound2-dev libegl1-mesa-dev gperf flex libnss3-dev libxshmfence-dev libgles2-mesa-dev \
+libnode-dev libnode108 nodejs-doc libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
+libgstreamer-plugins-good1.0-dev libgstreamer-plugins-bad1.0-dev
 
 # to build qt 5 with web engine python2 must be located in system.
 # try to install them manually:
 # download latest (2.7.18) zip source archive, unpack and:
-cd ../python2
+cd /../{some}/location}/python2
 mkdir build
 cd build
 ../configure
 make
-# add to path ../python2/build
+# add to path /../{some}/{location}/python2/build
 
-# Switch to latest (by lazygit or git checkout {v6.7}):
-cd qt6
+# download, build and install
+git clone git://code.qt.io/qt/qt5.git qt5{version}
+cd qt5{version}
+# switch to desire branch
+git checkout {branch}
+# Init repo:
+perl init-repository {--module-subset=default} 
+# configure, make and install (optionaly):
+mkdir qt_build
+cd qt_build
+
+# Use string below to build. Exclude {-shared}, {-webengine-embedded-build} to build with multimedia
+# but further you need manually build qquickcontols2 and qtwebengine
+../qt{version}/configure -inotify -prefix ../{path}/{to}/{install} {-shared} -debug -opensource \ 
+-confirm-license -make libs -make tools -nomake tests -nomake examples -feature-vulkan \ 
+-feature-webengine-qml -feature-webengine-widgets -feature-build-qtwebengine-core \
+-feature-accessibility {-webengine-embedded-build} -DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE
+
+make -j {n}
+make install -j {n} # beacuse durning installation some pakages still will be compiled 
+
+cd ../sources/qt5{version}/qtwebengine
+/{path}/{to}/{installed qt}/qtbase/bin/qmake
+make -j {n}
+# end solve all compile errors when using gcc-13
+make install</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div>
+      <p>
+      <b>Build Qt6 from sources.</b> See tips above about llvm support and other things.
+      </p>
+      <pre><code class="language-bash"># use same dependencies as for qt5
+# download:
+git clone git://code.qt.io/qt/qt5.git qt6{version}
+cd qt6{branch}
+git checkout {branch}
 # Init repo:
 perl init-repository
 # configure, make and install (optionaly):
 mkdir qt6-build
 cd qt6-build
-../qt6/configure -release {-developer-build} -nomake tests -prefix /path/to/install \
--inotify -feature-vulkan -make tools -make examples
+../qt6/configure -release {-debug} {-developer-build} -nomake tests -prefix /path/to/install \
+-inotify -feature-vulkan -make tools -make examples -- -DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE
 
 # another example config
 ./configure -prefix /path/to/install -c++std c++20 -skip qtwebengine \
@@ -1245,12 +1286,22 @@ cd qt6-build
 -skip qtwebengine -feature-vulkan -platform linux-clang-libc++
 
 cmake --build . --parallel {N}
-# or
-gmake -j 12 - for Qt5.15.2
-cmake --install .
-
-# qt-creator obtain sources
+cmake --install .</code></pre>
+    </div>
+    <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
+    <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
+    <div>
+      <p>
+      <b>Build qt-creator from sources</b>
+      </p>
+      <pre><code class="language-bash"># qt-creator obtain sources
 git clone https://github.com/qt-creator/qt-creator
+cd qt-creator
+git submodule update --init --recursive
+# dependencies for perfparser and perf tool install
+sudo apt-get install libdw-dev linux-tools-common linux-tools-generic linux-tools-`uname -r`
+# make perf tool work
+sudo sysctl kernel.perf_event_paranoid=-1
 
 # configure, build
 mkdir qt-creator-build
@@ -1421,7 +1472,7 @@ linkflags="-stdlib=libc++ -L/usr/local/lib/x86_64-unknown-linux-gnu" -j 10
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
-      <p><b>Stole from </b> https://gist.github.com/awidegreen/3854277</p>
+      <p><b>Neovim tip, stolen from </b> https://gist.github.com/awidegreen/3854277</p>
       <pre><code class="language-bash">Replace the word under cursor and all occurances:
 *     word under cursor 'foo'
 cw    change word (enter insert mode)
@@ -1449,14 +1500,20 @@ npx prettier . --write</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
-      <p><b></b></p>
-      <pre><code class="language-bash"></code></pre>
+      <p><b>Set vm.dirty_bytes</b> for optimal linux usb flash drive write.</p>
+      <pre><code class="language-bash"># the value is 128mb
+sudo sysctl vm.dirty_bytes=134217728</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
-      <p><b></b></p>
-      <pre><code class="language-bash"></code></pre>
+      <p><b>Disable auto-update</b> in Ubuntu (Kubuntu 23.10)</p>
+      <pre><code class="language-bash">sudo nvim /etc/apt/apt.conf.d/20auto-upgrades
+# set all this options to zero
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Download-Upgradeable-Packages "0";
+APT::Periodic::AutocleanInterval "0";
+APT::Periodic::Unattended-Upgrade "0";</code></pre>
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
