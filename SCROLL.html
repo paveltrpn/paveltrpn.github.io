@@ -814,7 +814,20 @@ alias ls='ls --color=auto -l -A -X'</code></pre>
 yt-dlp -f "bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best[ext=mp4]/best" --write-auto-sub --embed-subs {URL}
 
 # mp3 audio part download
-yt-dlp -x --audio-format mp3 --audio-quality 0 {URL}</code></pre>
+yt-dlp -x --audio-format mp3 --audio-quality 0 {URL}
+
+# download through tor proxy, tor broweser must be launched
+./yt-dlp_linux -f "bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best[ext=mp4]/best" {URL} \
+--proxy "socks5://127.0.0.1:9150/"</code></pre>
+
+      <p>Download 720p format with single file/stream.</p>
+<pre><code class="language-bash">yt-dlp -f 95 'https://youtu.be/eUyr9MJnj4w' \
+--extractor-arg "youtube:player_client=mediaconnect"</code></pre>
+
+      <p>Play 720p format with single file/stream.</p>
+<pre><code class="language-bash">mpv --ytdl-format=95 'https://youtu.be/eUyr9MJnj4w' \
+--ytdl-raw-options=extractor-arg="youtube:player_client=mediaconnect"</code></pre>
+
     </div>
 
     <div>
@@ -948,29 +961,30 @@ git push -f origin {branch}</code></pre>
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
       <p><b>Neovim build, install and first start</b></p>
-      <pre><code class="language-bash">
-# dependencies
+      <pre><code class="language-bash"># dependencies
 sudo apt install ninja-build gettext libtool libtool-bin autoconf \
 automake pkg-config unzip lua-luv lua-luv-dev lua-lpeg-dev lua-mpack
 
 # get sources
 git clone https://github.com/neovim/neovim
-mkdir build
-cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
 
 # latest build tip
 #
 # maybe do not install dependencies manually!
 #
 # in ../../neovim directory
-sudo make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=/usr/local/nvim install
+make CMAKE_BUILD_TYPE=Release -j 14 
+sudo make CMAKE_INSTALL_PREFIX=/usr/local install
 # patch ~/.bashrc with
 export PATH=$PATH:/usr/local/nvim/bin
 
 # packer install
 $ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim</code></pre>
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+# install fzf and lazygit manually, these 
+# binaries avaible on github</code></pre>
+
     </div>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
 
@@ -1490,10 +1504,18 @@ C-r0     Press Ctrl-R and 0 to paste in</code></pre>
     <!-- ============= КОНЕЦ ЗАПИСИ ============== -->
     <!-- ============= НАЧАЛО ЗАПИСИ ============= -->
     <div>
-      <p><b>Install and use</b> prettier for js, css and html format.</p>
+      <p><b>Install and use</b> typescript, ts language server, prettier for js, css and html format. Update nodejs.</p>
       <pre><code class="language-bash"># prerequisites - nodejs
+# typescript, tsserver globally
+sudo npm install -g typescript-language-server typescript
+
 # install via npm
 npm install --save-dev --save-exact prettier
+
+# update nodejs via n
+sudo npm install -g n
+sudo n latest
+
 # use on existing code base with already configured .prettierrc.json
 npx prettier . --write</code></pre>
     </div>
